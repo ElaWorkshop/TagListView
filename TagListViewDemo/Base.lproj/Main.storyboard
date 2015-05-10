@@ -46,10 +46,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5B-Sc-Dfo" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="148" width="277" height="82"/>
+                                <rect key="frame" x="16" y="152" width="277" height="22"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="82" id="935-sK-xao"/>
+                                    <constraint firstAttribute="height" priority="250" constant="82" id="935-sK-xao"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="277" id="9PT-A0-Th9"/>
                                     <constraint firstAttribute="width" constant="277" id="IfW-mB-a8e"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="82" id="xfa-EG-J63"/>
@@ -87,17 +87,57 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-iU-xRm" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="189" width="277" height="22"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="250" constant="82" id="0nr-i2-gTA"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="277" id="3mJ-aW-u2O"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="277" id="6hg-8p-cJc"/>
+                                    <constraint firstAttribute="width" constant="277" id="am0-Wm-2kd"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="aqT-Bn-XvQ"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="82" id="ecU-eS-Rcd"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
+                                        <color key="value" red="0.2510022615131578" green="0.86276726973684215" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="marginX">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="marginY">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3mJ-aW-u2O"/>
+                                        <exclude reference="6hg-8p-cJc"/>
+                                        <exclude reference="aqT-Bn-XvQ"/>
+                                        <exclude reference="ecU-eS-Rcd"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2SR-iU-xRm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="1ze-6J-vf8"/>
                             <constraint firstItem="4S7-JK-aUE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="M7a-Ac-6Qz"/>
                             <constraint firstItem="n5B-Sc-Dfo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="URs-N9-4Pt"/>
-                            <constraint firstItem="n5B-Sc-Dfo" firstAttribute="top" secondItem="4S7-JK-aUE" secondAttribute="bottom" constant="8" id="Xgd-WB-f07"/>
+                            <constraint firstItem="n5B-Sc-Dfo" firstAttribute="top" secondItem="4S7-JK-aUE" secondAttribute="bottom" constant="12" id="Xgd-WB-f07"/>
+                            <constraint firstItem="2SR-iU-xRm" firstAttribute="top" secondItem="n5B-Sc-Dfo" secondAttribute="bottom" constant="15" id="uid-Jg-Dhl"/>
                             <constraint firstItem="4S7-JK-aUE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="102" id="zFE-TU-Kx6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="biggerTagListView" destination="n5B-Sc-Dfo" id="twE-Sg-GwG"/>
+                        <outlet property="biggestTagListView" destination="2SR-iU-xRm" id="ZFD-vV-8WH"/>
                         <outlet property="tagListView" destination="4S7-JK-aUE" id="8yD-JT-l4t"/>
                     </connections>
                 </viewController>

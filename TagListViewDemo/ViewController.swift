@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var biggerTagListView: TagListView!
+    @IBOutlet weak var biggestTagListView: TagListView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,15 @@ class ViewController: UIViewController {
         biggerTagListView.addTag("Inboard")
         biggerTagListView.addTag("Pomotodo")
         biggerTagListView.addTag("Halo Word")
+        
+        biggestTagListView.textFont = UIFont.systemFontOfSize(24)
+        biggestTagListView.addTag("all")
+        biggestTagListView.addTag("your")
+        biggestTagListView.addTag("tag")
+        biggestTagListView.addTag("are")
+        biggestTagListView.addTag("belong")
+        biggestTagListView.addTag("to")
+        biggestTagListView.addTag("us")
     }
 
     override func didReceiveMemoryWarning() {
