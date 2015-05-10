@@ -8,7 +8,7 @@ Simple but highly customizable iOS tag list view, in Swift. The APIs are *not* s
 
 Supports Storyboard, Auto Layout, and @IBDesignable.
 
-<img alt="Screenshot" src="Screenshots/Screenshot.png" width="345">
+<img alt="Screenshot" src="Screenshots/Screenshot.png" width="310">
 
 ## Usage
 
