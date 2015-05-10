@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4S7-JK-aUE" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="122" width="277" height="82"/>
+                                <rect key="frame" x="16" y="122" width="277" height="18"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="277" id="1oP-qJ-5CN"/>
@@ -46,7 +46,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5B-Sc-Dfo" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="212" width="277" height="82"/>
+                                <rect key="frame" x="16" y="148" width="277" height="82"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="82" id="935-sK-xao"/>

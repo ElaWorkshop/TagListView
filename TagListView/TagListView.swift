@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class TagListView: UIView {
     
     @IBInspectable var textColor: UIColor = UIColor.whiteColor() {
@@ -81,15 +82,17 @@ class TagListView: UIView {
     }
 
     var tagViews: [TagView] = []
+    var tagViewHeight: CGFloat = 0
+    var rows = 0 {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
     
     override func prepareForInterfaceBuilder() {
-        addTag("all")
-        addTag("your")
-        addTag("tag")
-        addTag("are")
-        addTag("belong")
+        addTag("Welcome")
         addTag("to")
-        addTag("us")
+        addTag("TagListView")
     }
     
     override func layoutSubviews() {
@@ -104,18 +107,19 @@ class TagListView: UIView {
         var currentRowWidth: CGFloat = 0
         for tagView in tagViews {
             tagView.frame.size = tagView.intrinsicContentSize()
+            tagViewHeight = tagView.frame.height
             
             if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width + marginX > frame.width {
                 currentRow += 1
                 tagView.frame.origin.x = 0
-                tagView.frame.origin.y = CGFloat(currentRow - 1) * (tagView.frame.height + marginY)
+                tagView.frame.origin.y = CGFloat(currentRow - 1) * (tagViewHeight + marginY)
                 
                 currentRowTagCount = 1
                 currentRowWidth = tagView.frame.width + marginX
             }
             else {
                 tagView.frame.origin.x = currentRowWidth
-                tagView.frame.origin.y = CGFloat(currentRow - 1) * (tagView.frame.height + marginY)
+                tagView.frame.origin.y = CGFloat(currentRow - 1) * (tagViewHeight + marginY)
                 
                 currentRowTagCount += 1
                 currentRowWidth += tagView.frame.width + marginX
@@ -123,6 +127,12 @@ class TagListView: UIView {
             
             addSubview(tagView)
         }
+        rows = currentRow
+    }
+    
+    override func intrinsicContentSize() -> CGSize {
+        let height = CGFloat(rows) * (tagViewHeight + marginY) - marginY
+        return CGSizeMake(frame.width, height)
     }
     
     func addTag(title: String) {
