@@ -44,6 +44,11 @@ class TagView: UIButton {
             titleEdgeInsets.right = paddingY
         }
     }
+    var textFont: UIFont = UIFont.systemFontOfSize(12) {
+        didSet {
+            titleLabel?.font = textFont
+        }
+    }
     
     // MARK: - init
     
@@ -60,9 +65,9 @@ class TagView: UIButton {
     // MARK: - layout
     
     override func intrinsicContentSize() -> CGSize {
-        var size = super.intrinsicContentSize()
+        var size = titleLabel?.text?.sizeWithAttributes([NSFontAttributeName: textFont]) ?? CGSizeZero
         
-        size.height += paddingY * 2
+        size.height = textFont.pointSize + paddingY * 2
         size.width += paddingX * 2
         
         return size

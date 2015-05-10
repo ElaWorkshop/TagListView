@@ -11,17 +11,20 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var tagListView: TagListView!
+    @IBOutlet weak var biggerTagListView: TagListView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        tagListView.addTag("all")
-        tagListView.addTag("your")
-        tagListView.addTag("tag")
-        tagListView.addTag("are")
-        tagListView.addTag("belong")
-        tagListView.addTag("to")
-        tagListView.addTag("us")
+            
+        tagListView.addTag("TagListView")
+        tagListView.addTag("TEAChart")
+        tagListView.addTag("Quark Shell")
+        tagListView.addTag("miracle-board")
+        
+        biggerTagListView.textFont = UIFont.systemFontOfSize(15)
+        biggerTagListView.addTag("Inboard")
+        biggerTagListView.addTag("Pomotodo")
+        biggerTagListView.addTag("Halo Word")
     }
 
     override func didReceiveMemoryWarning() {

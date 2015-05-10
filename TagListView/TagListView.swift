@@ -50,7 +50,7 @@ class TagListView: UIView {
             for tagView in tagViews {
                 tagView.paddingY = paddingY
             }
-            setNeedsLayout()
+            layoutIfNeeded()
         }
     }
     @IBInspectable var paddingX: CGFloat = 5 {
@@ -58,17 +58,25 @@ class TagListView: UIView {
             for tagView in tagViews {
                 tagView.paddingX = paddingX
             }
-            setNeedsLayout()
+            layoutIfNeeded()
         }
     }
     @IBInspectable var marginY: CGFloat = 2 {
         didSet {
-            setNeedsLayout()
+            layoutIfNeeded()
         }
     }
     @IBInspectable var marginX: CGFloat = 5 {
         didSet {
-            setNeedsLayout()
+            layoutIfNeeded()
+        }
+    }
+    var textFont: UIFont = UIFont.systemFontOfSize(12) {
+        didSet {
+            for tagView in tagViews {
+                tagView.textFont = textFont
+            }
+            layoutIfNeeded()
         }
     }
 
@@ -106,7 +114,7 @@ class TagListView: UIView {
                 currentRowWidth = tagView.frame.width + marginX
             }
             else {
-                tagView.frame.origin.x = currentRowWidth + marginX
+                tagView.frame.origin.x = currentRowWidth
                 tagView.frame.origin.y = CGFloat(currentRow - 1) * (tagView.frame.height + marginY)
                 
                 currentRowTagCount += 1
@@ -127,6 +135,7 @@ class TagListView: UIView {
         tagView.borderColor = borderColor
         tagView.paddingY = paddingY
         tagView.paddingX = paddingX
+        tagView.textFont = textFont
         
         addTagView(tagView)
     }
