@@ -14,6 +14,7 @@
 		1A6076C91AFED303009EA00E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A6076C71AFED303009EA00E /* LaunchScreen.xib */; };
 		1A6076D51AFED303009EA00E /* TagListViewDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6076D41AFED303009EA00E /* TagListViewDemoTests.swift */; };
 		1A6076DF1AFED38F009EA00E /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6076DE1AFED38F009EA00E /* TagView.swift */; };
+		1A6076E31AFED866009EA00E /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6076E21AFED866009EA00E /* TagListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		1A6076D31AFED303009EA00E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A6076D41AFED303009EA00E /* TagListViewDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewDemoTests.swift; sourceTree = "<group>"; };
 		1A6076DE1AFED38F009EA00E /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagView.swift; path = TagListView/TagView.swift; sourceTree = SOURCE_ROOT; };
+		1A6076E21AFED866009EA00E /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagListView.swift; path = TagListView/TagListView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +83,7 @@
 			children = (
 				1A6076BE1AFED303009EA00E /* AppDelegate.swift */,
 				1A6076C01AFED303009EA00E /* ViewController.swift */,
-				1A6076DE1AFED38F009EA00E /* TagView.swift */,
+				1A6076E41AFED91A009EA00E /* TagListView */,
 				1A6076C21AFED303009EA00E /* Main.storyboard */,
 				1A6076C51AFED303009EA00E /* Images.xcassets */,
 				1A6076C71AFED303009EA00E /* LaunchScreen.xib */,
@@ -113,6 +115,15 @@
 				1A6076D31AFED303009EA00E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1A6076E41AFED91A009EA00E /* TagListView */ = {
+			isa = PBXGroup;
+			children = (
+				1A6076DE1AFED38F009EA00E /* TagView.swift */,
+				1A6076E21AFED866009EA00E /* TagListView.swift */,
+			);
+			name = TagListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +229,7 @@
 				1A6076C11AFED303009EA00E /* ViewController.swift in Sources */,
 				1A6076BF1AFED303009EA00E /* AppDelegate.swift in Sources */,
 				1A6076DF1AFED38F009EA00E /* TagView.swift in Sources */,
+				1A6076E31AFED866009EA00E /* TagListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
