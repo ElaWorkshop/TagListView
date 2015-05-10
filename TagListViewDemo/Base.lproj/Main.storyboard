@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqG-ig-M0S" customClass="TagView" customModule="TagListViewDemo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="81" height="30"/>
+                                <rect key="frame" x="16" y="28" width="81" height="30"/>
                                 <color key="backgroundColor" red="0.98823529409999999" green="0.61749588815789469" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="250" constant="81" id="5HT-MW-uWB"/>
                                     <constraint firstAttribute="height" priority="250" constant="30" id="goR-Qd-aca"/>
                                 </constraints>
-                                <state key="normal" title="Inboard">
+                                <state key="normal" title="Stargazer">
                                     <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -40,7 +41,12 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4S7-JK-aUE" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="122" width="200" height="234"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="1oP-qJ-5CN"/>
+                                    <constraint firstAttribute="height" constant="234" id="Eqd-9H-22r"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
                                         <color key="value" red="0.98823529409999999" green="0.23921568630000001" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -58,6 +64,12 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nqG-ig-M0S" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="F1y-gl-69s"/>
+                            <constraint firstItem="4S7-JK-aUE" firstAttribute="top" secondItem="nqG-ig-M0S" secondAttribute="bottom" constant="100" id="J1J-kx-8bQ"/>
+                            <constraint firstItem="4S7-JK-aUE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="M7a-Ac-6Qz"/>
+                            <constraint firstItem="nqG-ig-M0S" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="ZvO-lx-aCa"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tagListView" destination="4S7-JK-aUE" id="8yD-JT-l4t"/>
@@ -65,6 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="366" y="467"/>
         </scene>
     </scenes>
 </document>

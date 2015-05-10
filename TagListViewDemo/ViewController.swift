@@ -15,7 +15,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        tagListView.addTag("Stargazer")
+        tagListView.addTag("all")
+        tagListView.addTag("your")
+        tagListView.addTag("tag")
+        tagListView.addTag("are")
+        tagListView.addTag("belong")
+        tagListView.addTag("to")
+        tagListView.addTag("us")
     }
 
     override func didReceiveMemoryWarning() {

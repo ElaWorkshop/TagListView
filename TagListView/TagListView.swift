@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class TagListView: UIView {
     
     @IBInspectable var textColor: UIColor = UIColor.whiteColor() {
@@ -62,6 +61,16 @@ class TagListView: UIView {
             setNeedsLayout()
         }
     }
+    @IBInspectable var marginY: CGFloat = 2 {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    @IBInspectable var marginX: CGFloat = 5 {
+        didSet {
+            setNeedsLayout()
+        }
+    }
 
     var tagViews: [TagView] = []
     
@@ -82,8 +91,28 @@ class TagListView: UIView {
             tagView.removeFromSuperview()
         }
         
+        var currentRow = 0
+        var currentRowTagCount = 0
+        var currentRowWidth: CGFloat = 0
         for tagView in tagViews {
             tagView.frame.size = tagView.intrinsicContentSize()
+            
+            if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width + marginX > frame.width {
+                currentRow += 1
+                tagView.frame.origin.x = 0
+                tagView.frame.origin.y = CGFloat(currentRow - 1) * (tagView.frame.height + marginY)
+                
+                currentRowTagCount = 1
+                currentRowWidth = tagView.frame.width + marginX
+            }
+            else {
+                tagView.frame.origin.x = currentRowWidth + marginX
+                tagView.frame.origin.y = CGFloat(currentRow - 1) * (tagView.frame.height + marginY)
+                
+                currentRowTagCount += 1
+                currentRowWidth += tagView.frame.width + marginX
+            }
+            
             addSubview(tagView)
         }
     }
