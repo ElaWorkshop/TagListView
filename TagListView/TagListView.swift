@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+@objc protocol TagListViewDelegate {
+    optional func tagPressed(title: String) -> Void
+}
+
+
 @IBDesignable
 class TagListView: UIView {
     
@@ -80,6 +86,8 @@ class TagListView: UIView {
             layoutIfNeeded()
         }
     }
+    
+    @IBOutlet var delegate: TagListViewDelegate?
 
     var tagViews: [TagView] = []
     var tagViewHeight: CGFloat = 0
@@ -147,12 +155,20 @@ class TagListView: UIView {
         tagView.paddingX = paddingX
         tagView.textFont = textFont
         
+        tagView.addTarget(self, action: "tagPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        
         addTagView(tagView)
     }
     
     func addTagView(tagView: TagView) {
         tagViews.append(tagView)
         setNeedsLayout()
+    }
+    
+    func tagPressed(sender: UIButton!) {
+        if let delegate = delegate, tagPressed = delegate.tagPressed {
+            tagPressed(sender.currentTitle ?? "")
+        }
     }
 
 }

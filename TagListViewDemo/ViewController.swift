@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TagListViewDelegate {
 
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var biggerTagListView: TagListView!
@@ -16,17 +16,20 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
+        tagListView.delegate = self
         tagListView.addTag("TagListView")
         tagListView.addTag("TEAChart")
         tagListView.addTag("Quark Shell")
         tagListView.addTag("miracle-board")
         
+        biggerTagListView.delegate = self
         biggerTagListView.textFont = UIFont.systemFontOfSize(15)
         biggerTagListView.addTag("Inboard")
         biggerTagListView.addTag("Pomotodo")
         biggerTagListView.addTag("Halo Word")
         
+        biggestTagListView.delegate = self
         biggestTagListView.textFont = UIFont.systemFontOfSize(24)
         biggestTagListView.addTag("all")
         biggestTagListView.addTag("your")
@@ -42,6 +45,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func tagPressed(title: String) {
+        println("Tag pressed: \(title)")
+    }
 
 }
 
