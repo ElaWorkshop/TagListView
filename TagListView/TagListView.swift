@@ -97,11 +97,15 @@ class TagListView: UIView {
         }
     }
     
+    // MARK: - Interface Builder
+    
     override func prepareForInterfaceBuilder() {
         addTag("Welcome")
         addTag("to")
         addTag("TagListView")
     }
+    
+    // MARK: - Layout
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -138,6 +142,8 @@ class TagListView: UIView {
         rows = currentRow
     }
     
+    // MARK: - Manage tags
+    
     override func intrinsicContentSize() -> CGSize {
         let height = CGFloat(rows) * (tagViewHeight + marginY) - marginY
         return CGSizeMake(frame.width, height)
@@ -160,10 +166,30 @@ class TagListView: UIView {
         addTagView(tagView)
     }
     
-    func addTagView(tagView: TagView) {
+    private func addTagView(tagView: TagView) {
         tagViews.append(tagView)
         setNeedsLayout()
     }
+    
+    func removeTag(title: String) {
+        for (index, tagView) in enumerate(tagViews) {
+            if tagView.currentTitle == title {
+                tagView.removeFromSuperview()
+                tagViews.removeAtIndex(index)
+            }
+        }
+        setNeedsLayout()
+    }
+    
+    func removeAllTags() {
+        for tagView in tagViews {
+            tagView.removeFromSuperview()
+        }
+        tagViews = []
+        setNeedsLayout()
+    }
+    
+    // MARK: - Events
     
     func tagPressed(sender: UIButton!) {
         if let delegate = delegate, tagPressed = delegate.tagPressed {

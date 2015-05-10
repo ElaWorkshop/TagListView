@@ -20,8 +20,10 @@ class ViewController: UIViewController, TagListViewDelegate {
         tagListView.delegate = self
         tagListView.addTag("TagListView")
         tagListView.addTag("TEAChart")
+        tagListView.addTag("To Be Removed")
         tagListView.addTag("Quark Shell")
         tagListView.addTag("miracle-board")
+        tagListView.removeTag("To Be Removed")
         
         biggerTagListView.delegate = self
         biggerTagListView.textFont = UIFont.systemFontOfSize(15)

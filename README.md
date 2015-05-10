@@ -20,7 +20,11 @@ You can add tag to the tag list view, or set custom font through code:
 
 ```swift
 tagListView.textFont = UIFont.systemFontOfSize(24)
+
 tagListView.addTag("TagListView")
+
+tagListView.removeTag("meow") // all tags with title “meow” will be removed
+tagListView.removeAllTags()
 ```
 
 You can implement `TagListViewDelegate` to receive tag pressed event:
