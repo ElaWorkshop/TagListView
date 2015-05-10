@@ -51,6 +51,7 @@ class TagListView: UIView {
             for tagView in tagViews {
                 tagView.paddingY = paddingY
             }
+            setNeedsLayout()
         }
     }
     @IBInspectable var paddingX: CGFloat = 5 {
@@ -58,6 +59,7 @@ class TagListView: UIView {
             for tagView in tagViews {
                 tagView.paddingX = paddingX
             }
+            setNeedsLayout()
         }
     }
 
@@ -81,7 +83,7 @@ class TagListView: UIView {
         }
         
         for tagView in tagViews {
-//            tagView.frame.size = tagView.intrinsicContentSize()
+            tagView.frame.size = tagView.intrinsicContentSize()
             addSubview(tagView)
         }
     }
@@ -102,7 +104,7 @@ class TagListView: UIView {
     
     func addTagView(tagView: TagView) {
         tagViews.append(tagView)
-        layoutIfNeeded()
+        setNeedsLayout()
     }
 
 }
