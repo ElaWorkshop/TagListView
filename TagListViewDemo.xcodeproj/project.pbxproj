@@ -13,6 +13,7 @@
 		1A6076C61AFED303009EA00E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6076C51AFED303009EA00E /* Images.xcassets */; };
 		1A6076C91AFED303009EA00E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A6076C71AFED303009EA00E /* LaunchScreen.xib */; };
 		1A6076D51AFED303009EA00E /* TagListViewDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6076D41AFED303009EA00E /* TagListViewDemoTests.swift */; };
+		1A6076DF1AFED38F009EA00E /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6076DE1AFED38F009EA00E /* TagView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		1A6076CE1AFED303009EA00E /* TagListViewDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagListViewDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A6076D31AFED303009EA00E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A6076D41AFED303009EA00E /* TagListViewDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewDemoTests.swift; sourceTree = "<group>"; };
+		1A6076DE1AFED38F009EA00E /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagView.swift; path = TagListView/TagView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				1A6076BE1AFED303009EA00E /* AppDelegate.swift */,
 				1A6076C01AFED303009EA00E /* ViewController.swift */,
+				1A6076DE1AFED38F009EA00E /* TagView.swift */,
 				1A6076C21AFED303009EA00E /* Main.storyboard */,
 				1A6076C51AFED303009EA00E /* Images.xcassets */,
 				1A6076C71AFED303009EA00E /* LaunchScreen.xib */,
@@ -214,6 +217,7 @@
 			files = (
 				1A6076C11AFED303009EA00E /* ViewController.swift in Sources */,
 				1A6076BF1AFED303009EA00E /* AppDelegate.swift in Sources */,
+				1A6076DF1AFED38F009EA00E /* TagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +415,7 @@
 				1A6076DA1AFED303009EA00E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A6076DB1AFED303009EA00E /* Build configuration list for PBXNativeTarget "TagListViewDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +424,7 @@
 				1A6076DD1AFED303009EA00E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
