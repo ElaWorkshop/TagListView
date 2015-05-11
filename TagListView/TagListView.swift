@@ -15,44 +15,44 @@ import UIKit
 
 
 @IBDesignable
-class TagListView: UIView {
+public class TagListView: UIView {
     
-    @IBInspectable var textColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable public var textColor: UIColor = UIColor.whiteColor() {
         didSet {
             for tagView in tagViews {
                 tagView.textColor = textColor
             }
         }
     }
-    @IBInspectable var tagBackgroundColor: UIColor = UIColor.blackColor() {
+    @IBInspectable public var tagBackgroundColor: UIColor = UIColor.blackColor() {
         didSet {
             for tagView in tagViews {
                 tagView.backgroundColor = tagBackgroundColor
             }
         }
     }
-    @IBInspectable var cornerRadius: CGFloat = 0 {
+    @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet {
             for tagView in tagViews {
                 tagView.cornerRadius = cornerRadius
             }
         }
     }
-    @IBInspectable var borderWidth: CGFloat = 0 {
+    @IBInspectable public var borderWidth: CGFloat = 0 {
         didSet {
             for tagView in tagViews {
                 tagView.borderWidth = borderWidth
             }
         }
     }
-    @IBInspectable var borderColor: UIColor? {
+    @IBInspectable public var borderColor: UIColor? {
         didSet {
             for tagView in tagViews {
                 tagView.borderColor = borderColor
             }
         }
     }
-    @IBInspectable var paddingY: CGFloat = 2 {
+    @IBInspectable public var paddingY: CGFloat = 2 {
         didSet {
             for tagView in tagViews {
                 tagView.paddingY = paddingY
@@ -60,7 +60,7 @@ class TagListView: UIView {
             layoutIfNeeded()
         }
     }
-    @IBInspectable var paddingX: CGFloat = 5 {
+    @IBInspectable public var paddingX: CGFloat = 5 {
         didSet {
             for tagView in tagViews {
                 tagView.paddingX = paddingX
@@ -68,17 +68,17 @@ class TagListView: UIView {
             layoutIfNeeded()
         }
     }
-    @IBInspectable var marginY: CGFloat = 2 {
+    @IBInspectable public var marginY: CGFloat = 2 {
         didSet {
             layoutIfNeeded()
         }
     }
-    @IBInspectable var marginX: CGFloat = 5 {
+    @IBInspectable public var marginX: CGFloat = 5 {
         didSet {
             layoutIfNeeded()
         }
     }
-    var textFont: UIFont = UIFont.systemFontOfSize(12) {
+    public var textFont: UIFont = UIFont.systemFontOfSize(12) {
         didSet {
             for tagView in tagViews {
                 tagView.textFont = textFont
@@ -87,7 +87,7 @@ class TagListView: UIView {
         }
     }
     
-    @IBOutlet var delegate: TagListViewDelegate?
+    @IBOutlet public var delegate: TagListViewDelegate?
 
     var tagViews: [TagView] = []
     var tagViewHeight: CGFloat = 0
@@ -99,7 +99,7 @@ class TagListView: UIView {
     
     // MARK: - Interface Builder
     
-    override func prepareForInterfaceBuilder() {
+    public override func prepareForInterfaceBuilder() {
         addTag("Welcome")
         addTag("to")
         addTag("TagListView")
@@ -107,7 +107,7 @@ class TagListView: UIView {
     
     // MARK: - Layout
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         for tagView in tagViews {
@@ -144,12 +144,12 @@ class TagListView: UIView {
     
     // MARK: - Manage tags
     
-    override func intrinsicContentSize() -> CGSize {
+    public override func intrinsicContentSize() -> CGSize {
         let height = CGFloat(rows) * (tagViewHeight + marginY) - marginY
         return CGSizeMake(frame.width, height)
     }
     
-    func addTag(title: String) {
+    public func addTag(title: String) {
         let tagView = TagView(title: title)
 
         tagView.textColor = textColor
@@ -171,7 +171,7 @@ class TagListView: UIView {
         setNeedsLayout()
     }
     
-    func removeTag(title: String) {
+    public func removeTag(title: String) {
         for (index, tagView) in enumerate(tagViews) {
             if tagView.currentTitle == title {
                 tagView.removeFromSuperview()
@@ -181,7 +181,7 @@ class TagListView: UIView {
         setNeedsLayout()
     }
     
-    func removeAllTags() {
+    public func removeAllTags() {
         for tagView in tagViews {
             tagView.removeFromSuperview()
         }
