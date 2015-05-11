@@ -9,7 +9,7 @@
 import UIKit
 
 
-@objc protocol TagListViewDelegate {
+@objc public protocol TagListViewDelegate {
     optional func tagPressed(title: String) -> Void
 }
 
