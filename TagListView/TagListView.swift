@@ -57,7 +57,7 @@ public class TagListView: UIView {
             for tagView in tagViews {
                 tagView.paddingY = paddingY
             }
-            layoutIfNeeded()
+            rearrangeViews()
         }
     }
     @IBInspectable public var paddingX: CGFloat = 5 {
@@ -65,17 +65,17 @@ public class TagListView: UIView {
             for tagView in tagViews {
                 tagView.paddingX = paddingX
             }
-            layoutIfNeeded()
+            rearrangeViews()
         }
     }
     @IBInspectable public var marginY: CGFloat = 2 {
         didSet {
-            layoutIfNeeded()
+            rearrangeViews()
         }
     }
     @IBInspectable public var marginX: CGFloat = 5 {
         didSet {
-            layoutIfNeeded()
+            rearrangeViews()
         }
     }
     public var textFont: UIFont = UIFont.systemFontOfSize(12) {
@@ -83,12 +83,12 @@ public class TagListView: UIView {
             for tagView in tagViews {
                 tagView.textFont = textFont
             }
-            layoutIfNeeded()
+            rearrangeViews()
         }
     }
     
     @IBOutlet public var delegate: TagListViewDelegate?
-
+    
     var tagViews: [TagView] = []
     var tagViewHeight: CGFloat = 0
     var rows = 0 {
@@ -110,6 +110,10 @@ public class TagListView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
+        rearrangeViews()
+    }
+    
+    private func rearrangeViews() {
         for tagView in tagViews {
             tagView.removeFromSuperview()
         }
@@ -145,13 +149,16 @@ public class TagListView: UIView {
     // MARK: - Manage tags
     
     public override func intrinsicContentSize() -> CGSize {
-        let height = CGFloat(rows) * (tagViewHeight + marginY) - marginY
+        var height = CGFloat(rows) * (tagViewHeight + marginY)
+        if rows > 0 {
+            height -= marginY
+        }
         return CGSizeMake(frame.width, height)
     }
     
     public func addTag(title: String) {
         let tagView = TagView(title: title)
-
+        
         tagView.textColor = textColor
         tagView.backgroundColor = tagBackgroundColor
         tagView.cornerRadius = cornerRadius
@@ -168,7 +175,7 @@ public class TagListView: UIView {
     
     private func addTagView(tagView: TagView) {
         tagViews.append(tagView)
-        setNeedsLayout()
+        rearrangeViews()
     }
     
     public func removeTag(title: String) {
@@ -178,7 +185,7 @@ public class TagListView: UIView {
                 tagViews.removeAtIndex(index)
             }
         }
-        setNeedsLayout()
+        rearrangeViews()
     }
     
     public func removeAllTags() {
@@ -186,7 +193,7 @@ public class TagListView: UIView {
             tagView.removeFromSuperview()
         }
         tagViews = []
-        setNeedsLayout()
+        rearrangeViews()
     }
     
     // MARK: - Events
@@ -196,5 +203,5 @@ public class TagListView: UIView {
             tagPressed(sender.currentTitle ?? "")
         }
     }
-
+    
 }
