@@ -37,8 +37,8 @@ You can implement `TagListViewDelegate` to receive tag pressed event:
     // ...
 }
 
-func tagPressed(title: String) {
-    println("Tag pressed: \(title)")
+func tagPressed(title: String, sender: TagListView) {
+    println("Tag pressed: \(title), \(sender)")
 }
 ```
 

@@ -10,7 +10,7 @@ import UIKit
 
 
 @objc public protocol TagListViewDelegate {
-    optional func tagPressed(title: String) -> Void
+    optional func tagPressed(title: String, sender: TagListView) -> Void
 }
 
 
@@ -200,7 +200,7 @@ public class TagListView: UIView {
     
     func tagPressed(sender: UIButton!) {
         if let delegate = delegate, tagPressed = delegate.tagPressed {
-            tagPressed(sender.currentTitle ?? "")
+            tagPressed(sender.currentTitle ?? "", sender: self)
         }
     }
     

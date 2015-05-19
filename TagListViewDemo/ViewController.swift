@@ -47,8 +47,8 @@ class ViewController: UIViewController, TagListViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    func tagPressed(title: String) {
-        println("Tag pressed: \(title)")
+    func tagPressed(title: String, sender: TagListView) {
+        println("Tag pressed: \(title), \(sender)")
     }
 
 }
