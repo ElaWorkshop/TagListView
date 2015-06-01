@@ -21,6 +21,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         tagListView.addTag("TagListView")
         tagListView.addTag("TEAChart")
         tagListView.addTag("To Be Removed")
+        tagListView.addTag("To Be Removed")
         tagListView.addTag("Quark Shell")
         tagListView.addTag("miracle-board")
         tagListView.removeTag("To Be Removed")
