@@ -49,7 +49,7 @@ class ViewController: UIViewController, TagListViewDelegate {
     }
 
     func tagPressed(title: String, sender: TagListView) {
-        println("Tag pressed: \(title), \(sender)")
+        print("Tag pressed: \(title), \(sender)")
     }
 
 }
