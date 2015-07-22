@@ -8,11 +8,9 @@
 
 import UIKit
 
-
 @objc public protocol TagListViewDelegate {
-    optional func tagPressed(title: String, sender: TagListView) -> Void
+    optional func tagPressed(title: String, tagView: TagView, sender: TagListView) -> Void
 }
-
 
 @IBDesignable
 public class TagListView: UIView {
@@ -24,13 +22,23 @@ public class TagListView: UIView {
             }
         }
     }
-    @IBInspectable public var tagBackgroundColor: UIColor = UIColor.blackColor() {
+    
+    @IBInspectable public var tagBackgroundColor: UIColor = UIColor.grayColor() {
         didSet {
             for tagView in tagViews {
-                tagView.backgroundColor = tagBackgroundColor
+                tagView.tagBackgroundColor = tagBackgroundColor
             }
         }
     }
+    
+    @IBInspectable public var tagSelectedBackgroundColor: UIColor = UIColor.redColor() {
+        didSet {
+            for tagView in tagViews {
+                tagView.tagSelectedBackgroundColor = tagSelectedBackgroundColor
+            }
+        }
+    }
+    
     @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet {
             for tagView in tagViews {
@@ -102,7 +110,7 @@ public class TagListView: UIView {
     public override func prepareForInterfaceBuilder() {
         addTag("Welcome")
         addTag("to")
-        addTag("TagListView")
+        addTag("TagListView").selected = true
     }
     
     // MARK: - Layout
@@ -156,11 +164,12 @@ public class TagListView: UIView {
         return CGSizeMake(frame.width, height)
     }
     
-    public func addTag(title: String) {
+    public func addTag(title: String) -> TagView {
         let tagView = TagView(title: title)
         
         tagView.textColor = textColor
         tagView.backgroundColor = tagBackgroundColor
+        tagView.tagSelectedBackgroundColor = tagSelectedBackgroundColor
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
         tagView.borderColor = borderColor
@@ -170,12 +179,14 @@ public class TagListView: UIView {
         
         tagView.addTarget(self, action: "tagPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        addTagView(tagView)
+        return addTagView(tagView)
     }
     
-    private func addTagView(tagView: TagView) {
+    public func addTagView(tagView: TagView) -> TagView {
         tagViews.append(tagView)
         rearrangeViews()
+        
+        return tagView
     }
     
     public func removeTag(title: String) {
@@ -197,13 +208,20 @@ public class TagListView: UIView {
         tagViews = []
         rearrangeViews()
     }
+
+    public func selectedTags() -> [TagView] {
+        return tagViews.filter() { $0.selected == true }
+    }
     
     // MARK: - Events
     
-    func tagPressed(sender: UIButton!) {
+    func tagPressed(sender: TagView!) {
+        if sender.onTap != nil {
+           sender.onTap!()
+        }
+
         if let delegate = delegate, tagPressed = delegate.tagPressed {
-            tagPressed(sender.currentTitle ?? "", sender: self)
+            tagPressed(sender.currentTitle ?? "", tagView: sender, sender: self)
         }
     }
-    
 }
