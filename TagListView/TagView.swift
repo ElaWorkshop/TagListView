@@ -75,7 +75,7 @@ public class TagView: UIButton {
     }
     
     /// Handles Tap (TouchUpInside)
-    public var onTap: (() -> Void)?
+    public var onTap: ((TagView) -> Void)?
     
     // MARK: - init
     

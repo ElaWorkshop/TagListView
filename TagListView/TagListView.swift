@@ -9,6 +9,7 @@
 import UIKit
 
 @objc public protocol TagListViewDelegate {
+    @availability(*, deprecated=0.1.4, message="Use tagPressed(title:tagView:sender)") optional func tagPressed(title: String, sender: TagListView) -> Void
     optional func tagPressed(title: String, tagView: TagView, sender: TagListView) -> Void
 }
 
@@ -168,7 +169,7 @@ public class TagListView: UIView {
         let tagView = TagView(title: title)
         
         tagView.textColor = textColor
-        tagView.backgroundColor = tagBackgroundColor
+        tagView.tagBackgroundColor = tagBackgroundColor
         tagView.tagSelectedBackgroundColor = tagSelectedBackgroundColor
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
@@ -194,10 +195,17 @@ public class TagListView: UIView {
         for index in stride(from: tagViews.count - 1, through: 0, by: -1) {
             let tagView = tagViews[index]
             if tagView.currentTitle == title {
-                tagView.removeFromSuperview()
-                tagViews.removeAtIndex(index)
+                removeTag(by: tagView)
             }
         }
+    }
+    
+    public func removeTag(by tagView: TagView) {
+        tagView.removeFromSuperview()
+        if let index = find(tagViews, tagView) {
+            tagViews.removeAtIndex(index)
+        }
+        
         rearrangeViews()
     }
     
@@ -217,11 +225,12 @@ public class TagListView: UIView {
     
     func tagPressed(sender: TagView!) {
         if sender.onTap != nil {
-           sender.onTap!()
+           sender.onTap!(sender)
         }
 
-        if let delegate = delegate, tagPressed = delegate.tagPressed {
-            tagPressed(sender.currentTitle ?? "", tagView: sender, sender: self)
+        if let delegate = delegate {
+            delegate.tagPressed?(sender.currentTitle ?? "", sender: self)
+            delegate.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
         }
     }
 }

@@ -23,8 +23,10 @@ class ViewController: UIViewController, TagListViewDelegate {
         tagListView.addTag("To Be Removed")
         tagListView.addTag("To Be Removed")
         tagListView.addTag("Quark Shell")
-        tagListView.addTag("miracle-board")
         tagListView.removeTag("To Be Removed")
+        tagListView.addTag("On tap will be removed").onTap = { tag in
+            self.tagListView.removeTag(by: tag)
+        }
         
         biggerTagListView.delegate = self
         biggerTagListView.textFont = UIFont.systemFontOfSize(15)
@@ -48,9 +50,10 @@ class ViewController: UIViewController, TagListViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    func tagPressed(title: String, sender: TagListView) {
+    func tagPressed(title: String, tagView: TagView, sender: TagListView) {
         println("Tag pressed: \(title), \(sender)")
+        
+        tagView.selected = !tagView.selected
     }
-
 }
 
