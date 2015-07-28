@@ -23,6 +23,15 @@ public class TagListView: UIView {
         }
     }
     
+    @IBInspectable public var selectedTextColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            for tagView in tagViews {
+                tagView.selectedTextColor = selectedTextColor
+            }
+        }
+    }
+    
+    
     @IBInspectable public var tagBackgroundColor: UIColor = UIColor.grayColor() {
         didSet {
             for tagView in tagViews {
@@ -46,6 +55,8 @@ public class TagListView: UIView {
             }
         }
     }
+    
+    
     @IBInspectable public var borderWidth: CGFloat = 0 {
         didSet {
             for tagView in tagViews {
@@ -60,6 +71,16 @@ public class TagListView: UIView {
             }
         }
     }
+    
+    @IBInspectable public var selectedBorderColor: UIColor? {
+        didSet {
+            for tagView in tagViews {
+                tagView.selectedBorderColor = selectedBorderColor
+            }
+        }
+    }
+    
+    
     @IBInspectable public var paddingY: CGFloat = 2 {
         didSet {
             for tagView in tagViews {
@@ -95,6 +116,33 @@ public class TagListView: UIView {
         }
     }
     
+    @IBInspectable public var roundRadius: Bool = false {
+        didSet {
+            var radius = cornerRadius
+            if roundRadius {
+                radius = (textFont.pointSize + paddingY * 2)/2
+            }
+            cornerRadius = radius
+        }
+    }
+    
+    @IBInspectable public var insetTop: CGFloat = 0 {
+        didSet {
+            rearrangeViews()
+        }
+    }
+    
+    @IBInspectable public var insetLeft: CGFloat = 0 {
+        didSet {
+            rearrangeViews()
+        }
+    }
+    
+    @IBInspectable public var  horizontalCenterizedForMultipleItemRow: Bool = false
+    
+    
+    
+    
     @IBOutlet public var delegate: TagListViewDelegate?
     
     var tagViews: [TagView] = []
@@ -117,7 +165,6 @@ public class TagListView: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        
         rearrangeViews()
     }
     
@@ -132,7 +179,9 @@ public class TagListView: UIView {
         for tagView in tagViews {
             tagView.frame.size = tagView.intrinsicContentSize()
             tagViewHeight = tagView.frame.height
-            
+            if roundRadius {
+                tagView.cornerRadius = tagViewHeight/2
+            }
             if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width + marginX > frame.width {
                 currentRow += 1
                 tagView.frame.origin.x = 0
@@ -140,15 +189,15 @@ public class TagListView: UIView {
                 
                 currentRowTagCount = 1
                 currentRowWidth = tagView.frame.width + marginX
-            }
-            else {
+            } else {
                 tagView.frame.origin.x = currentRowWidth
                 tagView.frame.origin.y = CGFloat(currentRow - 1) * (tagViewHeight + marginY)
                 
                 currentRowTagCount += 1
                 currentRowWidth += tagView.frame.width + marginX
             }
-            
+            tagView.frame.origin.x += insetLeft
+            tagView.frame.origin.y += insetTop
             addSubview(tagView)
         }
         rows = currentRow
@@ -173,6 +222,8 @@ public class TagListView: UIView {
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
         tagView.borderColor = borderColor
+        tagView.selectedBorderColor = selectedBorderColor
+        tagView.selectedTextColor = selectedTextColor
         tagView.paddingY = paddingY
         tagView.paddingX = paddingX
         tagView.textFont = textFont

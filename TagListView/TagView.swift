@@ -17,6 +17,8 @@ public class TagView: UIButton {
             layer.masksToBounds = cornerRadius > 0
         }
     }
+    
+    
     @IBInspectable var borderWidth: CGFloat = 0 {
         didSet {
             layer.borderWidth = borderWidth
@@ -27,11 +29,27 @@ public class TagView: UIButton {
             layer.borderColor = borderColor?.CGColor
         }
     }
+    
+    @IBInspectable var selectedBorderColor: UIColor? {
+        didSet {
+            layer.borderColor = selectedBorderColor?.CGColor
+        }
+    }
+    
+    
     @IBInspectable var textColor: UIColor = UIColor.whiteColor() {
         didSet {
             setTitleColor(textColor, forState: UIControlState.Normal)
         }
     }
+    
+    @IBInspectable var selectedTextColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            setTitleColor(selectedTextColor, forState: UIControlState.Selected)
+        }
+    }
+    
+    
     @IBInspectable var paddingY: CGFloat = 2 {
         didSet {
             titleEdgeInsets.top = paddingY
@@ -68,8 +86,10 @@ public class TagView: UIButton {
         didSet {
             if selected {
                 backgroundColor = tagSelectedBackgroundColor
+                layer.borderColor = selectedBorderColor?.CGColor
             } else {
                 backgroundColor = tagBackgroundColor
+                layer.borderColor = borderColor?.CGColor
             }
         }
     }
