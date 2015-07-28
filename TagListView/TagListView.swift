@@ -9,7 +9,6 @@
 import UIKit
 
 @objc public protocol TagListViewDelegate {
-    @availability(*, deprecated=0.1.4, message="Use tagPressed(title:tagView:sender)") optional func tagPressed(title: String, sender: TagListView) -> Void
     optional func tagPressed(title: String, tagView: TagView, sender: TagListView) -> Void
 }
 
@@ -224,13 +223,7 @@ public class TagListView: UIView {
     // MARK: - Events
     
     func tagPressed(sender: TagView!) {
-        if sender.onTap != nil {
-           sender.onTap!(sender)
-        }
-
-        if let delegate = delegate {
-            delegate.tagPressed?(sender.currentTitle ?? "", sender: self)
-            delegate.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
-        }
+        sender.onTap?(sender)
+        delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
     }
 }
