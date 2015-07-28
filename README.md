@@ -42,6 +42,18 @@ func tagPressed(title: String, tagView: TagView, sender: TagListView) {
 }
 ```
 
+You can also customize a particular tag, or set tap handler for it by manipulating the `TagView` object returned by `addTag(_:)`:
+
+```swift
+let tagView = tagListView.addTag("blue")
+tagView.tagBackgroundColor = UIColor.blueColor()
+tagView.onTap = { tagView in
+    println("Don’t tap me!")
+}
+```
+
+Be aware that if you update a property (e.g. `tagBackgroundColor`) for a `TagListView`, all the inner `TagView`s will be updated.
+
 ## Installation
 
 Use CocoaPods:

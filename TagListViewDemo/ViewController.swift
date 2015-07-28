@@ -28,6 +28,12 @@ class ViewController: UIViewController, TagListViewDelegate {
             self.tagListView.removeTagView(tagView)
         }
         
+        let tagView = tagListView.addTag("gray")
+        tagView.tagBackgroundColor = UIColor.grayColor()
+        tagView.onTap = { tagView in
+            println("Don’t tap me!")
+        }
+        
         biggerTagListView.delegate = self
         biggerTagListView.textFont = UIFont.systemFontOfSize(15)
         biggerTagListView.addTag("Inboard")
