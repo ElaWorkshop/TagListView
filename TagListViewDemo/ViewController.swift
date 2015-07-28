@@ -49,6 +49,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggestTagListView.addTag("belong")
         biggestTagListView.addTag("to")
         biggestTagListView.addTag("us")
+        biggestTagListView.horizontalCenterizedForMultipleItemRow = true
     }
 
     override func didReceiveMemoryWarning() {
