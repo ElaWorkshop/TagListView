@@ -194,12 +194,12 @@ public class TagListView: UIView {
         for index in stride(from: tagViews.count - 1, through: 0, by: -1) {
             let tagView = tagViews[index]
             if tagView.currentTitle == title {
-                removeTag(by: tagView)
+                removeTagView(tagView)
             }
         }
     }
     
-    public func removeTag(by tagView: TagView) {
+    public func removeTagView(tagView: TagView) {
         tagView.removeFromSuperview()
         if let index = find(tagViews, tagView) {
             tagViews.removeAtIndex(index)
