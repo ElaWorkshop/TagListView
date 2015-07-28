@@ -23,7 +23,7 @@ public class TagListView: UIView {
         }
     }
     
-    @IBInspectable var selectedTextColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable public var selectedTextColor: UIColor = UIColor.whiteColor() {
         didSet {
             for tagView in tagViews {
                 tagView.selectedTextColor = selectedTextColor
@@ -72,7 +72,7 @@ public class TagListView: UIView {
         }
     }
     
-    @IBInspectable var selectedBorderColor: UIColor? {
+    @IBInspectable public var selectedBorderColor: UIColor? {
         didSet {
             for tagView in tagViews {
                 tagView.selectedBorderColor = selectedBorderColor
@@ -179,6 +179,9 @@ public class TagListView: UIView {
         for tagView in tagViews {
             tagView.frame.size = tagView.intrinsicContentSize()
             tagViewHeight = tagView.frame.height
+            if roundRadius {
+                tagView.cornerRadius = tagViewHeight/2
+            }
             if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width + marginX > frame.width {
                 currentRow += 1
                 tagView.frame.origin.x = 0
