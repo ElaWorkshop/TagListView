@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class TagView: UIButton {
+public class TagView: UIButton {
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
@@ -44,27 +44,61 @@ class TagView: UIButton {
             titleEdgeInsets.right = paddingY
         }
     }
+    
+    @IBInspectable public var tagBackgroundColor: UIColor = UIColor.grayColor() {
+        didSet {
+            backgroundColor = tagBackgroundColor
+        }
+    }
+    
+    @IBInspectable public var tagSelectedBackgroundColor: UIColor = UIColor.redColor() {
+        didSet {
+            backgroundColor = selected ? tagSelectedBackgroundColor : tagBackgroundColor
+        }
+    }
+    
+    
     var textFont: UIFont = UIFont.systemFontOfSize(12) {
         didSet {
             titleLabel?.font = textFont
         }
     }
     
+    override public var selected: Bool {
+        didSet {
+            if selected {
+                backgroundColor = tagSelectedBackgroundColor
+            } else {
+                backgroundColor = tagBackgroundColor
+            }
+        }
+    }
+    
+    /// Handles Tap (TouchUpInside)
+    public var onTap: ((TagView) -> Void)?
+    
     // MARK: - init
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        setupView()
     }
     
     init(title: String) {
         super.init(frame: CGRectZero)
         setTitle(title, forState: UIControlState.Normal)
+        
+        setupView()
+    }
+    
+    private func setupView() {
         frame.size = intrinsicContentSize()
     }
     
     // MARK: - layout
     
-    override func intrinsicContentSize() -> CGSize {
+    override public func intrinsicContentSize() -> CGSize {
         var size = titleLabel?.text?.sizeWithAttributes([NSFontAttributeName: textFont]) ?? CGSizeZero
         
         size.height = textFont.pointSize + paddingY * 2
@@ -72,5 +106,4 @@ class TagView: UIButton {
         
         return size
     }
-
 }
