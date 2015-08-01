@@ -57,13 +57,13 @@ Be aware that if you update a property (e.g. `tagBackgroundColor`) for a `TagLis
 
 ## Installation
 
-Use CocoaPods:
+Use [CocoaPods](https://github.com/CocoaPods/CocoaPods):
 
 ```ruby
 pod 'TagListView'
 ```
 
-Or Carthage:
+Or [Carthage](https://github.com/Carthage/Carthage):
 
 ```ruby
 github "pinterest/PINCache"
