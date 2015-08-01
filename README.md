@@ -66,7 +66,7 @@ pod 'TagListView'
 Or [Carthage](https://github.com/Carthage/Carthage):
 
 ```ruby
-github "pinterest/PINCache"
+github "xhacker/TagListView"
 ```
 
 Or drag **TagListView** folder into your project.
