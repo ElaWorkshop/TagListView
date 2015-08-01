@@ -3,6 +3,7 @@
 <!-- [![Travis CI](https://travis-ci.org/xhacker/TagListView.svg)](https://travis-ci.org/xhacker/TagListView) -->
 [![Version](https://img.shields.io/cocoapods/v/TagListView.svg?style=flat)](http://cocoadocs.org/docsets/TagListView/)
 [![License](https://img.shields.io/cocoapods/l/TagListView.svg?style=flat)](https://github.com/xhacker/TagListView/blob/master/LICENSE)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 Simple but highly customizable iOS tag list view, in Swift. The APIs are *not* stable before 1.0.
 
@@ -60,6 +61,12 @@ Use CocoaPods:
 
 ```ruby
 pod 'TagListView'
+```
+
+Or Carthage:
+
+```ruby
+github "pinterest/PINCache"
 ```
 
 Or drag **TagListView** folder into your project.
