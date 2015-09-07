@@ -52,7 +52,7 @@ class TagView: UIButton {
     
     // MARK: - init
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
