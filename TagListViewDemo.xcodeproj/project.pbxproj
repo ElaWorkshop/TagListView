@@ -18,6 +18,7 @@
 		1AD1770C1B6D73E70081F615 /* TagListView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD176F41B6D73E70081F615 /* TagListView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1AD177141B6D74570081F615 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6076DE1AFED38F009EA00E /* TagView.swift */; };
 		1AD177151B6D745B0081F615 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6076E21AFED866009EA00E /* TagListView.swift */; };
+		90A878531BA1EBA1001C8989 /* TagListView.h in Headers */ = {isa = PBXBuildFile; fileRef = 90A878521BA1EBA1001C8989 /* TagListView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		1A6076E21AFED866009EA00E /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagListView.swift; path = TagListView/TagListView.swift; sourceTree = SOURCE_ROOT; };
 		1AD176F41B6D73E70081F615 /* TagListView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TagListView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AD176F71B6D73E70081F615 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90A878521BA1EBA1001C8989 /* TagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagListView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		1AD176F51B6D73E70081F615 /* TagListView */ = {
 			isa = PBXGroup;
 			children = (
+				90A878521BA1EBA1001C8989 /* TagListView.h */,
 				1AD176F61B6D73E70081F615 /* Supporting Files */,
 			);
 			path = TagListView;
@@ -149,6 +152,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90A878531BA1EBA1001C8989 /* TagListView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +474,7 @@
 				1AD1770E1B6D73E70081F615 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
