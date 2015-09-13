@@ -51,6 +51,12 @@ public class TagView: UIButton {
         }
     }
     
+    @IBInspectable public var tagHighlightedBackgroundColor: UIColor = UIColor.blueColor() {
+        didSet {
+            backgroundColor = highlighted ? tagHighlightedBackgroundColor : tagSelectedBackgroundColor
+        }
+    }
+    
     @IBInspectable public var tagSelectedBackgroundColor: UIColor = UIColor.redColor() {
         didSet {
             backgroundColor = selected ? tagSelectedBackgroundColor : tagBackgroundColor
@@ -61,6 +67,16 @@ public class TagView: UIButton {
     var textFont: UIFont = UIFont.systemFontOfSize(12) {
         didSet {
             titleLabel?.font = textFont
+        }
+    }
+    
+    override public var highlighted: Bool {
+        didSet {
+            if highlighted {
+                backgroundColor = tagHighlightedBackgroundColor
+            } else {
+                backgroundColor = selected ? tagSelectedBackgroundColor : tagBackgroundColor
+            }
         }
     }
     
