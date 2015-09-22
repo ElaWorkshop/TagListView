@@ -191,7 +191,7 @@ public class TagListView: UIView {
     
     public func removeTag(title: String) {
         // loop the array in reversed order to remove items during loop
-        for index in stride(from: tagViews.count - 1, through: 0, by: -1) {
+        for index in (tagViews.count - 1).stride(through: 0, by: -1) {
             let tagView = tagViews[index]
             if tagView.currentTitle == title {
                 removeTagView(tagView)
@@ -201,7 +201,7 @@ public class TagListView: UIView {
     
     public func removeTagView(tagView: TagView) {
         tagView.removeFromSuperview()
-        if let index = find(tagViews, tagView) {
+        if let index = tagViews.indexOf(tagView) {
             tagViews.removeAtIndex(index)
         }
         

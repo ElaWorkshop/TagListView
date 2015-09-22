@@ -79,7 +79,7 @@ public class TagView: UIButton {
     
     // MARK: - init
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         setupView()

@@ -31,7 +31,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         let tagView = tagListView.addTag("gray")
         tagView.tagBackgroundColor = UIColor.grayColor()
         tagView.onTap = { tagView in
-            println("Don’t tap me!")
+            print("Don’t tap me!")
         }
         
         biggerTagListView.delegate = self
