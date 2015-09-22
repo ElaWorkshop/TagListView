@@ -73,7 +73,7 @@ Or drag **TagListView** folder into your project.
 
 ### Swift 1.2?
 
-Use [0.2.1](https://github.com/xhacker/TagListView/releases/tag/0.2.1), which is compatible with Swift 1.2.
+Use [0.2](https://github.com/xhacker/TagListView/releases/tag/0.2), which is compatible with Swift 1.2.
 
 ## Contribution
 
