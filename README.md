@@ -1,6 +1,6 @@
 # TagListView
 
-<!-- [![Travis CI](https://travis-ci.org/xhacker/TagListView.svg)](https://travis-ci.org/xhacker/TagListView) -->
+[![Travis CI](https://travis-ci.org/xhacker/TagListView.svg)](https://travis-ci.org/xhacker/TagListView)
 [![Version](https://img.shields.io/cocoapods/v/TagListView.svg?style=flat)](http://cocoadocs.org/docsets/TagListView/)
 [![License](https://img.shields.io/cocoapods/l/TagListView.svg?style=flat)](https://github.com/xhacker/TagListView/blob/master/LICENSE)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
