@@ -1,4 +1,4 @@
-language: swift
+language: objective-c
 osx_image: xcode7
 xcode_project: TagListViewDemo.xcodeproj
 xcode_scheme: TagListViewDemo
