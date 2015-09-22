@@ -15,7 +15,7 @@ Supports Storyboard, Auto Layout, and @IBDesignable.
 
 The most convinient way is to use Storyboard, where you can set the attributes right in the Interface Builder. With [@IBDesignable](http://nshipster.com/ibinspectable-ibdesignable/), you can see the preview in real time.
 
-<img alt="Interface Builder" src="Screenshots/Interface Builder.png" width="566">
+<img alt="Interface Builder" src="Screenshots/InterfaceBuilder.png" width="566">
 
 You can add tag to the tag list view, or set custom font through code:
 
