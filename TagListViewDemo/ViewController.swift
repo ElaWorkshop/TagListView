@@ -57,7 +57,7 @@ class ViewController: UIViewController, TagListViewDelegate {
     }
 
     func tagPressed(title: String, tagView: TagView, sender: TagListView) {
-        println("Tag pressed: \(title), \(sender)")
+        print("Tag pressed: \(title), \(sender)")
         
         tagView.selected = !tagView.selected
     }
