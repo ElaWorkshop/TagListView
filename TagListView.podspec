@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author       = { "LIU Dongyuan" => "liu.dongyuan@gmail.com" }
 
   s.platform     = :ios, "8.0"
-  s.source       = { :git => "https://github.com/xhacker/TagListView.git", :tag => "0.3" }
+  s.source       = { :git => "https://github.com/xhacker/TagListView.git", :tag => s.version }
   s.source_files = "TagListView/*.swift"
   s.requires_arc = true
 end
