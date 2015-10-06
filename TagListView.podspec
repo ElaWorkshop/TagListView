@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TagListView"
-  s.version      = "0.3"
+  s.version      = "0.3.1"
   s.summary      = "Simple but highly customizable iOS tag list view, in Swift."
   s.homepage     = "https://github.com/xhacker/TagListView"
   s.social_media_url = "https://twitter.com/xhacker"
