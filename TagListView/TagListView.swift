@@ -95,7 +95,7 @@ public class TagListView: UIView {
         }
     }
     
-    @IBOutlet public var delegate: TagListViewDelegate?
+    @IBOutlet public weak var delegate: TagListViewDelegate?
     
     var tagViews: [TagView] = []
     var tagViewHeight: CGFloat = 0
