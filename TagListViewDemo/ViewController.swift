@@ -24,8 +24,8 @@ class ViewController: UIViewController, TagListViewDelegate {
         tagListView.addTag("To Be Removed")
         tagListView.addTag("Quark Shell")
         tagListView.removeTag("To Be Removed")
-        tagListView.addTag("On tap will be removed").onTap = { tagView in
-            self.tagListView.removeTagView(tagView)
+        tagListView.addTag("On tap will be removed").onTap = { [weak self] tagView in
+            self?.tagListView.removeTagView(tagView)
         }
         
         let tagView = tagListView.addTag("gray")
