@@ -17,10 +17,11 @@ The most convinient way is to use Storyboard, where you can set the attributes r
 
 <img alt="Interface Builder" src="Screenshots/InterfaceBuilder.png" width="566">
 
-You can add tag to the tag list view, or set custom font through code:
+You can add tag to the tag list view, or set custom font and alignment through code:
 
 ```swift
 tagListView.textFont = UIFont.systemFontOfSize(24)
+tagListView.alignment = .Center // possible values are .Left, .Center, and .Right
 
 tagListView.addTag("TagListView")
 
