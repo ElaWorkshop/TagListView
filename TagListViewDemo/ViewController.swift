@@ -39,6 +39,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggerTagListView.addTag("Inboard")
         biggerTagListView.addTag("Pomotodo")
         biggerTagListView.addTag("Halo Word")
+        biggerTagListView.alignment = .Center
         
         biggestTagListView.delegate = self
         biggestTagListView.textFont = UIFont.systemFontOfSize(24)
@@ -49,6 +50,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggestTagListView.addTag("belong")
         biggestTagListView.addTag("to")
         biggestTagListView.addTag("us")
+        biggestTagListView.alignment = .Right
     }
 
     override func didReceiveMemoryWarning() {

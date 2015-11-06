@@ -86,11 +86,18 @@ public class TagListView: UIView {
             rearrangeViews()
         }
     }
-    @IBInspectable public var alignCenter: Bool = false {
+    
+    public enum Alignment {
+        case Left
+        case Center
+        case Right
+    }
+    @IBInspectable public var alignment: Alignment = .Left {
         didSet {
             rearrangeViews()
         }
     }
+    
     public var textFont: UIFont = UIFont.systemFontOfSize(12) {
         didSet {
             for tagView in tagViews {
@@ -161,7 +168,14 @@ public class TagListView: UIView {
             currentRowTagCount++
             currentRowWidth += tagView.frame.width + marginX
             
-            currentRowView.frame.origin.x = alignCenter ? (frame.size.width - (currentRowWidth - marginX)) / 2 : 0
+            switch alignment {
+            case .Left:
+                currentRowView.frame.origin.x = 0
+            case .Center:
+                currentRowView.frame.origin.x = (frame.size.width - (currentRowWidth - marginX)) / 2
+            case .Right:
+                currentRowView.frame.origin.x = frame.size.width - (currentRowWidth - marginX)
+            }
             currentRowView.frame.size.width = currentRowWidth
             currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.size.height)
         }
