@@ -95,7 +95,7 @@ public class TagListView: UIView {
         }
     }
     
-    public enum Alignment {
+    @objc public enum Alignment: Int {
         case Left
         case Center
         case Right
