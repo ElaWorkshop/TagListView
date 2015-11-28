@@ -109,10 +109,10 @@ public class TagListView: UIView {
     
     @IBOutlet public weak var delegate: TagListViewDelegate?
     
-    var tagViews: [TagView] = []
-    var rowViews: [UIView] = []
-    var tagViewHeight: CGFloat = 0
-    var rows = 0 {
+    private(set) var tagViews: [TagView] = []
+    private(set) var rowViews: [UIView] = []
+    private(set) var tagViewHeight: CGFloat = 0
+    private(set) var rows = 0 {
         didSet {
             invalidateIntrinsicContentSize()
         }
