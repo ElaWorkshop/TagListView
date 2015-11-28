@@ -23,6 +23,14 @@ public class TagListView: UIView {
         }
     }
     
+    @IBInspectable public var selectedTextColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            for tagView in tagViews {
+                tagView.selectedTextColor = selectedTextColor
+            }
+        }
+    }
+    
     @IBInspectable public var tagBackgroundColor: UIColor = UIColor.grayColor() {
         didSet {
             for tagView in tagViews {
@@ -196,6 +204,7 @@ public class TagListView: UIView {
         let tagView = TagView(title: title)
         
         tagView.textColor = textColor
+        tagView.selectedTextColor = selectedTextColor
         tagView.tagBackgroundColor = tagBackgroundColor
         tagView.tagSelectedBackgroundColor = tagSelectedBackgroundColor
         tagView.cornerRadius = cornerRadius

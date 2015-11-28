@@ -32,6 +32,11 @@ public class TagView: UIButton {
             setTitleColor(textColor, forState: UIControlState.Normal)
         }
     }
+    @IBInspectable var selectedTextColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            setTitleColor(selected ? selectedTextColor : textColor, forState: .Normal)
+        }
+    }
     @IBInspectable var paddingY: CGFloat = 2 {
         didSet {
             titleEdgeInsets.top = paddingY
@@ -68,8 +73,10 @@ public class TagView: UIButton {
         didSet {
             if selected {
                 backgroundColor = tagSelectedBackgroundColor
+                setTitleColor(selectedTextColor, forState: .Normal)
             } else {
                 backgroundColor = tagBackgroundColor
+                setTitleColor(textColor, forState: .Normal)
             }
         }
     }
