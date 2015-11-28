@@ -29,7 +29,7 @@ public class TagView: UIButton {
     }
     @IBInspectable var textColor: UIColor = UIColor.whiteColor() {
         didSet {
-            setTitleColor(textColor, forState: UIControlState.Normal)
+            setTitleColor(textColor, forState: .Normal)
         }
     }
     @IBInspectable var selectedTextColor: UIColor = UIColor.whiteColor() {
@@ -94,7 +94,7 @@ public class TagView: UIButton {
     
     init(title: String) {
         super.init(frame: CGRectZero)
-        setTitle(title, forState: UIControlState.Normal)
+        setTitle(title, forState: .Normal)
         
         setupView()
     }
