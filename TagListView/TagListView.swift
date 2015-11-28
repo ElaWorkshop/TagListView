@@ -205,7 +205,7 @@ public class TagListView: UIView {
         tagView.paddingX = paddingX
         tagView.textFont = textFont
         
-        tagView.addTarget(self, action: "tagPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        tagView.addTarget(self, action: "tagPressed:", forControlEvents: .TouchUpInside)
         
         return addTagView(tagView)
     }
