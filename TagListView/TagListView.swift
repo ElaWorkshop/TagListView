@@ -105,6 +105,26 @@ public class TagListView: UIView {
             rearrangeViews()
         }
     }
+    @IBInspectable public var shadowColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            rearrangeViews()
+        }
+    }
+    @IBInspectable public var shadowRadius: CGFloat = 0 {
+        didSet {
+            rearrangeViews()
+        }
+    }
+    @IBInspectable public var shadowOffset: CGSize = CGSizeZero {
+        didSet {
+            rearrangeViews()
+        }
+    }
+    @IBInspectable public var shadowOpacity: Float = 0 {
+        didSet {
+            rearrangeViews()
+        }
+    }
     
     public var textFont: UIFont = UIFont.systemFontOfSize(12) {
         didSet {
@@ -118,6 +138,7 @@ public class TagListView: UIView {
     @IBOutlet public weak var delegate: TagListViewDelegate?
     
     private(set) var tagViews: [TagView] = []
+    private(set) var tagBackgroundViews: [UIView] = []
     private(set) var rowViews: [UIView] = []
     private(set) var tagViewHeight: CGFloat = 0
     private(set) var rows = 0 {
@@ -143,12 +164,9 @@ public class TagListView: UIView {
     }
     
     private func rearrangeViews() {
-        for tagView in tagViews {
-            tagView.removeFromSuperview()
-        }
-        
-        for rowView in rowViews {
-            rowView.removeFromSuperview()
+        let views = tagViews as [UIView] + tagBackgroundViews + rowViews
+        for view in views {
+            view.removeFromSuperview()
         }
         rowViews.removeAll(keepCapacity: true)
         
@@ -156,7 +174,7 @@ public class TagListView: UIView {
         var currentRowView: UIView!
         var currentRowTagCount = 0
         var currentRowWidth: CGFloat = 0
-        for tagView in tagViews {
+        for (index,tagView) in tagViews.enumerate() {
             tagView.frame.size = tagView.intrinsicContentSize()
             tagViewHeight = tagView.frame.height
             
@@ -171,8 +189,17 @@ public class TagListView: UIView {
                 addSubview(currentRowView)
             }
             
-            tagView.frame.origin = CGPoint(x: currentRowWidth, y: 0)
-            currentRowView.addSubview(tagView)
+            let tagBackgroundView = tagBackgroundViews[index]
+            tagBackgroundView.frame.origin = CGPoint(x: currentRowWidth, y: 0)
+            tagBackgroundView.frame.size = tagView.bounds.size
+            tagBackgroundView.layer.shadowColor = shadowColor.CGColor
+            tagBackgroundView.layer.shadowPath = UIBezierPath(roundedRect: tagBackgroundView.bounds, cornerRadius: shadowRadius).CGPath
+            tagBackgroundView.layer.shadowOffset = shadowOffset
+            tagBackgroundView.layer.shadowOpacity = shadowOpacity
+            tagBackgroundView.layer.shadowRadius = shadowRadius
+            tagBackgroundView.addSubview(tagView)
+            currentRowView.addSubview(tagBackgroundView)
+            
             currentRowTagCount++
             currentRowWidth += tagView.frame.width + marginX
             
@@ -221,6 +248,7 @@ public class TagListView: UIView {
     
     public func addTagView(tagView: TagView) -> TagView {
         tagViews.append(tagView)
+        tagBackgroundViews.append(UIView(frame: tagView.bounds))
         rearrangeViews()
         
         return tagView
@@ -240,16 +268,19 @@ public class TagListView: UIView {
         tagView.removeFromSuperview()
         if let index = tagViews.indexOf(tagView) {
             tagViews.removeAtIndex(index)
+            tagBackgroundViews.removeAtIndex(index)
         }
         
         rearrangeViews()
     }
     
     public func removeAllTags() {
-        for tagView in tagViews {
-            tagView.removeFromSuperview()
+        let views = tagViews as [UIView] + tagBackgroundViews
+        for view in views {
+            view.removeFromSuperview()
         }
         tagViews = []
+        tagBackgroundViews = []
         rearrangeViews()
     }
 
