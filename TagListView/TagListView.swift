@@ -174,7 +174,7 @@ public class TagListView: UIView {
         var currentRowView: UIView!
         var currentRowTagCount = 0
         var currentRowWidth: CGFloat = 0
-        for (index,tagView) in tagViews.enumerate() {
+        for (index, tagView) in tagViews.enumerate() {
             tagView.frame.size = tagView.intrinsicContentSize()
             tagViewHeight = tagView.frame.height
             
@@ -193,7 +193,7 @@ public class TagListView: UIView {
             tagBackgroundView.frame.origin = CGPoint(x: currentRowWidth, y: 0)
             tagBackgroundView.frame.size = tagView.bounds.size
             tagBackgroundView.layer.shadowColor = shadowColor.CGColor
-            tagBackgroundView.layer.shadowPath = UIBezierPath(roundedRect: tagBackgroundView.bounds, cornerRadius: shadowRadius).CGPath
+            tagBackgroundView.layer.shadowPath = UIBezierPath(roundedRect: tagBackgroundView.bounds, cornerRadius: cornerRadius).CGPath
             tagBackgroundView.layer.shadowOffset = shadowOffset
             tagBackgroundView.layer.shadowOpacity = shadowOpacity
             tagBackgroundView.layer.shadowRadius = shadowRadius
@@ -207,12 +207,12 @@ public class TagListView: UIView {
             case .Left:
                 currentRowView.frame.origin.x = 0
             case .Center:
-                currentRowView.frame.origin.x = (frame.size.width - (currentRowWidth - marginX)) / 2
+                currentRowView.frame.origin.x = (frame.width - (currentRowWidth - marginX)) / 2
             case .Right:
-                currentRowView.frame.origin.x = frame.size.width - (currentRowWidth - marginX)
+                currentRowView.frame.origin.x = frame.width - (currentRowWidth - marginX)
             }
             currentRowView.frame.size.width = currentRowWidth
-            currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.size.height)
+            currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.height)
         }
         rows = currentRow
     }
