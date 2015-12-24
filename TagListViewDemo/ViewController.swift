@@ -37,9 +37,9 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggerTagListView.delegate = self
         biggerTagListView.textFont = UIFont.systemFontOfSize(15)
         biggerTagListView.shadowRadius = 2
-        biggerTagListView.shadowOpacity = 0.7
+        biggerTagListView.shadowOpacity = 0.4
         biggerTagListView.shadowColor = UIColor.blackColor()
-        biggerTagListView.shadowOffset = CGSizeMake(2, 2)
+        biggerTagListView.shadowOffset = CGSizeMake(1, 1)
         biggerTagListView.addTag("Inboard")
         biggerTagListView.addTag("Pomotodo")
         biggerTagListView.addTag("Halo Word")
