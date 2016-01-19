@@ -10,6 +10,7 @@ import UIKit
 
 @objc public protocol TagListViewDelegate {
     optional func tagPressed(title: String, tagView: TagView, sender: TagListView) -> Void
+    optional func tagRemoveButtonPressed(title: String, tagView: TagView, sender: TagListView) -> Void
 }
 
 @IBDesignable
@@ -68,34 +69,18 @@ public class TagListView: UIView {
             }
         }
     }
-    @IBInspectable public var paddingTop: CGFloat = 2 {
+    @IBInspectable public var paddingX: CGFloat = 2 {
         didSet {
             for tagView in tagViews {
-                tagView.paddingTop = paddingTop
+                tagView.paddingX = paddingX
             }
             rearrangeViews()
         }
     }
-    @IBInspectable public var paddingBottom: CGFloat = 2 {
+    @IBInspectable public var paddingY: CGFloat = 2 {
         didSet {
             for tagView in tagViews {
-                tagView.paddingBottom = paddingBottom
-            }
-            rearrangeViews()
-        }
-    }
-    @IBInspectable public var paddingLeft: CGFloat = 5 {
-        didSet {
-            for tagView in tagViews {
-                tagView.paddingLeft = paddingLeft
-            }
-            rearrangeViews()
-        }
-    }
-    @IBInspectable public var paddingRight: CGFloat = 5 {
-        didSet {
-            for tagView in tagViews {
-                tagView.paddingRight = paddingRight
+                tagView.paddingY = paddingY
             }
             rearrangeViews()
         }
@@ -138,6 +123,41 @@ public class TagListView: UIView {
     }
     @IBInspectable public var shadowOpacity: Float = 0 {
         didSet {
+            rearrangeViews()
+        }
+    }
+    
+    @IBInspectable var enableRemoveButton: Bool = false {
+        didSet {
+            for tagView in tagViews {
+                tagView.enableRemoveButton = enableRemoveButton
+            }
+            rearrangeViews()
+        }
+    }
+    
+    @IBInspectable var removeButtonSize: CGFloat = 12 {
+        didSet {
+            for tagView in tagViews {
+                tagView.removeButtonSize = removeButtonSize
+            }
+            rearrangeViews()
+        }
+    }
+    @IBInspectable var removeIconLineWidth: CGFloat = 1 {
+        didSet {
+            for tagView in tagViews {
+                tagView.removeIconLineWidth = removeIconLineWidth
+            }
+            rearrangeViews()
+        }
+    }
+    
+    @IBInspectable var removeIconLineColor: UIColor = UIColor.whiteColor().colorWithAlphaComponent(0.54) {
+        didSet {
+            for tagView in tagViews {
+                tagView.removeIconLineColor = removeIconLineColor
+            }
             rearrangeViews()
         }
     }
@@ -253,13 +273,15 @@ public class TagListView: UIView {
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
         tagView.borderColor = borderColor
-        tagView.paddingTop = paddingTop
-        tagView.paddingBottom = paddingBottom
-        tagView.paddingRight = paddingRight
-        tagView.paddingLeft = paddingLeft
+        tagView.paddingX = paddingX
+        tagView.paddingY = paddingY
         tagView.textFont = textFont
-        
+        tagView.removeIconLineWidth = removeIconLineWidth
+        tagView.removeButtonSize = removeButtonSize
+        tagView.enableRemoveButton = enableRemoveButton
+        tagView.removeIconLineColor = removeIconLineColor
         tagView.addTarget(self, action: "tagPressed:", forControlEvents: .TouchUpInside)
+        tagView.removeButton.addTarget(self, action: "removeButtonPressed:", forControlEvents: .TouchUpInside)
         
         return addTagView(tagView)
     }
@@ -311,5 +333,11 @@ public class TagListView: UIView {
     func tagPressed(sender: TagView!) {
         sender.onTap?(sender)
         delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
+    }
+    
+    func removeButtonPressed(closeButton: CloseButton!) {
+        if let tagView = closeButton.tagView {
+            delegate?.tagRemoveButtonPressed?(tagView.currentTitle ?? "", tagView: tagView, sender: self)
+        }
     }
 }
