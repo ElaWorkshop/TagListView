@@ -37,16 +37,24 @@ public class TagView: UIButton {
             setTitleColor(selected ? selectedTextColor : textColor, forState: .Normal)
         }
     }
-    @IBInspectable var paddingY: CGFloat = 2 {
+    @IBInspectable var paddingTop: CGFloat = 2 {
         didSet {
-            titleEdgeInsets.top = paddingY
-            titleEdgeInsets.bottom = paddingY
+            titleEdgeInsets.top = paddingTop
         }
     }
-    @IBInspectable var paddingX: CGFloat = 5 {
+    @IBInspectable var paddingLeft: CGFloat = 5 {
         didSet {
-            titleEdgeInsets.left = paddingY
-            titleEdgeInsets.right = paddingY
+            titleEdgeInsets.left = paddingLeft
+        }
+    }
+    @IBInspectable var paddingBottom: CGFloat = 2 {
+        didSet {
+            titleEdgeInsets.bottom = paddingBottom
+        }
+    }
+    @IBInspectable var paddingRight: CGFloat = 5 {
+        didSet {
+            titleEdgeInsets.right = paddingRight
         }
     }
     
@@ -108,8 +116,8 @@ public class TagView: UIButton {
     override public func intrinsicContentSize() -> CGSize {
         var size = titleLabel?.text?.sizeWithAttributes([NSFontAttributeName: textFont]) ?? CGSizeZero
         
-        size.height = textFont.pointSize + paddingY * 2
-        size.width += paddingX * 2
+        size.height = textFont.pointSize + paddingTop + paddingBottom
+        size.width += paddingLeft + paddingRight
         
         return size
     }

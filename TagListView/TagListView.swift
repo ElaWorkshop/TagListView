@@ -68,18 +68,34 @@ public class TagListView: UIView {
             }
         }
     }
-    @IBInspectable public var paddingY: CGFloat = 2 {
+    @IBInspectable public var paddingTop: CGFloat = 2 {
         didSet {
             for tagView in tagViews {
-                tagView.paddingY = paddingY
+                tagView.paddingTop = paddingTop
             }
             rearrangeViews()
         }
     }
-    @IBInspectable public var paddingX: CGFloat = 5 {
+    @IBInspectable public var paddingBottom: CGFloat = 2 {
         didSet {
             for tagView in tagViews {
-                tagView.paddingX = paddingX
+                tagView.paddingBottom = paddingBottom
+            }
+            rearrangeViews()
+        }
+    }
+    @IBInspectable public var paddingLeft: CGFloat = 5 {
+        didSet {
+            for tagView in tagViews {
+                tagView.paddingLeft = paddingLeft
+            }
+            rearrangeViews()
+        }
+    }
+    @IBInspectable public var paddingRight: CGFloat = 5 {
+        didSet {
+            for tagView in tagViews {
+                tagView.paddingRight = paddingRight
             }
             rearrangeViews()
         }
@@ -237,8 +253,10 @@ public class TagListView: UIView {
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
         tagView.borderColor = borderColor
-        tagView.paddingY = paddingY
-        tagView.paddingX = paddingX
+        tagView.paddingTop = paddingTop
+        tagView.paddingBottom = paddingBottom
+        tagView.paddingRight = paddingRight
+        tagView.paddingLeft = paddingLeft
         tagView.textFont = textFont
         
         tagView.addTarget(self, action: "tagPressed:", forControlEvents: .TouchUpInside)
