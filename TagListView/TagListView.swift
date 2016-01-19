@@ -10,6 +10,7 @@ import UIKit
 
 @objc public protocol TagListViewDelegate {
     optional func tagPressed(title: String, tagView: TagView, sender: TagListView) -> Void
+    optional func tagRemoveButtonPressed(title: String, tagView: TagView, sender: TagListView) -> Void
 }
 
 @IBDesignable
@@ -126,6 +127,41 @@ public class TagListView: UIView {
         }
     }
     
+    @IBInspectable var enableRemoveButton: Bool = false {
+        didSet {
+            for tagView in tagViews {
+                tagView.enableRemoveButton = enableRemoveButton
+            }
+            rearrangeViews()
+        }
+    }
+    
+    @IBInspectable var removeButtonSize: CGFloat = 12 {
+        didSet {
+            for tagView in tagViews {
+                tagView.removeButtonSize = removeButtonSize
+            }
+            rearrangeViews()
+        }
+    }
+    @IBInspectable var removeIconLineWidth: CGFloat = 1 {
+        didSet {
+            for tagView in tagViews {
+                tagView.removeIconLineWidth = removeIconLineWidth
+            }
+            rearrangeViews()
+        }
+    }
+    
+    @IBInspectable var removeIconLineColor: UIColor = UIColor.whiteColor().colorWithAlphaComponent(0.54) {
+        didSet {
+            for tagView in tagViews {
+                tagView.removeIconLineColor = removeIconLineColor
+            }
+            rearrangeViews()
+        }
+    }
+    
     public var textFont: UIFont = UIFont.systemFontOfSize(12) {
         didSet {
             for tagView in tagViews {
@@ -237,11 +273,15 @@ public class TagListView: UIView {
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
         tagView.borderColor = borderColor
-        tagView.paddingY = paddingY
         tagView.paddingX = paddingX
+        tagView.paddingY = paddingY
         tagView.textFont = textFont
-        
+        tagView.removeIconLineWidth = removeIconLineWidth
+        tagView.removeButtonSize = removeButtonSize
+        tagView.enableRemoveButton = enableRemoveButton
+        tagView.removeIconLineColor = removeIconLineColor
         tagView.addTarget(self, action: "tagPressed:", forControlEvents: .TouchUpInside)
+        tagView.removeButton.addTarget(self, action: "removeButtonPressed:", forControlEvents: .TouchUpInside)
         
         return addTagView(tagView)
     }
@@ -293,5 +333,11 @@ public class TagListView: UIView {
     func tagPressed(sender: TagView!) {
         sender.onTap?(sender)
         delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
+    }
+    
+    func removeButtonPressed(closeButton: CloseButton!) {
+        if let tagView = closeButton.tagView {
+            delegate?.tagRemoveButtonPressed?(tagView.currentTitle ?? "", tagView: tagView, sender: self)
+        }
     }
 }

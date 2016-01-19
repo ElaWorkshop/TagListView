@@ -55,17 +55,22 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggestTagListView.addTag("to")
         biggestTagListView.addTag("us")
         biggestTagListView.alignment = .Right
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: TagListViewDelegate
     func tagPressed(title: String, tagView: TagView, sender: TagListView) {
         print("Tag pressed: \(title), \(sender)")
-        
         tagView.selected = !tagView.selected
+    }
+    
+    func tagRemoveButtonPressed(title: String, tagView: TagView, sender: TagListView) {
+        print("Tag Remove pressed: \(title), \(sender)")
     }
 }
 
