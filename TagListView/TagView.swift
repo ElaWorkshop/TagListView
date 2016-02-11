@@ -46,16 +46,10 @@ public class TagView: UIButton {
     @IBInspectable var paddingX: CGFloat = 5 {
         didSet {
             titleEdgeInsets.left = paddingX
-
-            if !enableRemoveButton {
-                titleEdgeInsets.right = paddingX
-            }
-            else {
-                titleEdgeInsets.right = paddingX + removeButtonSize
-            }
+            updateRightInsets()
         }
     }
-    
+
     @IBInspectable public var tagBackgroundColor: UIColor = UIColor.grayColor() {
         didSet {
             backgroundColor = tagBackgroundColor
@@ -93,22 +87,14 @@ public class TagView: UIButton {
     @IBInspectable var enableRemoveButton: Bool = false {
         didSet {
             removeButton.hidden = !enableRemoveButton
-            
-            if enableRemoveButton {
-                titleEdgeInsets.right = paddingX + removeButtonSize
-            }
-            else {
-                titleEdgeInsets.right = paddingX
-            }
+            updateRightInsets()
         }
     }
     
     @IBInspectable var removeButtonSize: CGFloat = 12 {
         didSet {
             removeButton.iconSize = removeButtonSize
-            if enableRemoveButton {
-                titleEdgeInsets.right = paddingX + removeButtonSize
-            }
+            updateRightInsets()
         }
     }
     
@@ -148,6 +134,15 @@ public class TagView: UIButton {
     }
     
     // MARK: - layout
+
+    private func updateRightInsets() {
+        if enableRemoveButton {
+            titleEdgeInsets.right = paddingX  + removeButtonSize
+        }
+        else {
+            titleEdgeInsets.right = paddingX
+        }
+    }
     
     override public func intrinsicContentSize() -> CGSize {
         var size = titleLabel?.text?.sizeWithAttributes([NSFontAttributeName: textFont]) ?? CGSizeZero
