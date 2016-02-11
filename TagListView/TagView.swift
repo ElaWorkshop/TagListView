@@ -91,9 +91,9 @@ public class TagView: UIButton {
         }
     }
     
-    @IBInspectable var removeButtonSize: CGFloat = 12 {
+    @IBInspectable var removeButtonIconSize: CGFloat = 12 {
         didSet {
-            removeButton.iconSize = removeButtonSize
+            removeButton.iconSize = removeButtonIconSize
             updateRightInsets()
         }
     }
@@ -137,7 +137,7 @@ public class TagView: UIButton {
 
     private func updateRightInsets() {
         if enableRemoveButton {
-            titleEdgeInsets.right = paddingX  + removeButtonSize + paddingX
+            titleEdgeInsets.right = paddingX  + removeButtonIconSize + paddingX
         }
         else {
             titleEdgeInsets.right = paddingX
@@ -149,7 +149,7 @@ public class TagView: UIButton {
         size.height = textFont.pointSize + paddingY * 2
         size.width += paddingX * 2
         if enableRemoveButton {
-            size.width += removeButtonSize + paddingX
+            size.width += removeButtonIconSize + paddingX
         }
         return size
     }
@@ -157,7 +157,7 @@ public class TagView: UIButton {
     public override func layoutSubviews() {
         super.layoutSubviews()
         if enableRemoveButton {
-            removeButton.frame.size.width = paddingX + removeButtonSize + paddingX
+            removeButton.frame.size.width = paddingX + removeButtonIconSize + paddingX
             removeButton.frame.origin.x = self.frame.width - removeButton.frame.width
             removeButton.frame.size.height = self.frame.height
             removeButton.frame.origin.y = 0

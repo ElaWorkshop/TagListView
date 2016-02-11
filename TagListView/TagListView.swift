@@ -136,10 +136,10 @@ public class TagListView: UIView {
         }
     }
     
-    @IBInspectable var removeButtonSize: CGFloat = 12 {
+    @IBInspectable var removeButtonIconSize: CGFloat = 12 {
         didSet {
             for tagView in tagViews {
-                tagView.removeButtonSize = removeButtonSize
+                tagView.removeButtonIconSize = removeButtonIconSize
             }
             rearrangeViews()
         }
@@ -277,7 +277,7 @@ public class TagListView: UIView {
         tagView.paddingY = paddingY
         tagView.textFont = textFont
         tagView.removeIconLineWidth = removeIconLineWidth
-        tagView.removeButtonSize = removeButtonSize
+        tagView.removeButtonIconSize = removeButtonIconSize
         tagView.enableRemoveButton = enableRemoveButton
         tagView.removeIconLineColor = removeIconLineColor
         tagView.addTarget(self, action: "tagPressed:", forControlEvents: .TouchUpInside)
