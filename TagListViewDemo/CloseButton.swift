@@ -1,5 +1,5 @@
 //
-//  CloseView.swift
+//  CloseButton.swift
 //  TagListViewDemo
 //
 //  Created by Benjamin Wu on 2/11/16.
