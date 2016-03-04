@@ -120,7 +120,7 @@ public class TagView: UIButton {
         setupView()
     }
     
-    init(title: String) {
+    public init(title: String) {
         super.init(frame: CGRectZero)
         setTitle(title, forState: .Normal)
         
