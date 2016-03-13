@@ -19,18 +19,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4S7-JK-aUE" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="122" width="277" height="55"/>
+                                <rect key="frame" x="20" y="122" width="297" height="24"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="277" id="1oP-qJ-5CN"/>
                                     <constraint firstAttribute="height" priority="250" constant="82" id="Eqd-9H-22r"/>
+                                    <constraint firstAttribute="width" constant="297" id="U00-5W-a6y"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
                                         <color key="value" red="0.34403669720000002" green="0.55810397550000002" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="4"/>
+                                        <real key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
                                         <real key="value" value="6"/>
@@ -49,18 +50,23 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="enableRemoveButton" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="removeButtonIconSize">
-                                        <real key="value" value="11"/>
+                                        <real key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="removeIconLineWidth">
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="removeIconLineColor">
-                                        <color key="value" red="0.83658275920000003" green="0.85745648100000005" blue="0.8980392157" alpha="0.75" colorSpace="calibratedRGB"/>
+                                        <color key="value" white="1" alpha="0.60282023993808054" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1oP-qJ-5CN"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5B-Sc-Dfo" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="189" width="277" height="22"/>
+                                <rect key="frame" x="20" y="158" width="277" height="22"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="82" id="935-sK-xao"/>
@@ -109,7 +115,7 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-iU-xRm" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="226" width="277" height="22"/>
+                                <rect key="frame" x="20" y="195" width="277" height="22"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="82" id="0nr-i2-gTA"/>

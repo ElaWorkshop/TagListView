@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/TagListView.svg?style=flat)](https://github.com/xhacker/TagListView/blob/master/LICENSE)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-Simple but highly customizable iOS tag list view, in Swift. The APIs are *not* stable before 1.0.
+Simple and highly customizable iOS tag list view, in Swift. The APIs are *not* stable before 1.0.
 
 Supports Storyboard, Auto Layout, and @IBDesignable.
 
