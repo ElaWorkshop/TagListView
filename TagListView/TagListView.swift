@@ -40,7 +40,7 @@ public class TagListView: UIView {
         }
     }
     
-    @IBInspectable public var tagHighlightedBackgroundColor: UIColor = UIColor.blueColor() {
+    @IBInspectable public var tagHighlightedBackgroundColor: UIColor? {
         didSet {
             for tagView in tagViews {
                 tagView.tagHighlightedBackgroundColor = tagHighlightedBackgroundColor

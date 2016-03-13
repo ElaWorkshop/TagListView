@@ -56,9 +56,14 @@ public class TagView: UIButton {
         }
     }
     
-    @IBInspectable public var tagHighlightedBackgroundColor: UIColor = UIColor.blueColor() {
+    @IBInspectable public var tagHighlightedBackgroundColor: UIColor? {
         didSet {
-            backgroundColor = highlighted ? tagHighlightedBackgroundColor : tagSelectedBackgroundColor
+            if let color = tagHighlightedBackgroundColor where highlighted {
+                backgroundColor = color
+            }
+            else {
+                backgroundColor = tagBackgroundColor
+            }
         }
     }
     
@@ -76,9 +81,10 @@ public class TagView: UIButton {
     
     override public var highlighted: Bool {
         didSet {
-            if highlighted {
-                backgroundColor = tagHighlightedBackgroundColor
-            } else {
+            if let color = tagHighlightedBackgroundColor where highlighted {
+                backgroundColor = color
+            }
+            else {
                 backgroundColor = selected ? tagSelectedBackgroundColor : tagBackgroundColor
             }
         }
@@ -89,7 +95,8 @@ public class TagView: UIButton {
             if selected {
                 backgroundColor = tagSelectedBackgroundColor
                 setTitleColor(selectedTextColor, forState: .Normal)
-            } else {
+            }
+            else {
                 backgroundColor = tagBackgroundColor
                 setTitleColor(textColor, forState: .Normal)
             }
