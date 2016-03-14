@@ -22,11 +22,13 @@ public class TagView: UIButton {
             layer.borderWidth = borderWidth
         }
     }
+    
     @IBInspectable public var borderColor: UIColor? {
         didSet {
-            layer.borderColor = borderColor?.CGColor
+            layer.borderColor = selected ? selectedBorderColor?.CGColor ?? borderColor?.CGColor : borderColor?.CGColor
         }
     }
+    
     @IBInspectable public var textColor: UIColor = UIColor.whiteColor() {
         didSet {
             setTitleColor(textColor, forState: .Normal)
@@ -56,14 +58,20 @@ public class TagView: UIButton {
         }
     }
     
-    @IBInspectable public var tagHighlightedBackgroundColor: UIColor? {
+    @IBInspectable public var highlightedBackgroundColor: UIColor? {
         didSet {
-            if let color = tagHighlightedBackgroundColor where highlighted {
+            if let color = highlightedBackgroundColor where highlighted {
                 backgroundColor = color
             }
             else {
                 backgroundColor = tagBackgroundColor
             }
+        }
+    }
+    
+    @IBInspectable public var selectedBorderColor: UIColor? = nil {
+        didSet {
+            layer.borderColor = selected ? selectedBorderColor?.CGColor ?? borderColor?.CGColor : borderColor?.CGColor
         }
     }
     
@@ -81,7 +89,7 @@ public class TagView: UIButton {
     
     override public var highlighted: Bool {
         didSet {
-            if let color = tagHighlightedBackgroundColor where highlighted {
+            if let color = highlightedBackgroundColor where highlighted {
                 backgroundColor = color
             }
             else {
@@ -94,10 +102,14 @@ public class TagView: UIButton {
         didSet {
             if selected {
                 backgroundColor = tagSelectedBackgroundColor
+                if let selectedBorderColor = selectedBorderColor?.CGColor {
+                    self.layer.borderColor = selectedBorderColor
+                }
                 setTitleColor(selectedTextColor, forState: .Normal)
             }
             else {
                 backgroundColor = tagBackgroundColor
+                self.layer.borderColor = borderColor?.CGColor
                 setTitleColor(textColor, forState: .Normal)
             }
         }

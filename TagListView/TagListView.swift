@@ -43,7 +43,7 @@ public class TagListView: UIView {
     @IBInspectable public var tagHighlightedBackgroundColor: UIColor? {
         didSet {
             for tagView in tagViews {
-                tagView.tagHighlightedBackgroundColor = tagHighlightedBackgroundColor
+                tagView.highlightedBackgroundColor = tagHighlightedBackgroundColor
             }
         }
     }
@@ -70,6 +70,7 @@ public class TagListView: UIView {
             }
         }
     }
+    
     @IBInspectable public var borderColor: UIColor? {
         didSet {
             for tagView in tagViews {
@@ -77,6 +78,15 @@ public class TagListView: UIView {
             }
         }
     }
+    
+    @IBInspectable public var selectedBorderColor: UIColor? {
+        didSet {
+            for tagView in tagViews {
+                tagView.selectedBorderColor = selectedBorderColor
+            }
+        }
+    }
+    
     @IBInspectable public var paddingY: CGFloat = 2 {
         didSet {
             for tagView in tagViews {
@@ -277,11 +287,12 @@ public class TagListView: UIView {
         tagView.textColor = textColor
         tagView.selectedTextColor = selectedTextColor
         tagView.tagBackgroundColor = tagBackgroundColor
-        tagView.tagHighlightedBackgroundColor = tagHighlightedBackgroundColor
+        tagView.highlightedBackgroundColor = tagHighlightedBackgroundColor
         tagView.tagSelectedBackgroundColor = tagSelectedBackgroundColor
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
         tagView.borderColor = borderColor
+        tagView.selectedBorderColor = selectedBorderColor
         tagView.paddingX = paddingX
         tagView.paddingY = paddingY
         tagView.textFont = textFont
