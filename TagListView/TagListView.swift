@@ -135,7 +135,7 @@ public class TagListView: UIView {
         }
     }
     
-    @IBInspectable var enableRemoveButton: Bool = false {
+    @IBInspectable public var enableRemoveButton: Bool = false {
         didSet {
             for tagView in tagViews {
                 tagView.enableRemoveButton = enableRemoveButton
@@ -144,7 +144,7 @@ public class TagListView: UIView {
         }
     }
     
-    @IBInspectable var removeButtonIconSize: CGFloat = 12 {
+    @IBInspectable public var removeButtonIconSize: CGFloat = 12 {
         didSet {
             for tagView in tagViews {
                 tagView.removeButtonIconSize = removeButtonIconSize
@@ -152,7 +152,7 @@ public class TagListView: UIView {
             rearrangeViews()
         }
     }
-    @IBInspectable var removeIconLineWidth: CGFloat = 1 {
+    @IBInspectable public var removeIconLineWidth: CGFloat = 1 {
         didSet {
             for tagView in tagViews {
                 tagView.removeIconLineWidth = removeIconLineWidth
@@ -161,7 +161,7 @@ public class TagListView: UIView {
         }
     }
     
-    @IBInspectable var removeIconLineColor: UIColor = UIColor.whiteColor().colorWithAlphaComponent(0.54) {
+    @IBInspectable public var removeIconLineColor: UIColor = UIColor.whiteColor().colorWithAlphaComponent(0.54) {
         didSet {
             for tagView in tagViews {
                 tagView.removeIconLineColor = removeIconLineColor

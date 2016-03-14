@@ -11,39 +11,39 @@ import UIKit
 @IBDesignable
 public class TagView: UIButton {
 
-    @IBInspectable var cornerRadius: CGFloat = 0 {
+    @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
             layer.masksToBounds = cornerRadius > 0
         }
     }
-    @IBInspectable var borderWidth: CGFloat = 0 {
+    @IBInspectable public var borderWidth: CGFloat = 0 {
         didSet {
             layer.borderWidth = borderWidth
         }
     }
-    @IBInspectable var borderColor: UIColor? {
+    @IBInspectable public var borderColor: UIColor? {
         didSet {
             layer.borderColor = borderColor?.CGColor
         }
     }
-    @IBInspectable var textColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable public var textColor: UIColor = UIColor.whiteColor() {
         didSet {
             setTitleColor(textColor, forState: .Normal)
         }
     }
-    @IBInspectable var selectedTextColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable public var selectedTextColor: UIColor = UIColor.whiteColor() {
         didSet {
             setTitleColor(selected ? selectedTextColor : textColor, forState: .Normal)
         }
     }
-    @IBInspectable var paddingY: CGFloat = 2 {
+    @IBInspectable public var paddingY: CGFloat = 2 {
         didSet {
             titleEdgeInsets.top = paddingY
             titleEdgeInsets.bottom = paddingY
         }
     }
-    @IBInspectable var paddingX: CGFloat = 5 {
+    @IBInspectable public var paddingX: CGFloat = 5 {
         didSet {
             titleEdgeInsets.left = paddingX
             updateRightInsets()
@@ -107,26 +107,26 @@ public class TagView: UIButton {
     
     let removeButton = CloseButton()
     
-    @IBInspectable var enableRemoveButton: Bool = false {
+    @IBInspectable public var enableRemoveButton: Bool = false {
         didSet {
             removeButton.hidden = !enableRemoveButton
             updateRightInsets()
         }
     }
     
-    @IBInspectable var removeButtonIconSize: CGFloat = 12 {
+    @IBInspectable public var removeButtonIconSize: CGFloat = 12 {
         didSet {
             removeButton.iconSize = removeButtonIconSize
             updateRightInsets()
         }
     }
     
-    @IBInspectable var removeIconLineWidth: CGFloat = 3 {
+    @IBInspectable public var removeIconLineWidth: CGFloat = 3 {
         didSet {
             removeButton.lineWidth = removeIconLineWidth
         }
     }
-    @IBInspectable var removeIconLineColor: UIColor = UIColor.whiteColor().colorWithAlphaComponent(0.54) {
+    @IBInspectable public var removeIconLineColor: UIColor = UIColor.whiteColor().colorWithAlphaComponent(0.54) {
         didSet {
             removeButton.lineColor = removeIconLineColor
         }
