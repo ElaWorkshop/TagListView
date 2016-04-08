@@ -244,7 +244,7 @@ public class TagListView: UIView {
             tagBackgroundView.addSubview(tagView)
             currentRowView.addSubview(tagBackgroundView)
             
-            currentRowTagCount++
+            currentRowTagCount += 1
             currentRowWidth += tagView.frame.width + marginX
             
             switch alignment {
@@ -289,8 +289,8 @@ public class TagListView: UIView {
         tagView.removeButtonIconSize = removeButtonIconSize
         tagView.enableRemoveButton = enableRemoveButton
         tagView.removeIconLineColor = removeIconLineColor
-        tagView.addTarget(self, action: "tagPressed:", forControlEvents: .TouchUpInside)
-        tagView.removeButton.addTarget(self, action: "removeButtonPressed:", forControlEvents: .TouchUpInside)
+        tagView.addTarget(self, action: #selector(tagPressed(_:)), forControlEvents: .TouchUpInside)
+        tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), forControlEvents: .TouchUpInside)
         
         return addTagView(tagView)
     }
