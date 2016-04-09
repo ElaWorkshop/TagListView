@@ -48,10 +48,10 @@ public class TagListView: UIView {
         }
     }
     
-    @IBInspectable public var tagSelectedBackgroundColor: UIColor = UIColor.redColor() {
+    @IBInspectable public var tagSelectedBackgroundColor: UIColor? {
         didSet {
             for tagView in tagViews {
-                tagView.tagSelectedBackgroundColor = tagSelectedBackgroundColor
+                tagView.selectedBackgroundColor = tagSelectedBackgroundColor
             }
         }
     }
@@ -288,7 +288,7 @@ public class TagListView: UIView {
         tagView.selectedTextColor = selectedTextColor
         tagView.tagBackgroundColor = tagBackgroundColor
         tagView.highlightedBackgroundColor = tagHighlightedBackgroundColor
-        tagView.tagSelectedBackgroundColor = tagSelectedBackgroundColor
+        tagView.selectedBackgroundColor = tagSelectedBackgroundColor
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
         tagView.borderColor = borderColor
