@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/TagListView.svg?style=flat)](https://github.com/xhacker/TagListView/blob/master/LICENSE)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-Simple and highly customizable iOS tag list view, in Swift. The APIs are *not* stable before 1.0.
+Simple and highly customizable iOS tag list view, in Swift.
 
 Supports Storyboard, Auto Layout, and @IBDesignable.
 
@@ -61,13 +61,13 @@ Be aware that if you update a property (e.g. `tagBackgroundColor`) for a `TagLis
 Use [CocoaPods](https://github.com/CocoaPods/CocoaPods):
 
 ```ruby
-pod 'TagListView'
+pod 'TagListView', '~> 1.0'
 ```
 
 Or [Carthage](https://github.com/Carthage/Carthage):
 
 ```ruby
-github "xhacker/TagListView"
+github "xhacker/TagListView" ~> 1.0
 ```
 
 Or drag **TagListView** folder into your project.
