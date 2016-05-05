@@ -145,6 +145,7 @@ public class TagView: UIButton {
     
     /// Handles Tap (TouchUpInside)
     public var onTap: ((TagView) -> Void)?
+    public var onLongPress: ((TagView) -> Void)?
     
     // MARK: - init
     
@@ -165,8 +166,16 @@ public class TagView: UIButton {
         frame.size = intrinsicContentSize()
         addSubview(removeButton)
         removeButton.tagView = self
+        
+        //BY HUSAM
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
+        self.addGestureRecognizer(longPress)
     }
-    
+    func longPress (){
+        if onLongPress != nil {
+            onLongPress!(self)
+        }
+    }
     // MARK: - layout
 
     private func updateRightInsets() {
