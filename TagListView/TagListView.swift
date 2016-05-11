@@ -180,6 +180,12 @@ public class TagListView: UIView {
         }
     }
     
+    @IBInspectable public var oneLineScrollable:Bool = false {
+        didSet {
+            rearrangeViews()
+        }
+    }
+    
     public var textFont: UIFont = UIFont.systemFontOfSize(12) {
         didSet {
             for tagView in tagViews {
@@ -200,6 +206,7 @@ public class TagListView: UIView {
             invalidateIntrinsicContentSize()
         }
     }
+    private var scrollView:UIScrollView?
     
     // MARK: - Interface Builder
     
@@ -224,6 +231,12 @@ public class TagListView: UIView {
         }
         rowViews.removeAll(keepCapacity: true)
         
+        if oneLineScrollable {
+            scrollView?.removeFromSuperview()
+            scrollView = UIScrollView(frame: CGRectZero)
+            addSubview(scrollView!)
+        }
+        
         var currentRow = 0
         var currentRowView: UIView!
         var currentRowTagCount = 0
@@ -232,7 +245,7 @@ public class TagListView: UIView {
             tagView.frame.size = tagView.intrinsicContentSize()
             tagViewHeight = tagView.frame.height
             
-            if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frame.width {
+            if currentRowTagCount == 0 || (currentRowWidth + tagView.frame.width > frame.width && !oneLineScrollable){
                 currentRow += 1
                 currentRowWidth = 0
                 currentRowTagCount = 0
@@ -240,7 +253,11 @@ public class TagListView: UIView {
                 currentRowView.frame.origin.y = CGFloat(currentRow - 1) * (tagViewHeight + marginY)
                 
                 rowViews.append(currentRowView)
-                addSubview(currentRowView)
+                if oneLineScrollable {
+                    scrollView?.addSubview(currentRowView)
+                } else {
+                    addSubview(currentRowView)
+                }
             }
             
             let tagBackgroundView = tagBackgroundViews[index]
@@ -257,18 +274,27 @@ public class TagListView: UIView {
             currentRowTagCount += 1
             currentRowWidth += tagView.frame.width + marginX
             
-            switch alignment {
-            case .Left:
+            if oneLineScrollable  {
                 currentRowView.frame.origin.x = 0
-            case .Center:
-                currentRowView.frame.origin.x = (frame.width - (currentRowWidth - marginX)) / 2
-            case .Right:
-                currentRowView.frame.origin.x = frame.width - (currentRowWidth - marginX)
+            } else {
+                switch alignment {
+                case .Left:
+                    currentRowView.frame.origin.x = 0
+                case .Center:
+                    currentRowView.frame.origin.x = (frame.width - (currentRowWidth - marginX)) / 2
+                case .Right:
+                    currentRowView.frame.origin.x = frame.width - (currentRowWidth - marginX)
+                }
             }
             currentRowView.frame.size.width = currentRowWidth
             currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.height)
         }
         rows = currentRow
+        if rows > 0 {
+            scrollView?.frame = CGRectMake(0, 0, bounds.width, currentRowView.bounds.height)
+            scrollView?.showsHorizontalScrollIndicator = false
+            scrollView?.contentSize = currentRowView.bounds.size
+        }
     }
     
     // MARK: - Manage tags
@@ -343,7 +369,7 @@ public class TagListView: UIView {
         tagBackgroundViews = []
         rearrangeViews()
     }
-
+    
     public func selectedTags() -> [TagView] {
         return tagViews.filter() { $0.selected == true }
     }
