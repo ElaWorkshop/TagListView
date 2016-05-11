@@ -13,6 +13,7 @@ class ViewController: UIViewController, TagListViewDelegate {
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var biggerTagListView: TagListView!
     @IBOutlet weak var biggestTagListView: TagListView!
+    @IBOutlet weak var horizontalScrollView: TagListView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,18 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggestTagListView.addTag("to")
         biggestTagListView.addTag("us")
         biggestTagListView.alignment = .Right
+        
+        
+        horizontalScrollView.delegate = self
+        horizontalScrollView.addTag("TagListView")
+        horizontalScrollView.addTag("TEAChart")
+        horizontalScrollView.addTag("To Be Removed")
+        horizontalScrollView.addTag("To Be Removed")
+        horizontalScrollView.addTag("Quark Shell")
+        horizontalScrollView.removeTag("To Be Removed")
+        horizontalScrollView.addTag("On tap will be removed").onTap = { [weak self] tagView in
+            self?.horizontalScrollView.removeTagView(tagView)
+        }
         
     }
     
