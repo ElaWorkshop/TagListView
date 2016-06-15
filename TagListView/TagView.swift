@@ -29,12 +29,12 @@ public class TagView: UIButton {
         }
     }
     
-    @IBInspectable public var textColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable public var textColor: UIColor = UIColor.white() {
         didSet {
             reloadStyles()
         }
     }
-    @IBInspectable public var selectedTextColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable public var selectedTextColor: UIColor = UIColor.white() {
         didSet {
             reloadStyles()
         }
@@ -52,7 +52,7 @@ public class TagView: UIButton {
         }
     }
 
-    @IBInspectable public var tagBackgroundColor: UIColor = UIColor.grayColor() {
+    @IBInspectable public var tagBackgroundColor: UIColor = UIColor.gray() {
         didSet {
             reloadStyles()
         }
@@ -76,39 +76,39 @@ public class TagView: UIButton {
         }
     }
     
-    var textFont: UIFont = UIFont.systemFontOfSize(12) {
+    var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
             titleLabel?.font = textFont
         }
     }
     
     private func reloadStyles() {
-        if highlighted {
+        if isHighlighted {
             if let highlightedBackgroundColor = highlightedBackgroundColor {
                 // For highlighted, if it's nil, we should not fallback to backgroundColor.
                 // Instead, we keep the current color.
                 backgroundColor = highlightedBackgroundColor
             }
         }
-        else if selected {
+        else if isSelected {
             backgroundColor = selectedBackgroundColor ?? tagBackgroundColor
-            layer.borderColor = selectedBorderColor?.CGColor ?? borderColor?.CGColor
-            setTitleColor(selectedTextColor, forState: .Normal)
+            layer.borderColor = selectedBorderColor?.cgColor ?? borderColor?.cgColor
+            setTitleColor(selectedTextColor, for: UIControlState())
         }
         else {
             backgroundColor = tagBackgroundColor
-            layer.borderColor = borderColor?.CGColor
-            setTitleColor(textColor, forState: .Normal)
+            layer.borderColor = borderColor?.cgColor
+            setTitleColor(textColor, for: UIControlState())
         }
     }
     
-    override public var highlighted: Bool {
+    override public var isHighlighted: Bool {
         didSet {
             reloadStyles()
         }
     }
     
-    override public var selected: Bool {
+    override public var isSelected: Bool {
         didSet {
             reloadStyles()
         }
@@ -120,7 +120,7 @@ public class TagView: UIButton {
     
     @IBInspectable public var enableRemoveButton: Bool = false {
         didSet {
-            removeButton.hidden = !enableRemoveButton
+            removeButton.isHidden = !enableRemoveButton
             updateRightInsets()
         }
     }
@@ -137,7 +137,7 @@ public class TagView: UIButton {
             removeButton.lineWidth = removeIconLineWidth
         }
     }
-    @IBInspectable public var removeIconLineColor: UIColor = UIColor.whiteColor().colorWithAlphaComponent(0.54) {
+    @IBInspectable public var removeIconLineColor: UIColor = UIColor.white().withAlphaComponent(0.54) {
         didSet {
             removeButton.lineColor = removeIconLineColor
         }
@@ -155,8 +155,8 @@ public class TagView: UIButton {
     }
     
     public init(title: String) {
-        super.init(frame: CGRectZero)
-        setTitle(title, forState: .Normal)
+        super.init(frame: CGRect.zero)
+        setTitle(title, for: UIControlState())
         
         setupView()
     }
@@ -179,7 +179,7 @@ public class TagView: UIButton {
     }
     
     override public func intrinsicContentSize() -> CGSize {
-        var size = titleLabel?.text?.sizeWithAttributes([NSFontAttributeName: textFont]) ?? CGSizeZero
+        var size = titleLabel?.text?.size(attributes: [NSFontAttributeName: textFont]) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
         size.width += paddingX * 2
         if enableRemoveButton {

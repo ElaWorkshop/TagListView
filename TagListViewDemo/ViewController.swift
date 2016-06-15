@@ -29,24 +29,24 @@ class ViewController: UIViewController, TagListViewDelegate {
         }
         
         let tagView = tagListView.addTag("gray")
-        tagView.tagBackgroundColor = UIColor.grayColor()
+        tagView.tagBackgroundColor = UIColor.gray()
         tagView.onTap = { tagView in
             print("Don’t tap me!")
         }
         
         biggerTagListView.delegate = self
-        biggerTagListView.textFont = UIFont.systemFontOfSize(15)
+        biggerTagListView.textFont = UIFont.systemFont(ofSize: 15)
         biggerTagListView.shadowRadius = 2
         biggerTagListView.shadowOpacity = 0.4
-        biggerTagListView.shadowColor = UIColor.blackColor()
-        biggerTagListView.shadowOffset = CGSizeMake(1, 1)
+        biggerTagListView.shadowColor = UIColor.black()
+        biggerTagListView.shadowOffset = CGSize(width: 1, height: 1)
         biggerTagListView.addTag("Inboard")
         biggerTagListView.addTag("Pomotodo")
         biggerTagListView.addTag("Halo Word")
-        biggerTagListView.alignment = .Center
+        biggerTagListView.alignment = .center
         
         biggestTagListView.delegate = self
-        biggestTagListView.textFont = UIFont.systemFontOfSize(24)
+        biggestTagListView.textFont = UIFont.systemFont(ofSize: 24)
         biggestTagListView.addTag("all")
         biggestTagListView.addTag("your")
         biggestTagListView.addTag("tag")
@@ -54,7 +54,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggestTagListView.addTag("belong")
         biggestTagListView.addTag("to")
         biggestTagListView.addTag("us")
-        biggestTagListView.alignment = .Right
+        biggestTagListView.alignment = .right
         
     }
     
@@ -64,12 +64,12 @@ class ViewController: UIViewController, TagListViewDelegate {
     }
 
     // MARK: TagListViewDelegate
-    func tagPressed(title: String, tagView: TagView, sender: TagListView) {
+    func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
         print("Tag pressed: \(title), \(sender)")
-        tagView.selected = !tagView.selected
+        tagView.isSelected = !tagView.isSelected
     }
     
-    func tagRemoveButtonPressed(title: String, tagView: TagView, sender: TagListView) {
+    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
         print("Tag Remove pressed: \(title), \(sender)")
         sender.removeTagView(tagView)
     }
