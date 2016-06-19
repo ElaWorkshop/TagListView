@@ -303,6 +303,12 @@ public class TagListView: UIView {
         tagView.addTarget(self, action: #selector(tagPressed(_:)), forControlEvents: .TouchUpInside)
         tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), forControlEvents: .TouchUpInside)
         
+        // Deselect all tags except this one
+        tagView.onLongPress = { (this) -> Void in
+            for tag in self.tagViews {
+                tag.selected = tag == this
+            }
+        }
         return addTagView(tagView)
     }
     
