@@ -119,7 +119,7 @@ public class TagListView: UIView {
         case Center
         case Right
     }
-    @IBInspectable public dynamic var alignment: Alignment = .Left {
+    @IBInspectable public var alignment: Alignment = .Left {
         didSet {
             rearrangeViews()
         }
