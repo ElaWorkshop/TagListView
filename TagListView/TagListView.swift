@@ -307,7 +307,7 @@ public class TagListView: UIView {
         // Deselect all tags except this one
         tagView.onLongPress = { (this) -> Void in
             for tag in self.tagViews {
-                tag.selected = tag == this
+                tag.isSelected = tag == this
             }
         }
         return addTagView(tagView)
