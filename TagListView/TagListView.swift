@@ -269,6 +269,8 @@ open class TagListView: UIView {
             currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.height)
         }
         rows = currentRow
+        
+        invalidateIntrinsicContentSize()
     }
     
     // MARK: - Manage tags
