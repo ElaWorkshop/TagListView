@@ -172,9 +172,7 @@ open class TagView: UIButton {
     }
     
     func longPress() {
-        if let onLongPress = onLongPress {
-            onLongPress(self)
-        }
+        onLongPress?(self)
     }
     
     // MARK: - layout
