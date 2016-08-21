@@ -29,12 +29,12 @@ public class TagView: UIButton {
         }
     }
     
-    @IBInspectable public var textColor: UIColor = UIColor.white() {
+    @IBInspectable public var textColor: UIColor = UIColor.white {
         didSet {
             reloadStyles()
         }
     }
-    @IBInspectable public var selectedTextColor: UIColor = UIColor.white() {
+    @IBInspectable public var selectedTextColor: UIColor = UIColor.white {
         didSet {
             reloadStyles()
         }
@@ -52,7 +52,7 @@ public class TagView: UIButton {
         }
     }
 
-    @IBInspectable public var tagBackgroundColor: UIColor = UIColor.gray() {
+    @IBInspectable public var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
             reloadStyles()
         }
@@ -137,7 +137,7 @@ public class TagView: UIButton {
             removeButton.lineWidth = removeIconLineWidth
         }
     }
-    @IBInspectable public var removeIconLineColor: UIColor = UIColor.white().withAlphaComponent(0.54) {
+    @IBInspectable public var removeIconLineColor: UIColor = UIColor.white.withAlphaComponent(0.54) {
         didSet {
             removeButton.lineColor = removeIconLineColor
         }
@@ -163,7 +163,7 @@ public class TagView: UIButton {
     }
     
     private func setupView() {
-        frame.size = intrinsicContentSize()
+        frame.size = intrinsicContentSize
         addSubview(removeButton)
         removeButton.tagView = self
         
@@ -178,16 +178,7 @@ public class TagView: UIButton {
     }
     // MARK: - layout
 
-    private func updateRightInsets() {
-        if enableRemoveButton {
-            titleEdgeInsets.right = paddingX  + removeButtonIconSize + paddingX
-        }
-        else {
-            titleEdgeInsets.right = paddingX
-        }
-    }
-    
-    override public func intrinsicContentSize() -> CGSize {
+    override public var intrinsicContentSize: CGSize {
         var size = titleLabel?.text?.size(attributes: [NSFontAttributeName: textFont]) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
         size.width += paddingX * 2
@@ -195,6 +186,15 @@ public class TagView: UIButton {
             size.width += removeButtonIconSize + paddingX
         }
         return size
+    }
+    
+    private func updateRightInsets() {
+        if enableRemoveButton {
+            titleEdgeInsets.right = paddingX  + removeButtonIconSize + paddingX
+        }
+        else {
+            titleEdgeInsets.right = paddingX
+        }
     }
     
     public override func layoutSubviews() {

@@ -16,7 +16,7 @@ import UIKit
 @IBDesignable
 public class TagListView: UIView {
     
-    @IBInspectable public var textColor: UIColor = UIColor.white() {
+    @IBInspectable public var textColor: UIColor = UIColor.white {
         didSet {
             for tagView in tagViews {
                 tagView.textColor = textColor
@@ -24,7 +24,7 @@ public class TagListView: UIView {
         }
     }
     
-    @IBInspectable public var selectedTextColor: UIColor = UIColor.white() {
+    @IBInspectable public var selectedTextColor: UIColor = UIColor.white {
         didSet {
             for tagView in tagViews {
                 tagView.selectedTextColor = selectedTextColor
@@ -32,7 +32,7 @@ public class TagListView: UIView {
         }
     }
     
-    @IBInspectable public var tagBackgroundColor: UIColor = UIColor.gray() {
+    @IBInspectable public var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
             for tagView in tagViews {
                 tagView.tagBackgroundColor = tagBackgroundColor
@@ -124,7 +124,7 @@ public class TagListView: UIView {
             rearrangeViews()
         }
     }
-    @IBInspectable public var shadowColor: UIColor = UIColor.white() {
+    @IBInspectable public var shadowColor: UIColor = UIColor.white {
         didSet {
             rearrangeViews()
         }
@@ -171,7 +171,7 @@ public class TagListView: UIView {
         }
     }
     
-    @IBInspectable public var removeIconLineColor: UIColor = UIColor.white().withAlphaComponent(0.54) {
+    @IBInspectable public var removeIconLineColor: UIColor = UIColor.white.withAlphaComponent(0.54) {
         didSet {
             for tagView in tagViews {
                 tagView.removeIconLineColor = removeIconLineColor
@@ -229,7 +229,7 @@ public class TagListView: UIView {
         var currentRowTagCount = 0
         var currentRowWidth: CGFloat = 0
         for (index, tagView) in tagViews.enumerated() {
-            tagView.frame.size = tagView.intrinsicContentSize()
+            tagView.frame.size = tagView.intrinsicContentSize
             tagViewHeight = tagView.frame.height
             
             if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frame.width {
@@ -273,7 +273,7 @@ public class TagListView: UIView {
     
     // MARK: - Manage tags
     
-    public override func intrinsicContentSize() -> CGSize {
+    override public var intrinsicContentSize: CGSize {
         var height = CGFloat(rows) * (tagViewHeight + marginY)
         if rows > 0 {
             height -= marginY

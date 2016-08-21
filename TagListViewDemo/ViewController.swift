@@ -29,7 +29,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         }
         
         let tagView = tagListView.addTag("gray")
-        tagView.tagBackgroundColor = UIColor.gray()
+        tagView.tagBackgroundColor = UIColor.gray
         tagView.onTap = { tagView in
             print("Don’t tap me!")
         }
@@ -38,7 +38,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggerTagListView.textFont = UIFont.systemFont(ofSize: 15)
         biggerTagListView.shadowRadius = 2
         biggerTagListView.shadowOpacity = 0.4
-        biggerTagListView.shadowColor = UIColor.black()
+        biggerTagListView.shadowColor = UIColor.black
         biggerTagListView.shadowOffset = CGSize(width: 1, height: 1)
         biggerTagListView.addTag("Inboard")
         biggerTagListView.addTag("Pomotodo")
