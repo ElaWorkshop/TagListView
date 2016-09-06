@@ -34,6 +34,8 @@ class ViewController: UIViewController, TagListViewDelegate {
             print("Don’t tap me!")
         }
         
+        tagListView.insertTag("This should be the third tag", atIndex: 2)
+        
         biggerTagListView.delegate = self
         biggerTagListView.textFont = UIFont.systemFontOfSize(15)
         biggerTagListView.shadowRadius = 2

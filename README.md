@@ -24,6 +24,7 @@ tagListView.textFont = UIFont.systemFontOfSize(24)
 tagListView.alignment = .Center // possible values are .Left, .Center, and .Right
 
 tagListView.addTag("TagListView")
+tagListView.insertTag("This should be the second tag", atIndex: 1)
 
 tagListView.removeTag("meow") // all tags with title “meow” will be removed
 tagListView.removeAllTags()

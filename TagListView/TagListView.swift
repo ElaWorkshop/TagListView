@@ -283,7 +283,7 @@ public class TagListView: UIView {
         return CGSizeMake(frame.width, height)
     }
     
-    public func addTag(title: String) -> TagView {
+    private func createNewTagView(title: String) -> TagView {
         let tagView = TagView(title: title)
         
         tagView.textColor = textColor
@@ -305,18 +305,35 @@ public class TagListView: UIView {
         tagView.addTarget(self, action: #selector(tagPressed(_:)), forControlEvents: .TouchUpInside)
         tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), forControlEvents: .TouchUpInside)
         
-        // Deselect all tags except this one
+        // On long press, deselect all tags except this one
         tagView.onLongPress = { this in
             for tag in self.tagViews {
                 tag.selected = (tag == this)
             }
         }
-        return addTagView(tagView)
+        
+        return tagView
+    }
+    
+    public func addTag(title: String) -> TagView {
+        return addTagView(createNewTagView(title))
+    }
+    
+    public func insertTag(title: String, atIndex index: Int) -> TagView {
+        return insertTagView(createNewTagView(title), atIndex: index)
     }
     
     public func addTagView(tagView: TagView) -> TagView {
         tagViews.append(tagView)
         tagBackgroundViews.append(UIView(frame: tagView.bounds))
+        rearrangeViews()
+        
+        return tagView
+    }
+    
+    public func insertTagView(tagView: TagView, atIndex index: Int) -> TagView {
+        tagViews.insert(tagView, atIndex: index)
+        tagBackgroundViews.insert(UIView(frame: tagView.bounds), atIndex: index)
         rearrangeViews()
         
         return tagView
