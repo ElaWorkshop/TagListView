@@ -74,7 +74,9 @@ Or drag **TagListView** folder into your project.
 
 ### Older Swift Versions?
 
-For Swift 2, use version [1.0.1](https://github.com/xhacker/TagListView/releases/tag/1.0.1), or [swift-2.3](https://github.com/xhacker/TagListView/tree/swift-2.3) branch. For Swift 1.2, use version [0.2](https://github.com/xhacker/TagListView/releases/tag/0.2).
+Currently, the `master` branch is using Swift 3.0.
+
+For Swift 2, use version [1.0.1](https://github.com/xhacker/TagListView/releases/tag/1.0.1) or [swift-2.3](https://github.com/xhacker/TagListView/tree/swift-2.3) branch. For Swift 1.2, use version [0.2](https://github.com/xhacker/TagListView/releases/tag/0.2).
 
 ## Contribution
 
