@@ -191,11 +191,11 @@ open class TagListView: UIView {
     
     @IBOutlet open weak var delegate: TagListViewDelegate?
     
-    open fileprivate(set) var tagViews: [TagView] = []
-    fileprivate(set) var tagBackgroundViews: [UIView] = []
-    fileprivate(set) var rowViews: [UIView] = []
-    fileprivate(set) var tagViewHeight: CGFloat = 0
-    fileprivate(set) var rows = 0 {
+    open private(set) var tagViews: [TagView] = []
+    private(set) var tagBackgroundViews: [UIView] = []
+    private(set) var rowViews: [UIView] = []
+    private(set) var tagViewHeight: CGFloat = 0
+    private(set) var rows = 0 {
         didSet {
             invalidateIntrinsicContentSize()
         }
@@ -217,7 +217,7 @@ open class TagListView: UIView {
         rearrangeViews()
     }
     
-    fileprivate func rearrangeViews() {
+    private func rearrangeViews() {
         let views = tagViews as [UIView] + tagBackgroundViews + rowViews
         for view in views {
             view.removeFromSuperview()
