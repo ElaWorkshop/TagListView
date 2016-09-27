@@ -180,7 +180,7 @@ open class TagListView: UIView {
         }
     }
     
-    open var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
+    open dynamic var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
             for tagView in tagViews {
                 tagView.textFont = textFont
