@@ -33,6 +33,8 @@ class ViewController: UIViewController, TagListViewDelegate {
         tagView.onTap = { tagView in
             print("Don’t tap me!")
         }
+
+        tagListView.insertTag("This should be the third tag", atIndex: 2)
         
         biggerTagListView.delegate = self
         biggerTagListView.textFont = UIFont.systemFont(ofSize: 15)
