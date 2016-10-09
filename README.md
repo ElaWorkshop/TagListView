@@ -1,8 +1,8 @@
 # TagListView
 
-[![Travis CI](https://travis-ci.org/xhacker/TagListView.svg)](https://travis-ci.org/xhacker/TagListView)
+[![Travis CI](https://travis-ci.org/ElaWorkshop/TagListView.svg)](https://travis-ci.org/ElaWorkshop/TagListView)
 [![Version](https://img.shields.io/cocoapods/v/TagListView.svg?style=flat)](http://cocoadocs.org/docsets/TagListView/)
-[![License](https://img.shields.io/cocoapods/l/TagListView.svg?style=flat)](https://github.com/xhacker/TagListView/blob/master/LICENSE)
+[![License](https://img.shields.io/cocoapods/l/TagListView.svg?style=flat)](https://github.com/ElaWorkshop/TagListView/blob/master/LICENSE)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 Simple and highly customizable iOS tag list view, in Swift.
@@ -68,7 +68,7 @@ pod 'TagListView', '~> 1.0'
 Or [Carthage](https://github.com/Carthage/Carthage):
 
 ```ruby
-github "xhacker/TagListView" ~> 1.0
+github "ElaWorkshop/TagListView" ~> 1.0
 ```
 
 Or drag **TagListView** folder into your project.
@@ -77,7 +77,7 @@ Or drag **TagListView** folder into your project.
 
 Currently, the `master` branch is using Swift 3.0.
 
-For Swift 2, use version [1.0.1](https://github.com/xhacker/TagListView/releases/tag/1.0.1) or [swift-2.3](https://github.com/xhacker/TagListView/tree/swift-2.3) branch. For Swift 1.2, use version [0.2](https://github.com/xhacker/TagListView/releases/tag/0.2).
+For Swift 2, use version [1.0.1](https://github.com/ElaWorkshop/TagListView/releases/tag/1.0.1) or [swift-2.3](https://github.com/ElaWorkshop/TagListView/tree/swift-2.3) branch. For Swift 1.2, use version [0.2](https://github.com/ElaWorkshop/TagListView/releases/tag/0.2).
 
 ## Contribution
 
