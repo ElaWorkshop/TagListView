@@ -321,8 +321,8 @@ open class TagListView: UIView {
     }
     
     @discardableResult
-    open func insertTag(_ title: String, atIndex index: Int) -> TagView {
-        return insertTagView(createNewTagView(title), atIndex: index)
+    open func insertTag(_ title: String, at index: Int) -> TagView {
+        return insertTagView(createNewTagView(title), at: index)
     }
     
     @discardableResult
@@ -335,7 +335,7 @@ open class TagListView: UIView {
     }
 
     @discardableResult
-    open func insertTagView(_ tagView: TagView, atIndex index: Int) -> TagView {
+    open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
         tagViews.insert(tagView, at: index)
         tagBackgroundViews.insert(UIView(frame: tagView.bounds), at: index)
         rearrangeViews()
