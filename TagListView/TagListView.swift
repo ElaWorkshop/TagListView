@@ -357,6 +357,11 @@ open class TagListView: UIView {
         return tagViews.filter() { $0.isSelected == true }
     }
     
+    //track all selected indexes whenever user selects the tag each time.
+    open func selectedTagIndexes() -> [Int] {
+        return tagViews.enumerated().filter{ $1.isSelected == true }.map { $0.offset }
+    }
+    
     // MARK: - Events
     
     func tagPressed(_ sender: TagView!) {
