@@ -306,7 +306,7 @@ open class TagListView: UIView {
         tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), for: .touchUpInside)
         
         // On long press, deselect all tags except this one
-        tagView.onLongPress = { this in
+        tagView.onLongPress = { [unowned self] this in
             for tag in self.tagViews {
                 tag.isSelected = (tag == this)
             }
