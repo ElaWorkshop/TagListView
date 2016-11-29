@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -137,6 +138,63 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcb-a3-gkj">
+                                <rect key="frame" x="0.0" y="404" width="320" height="20"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uyA-Tn-7Lx" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="5000" height="20"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkc-PN-1r5" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="5000" height="20"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="5000" id="8OR-5G-yWT"/>
+                                            <constraint firstItem="jkc-PN-1r5" firstAttribute="top" secondItem="uyA-Tn-7Lx" secondAttribute="top" id="AAO-p4-0Js"/>
+                                            <constraint firstAttribute="trailing" secondItem="jkc-PN-1r5" secondAttribute="trailing" id="Nzb-Wz-SyT"/>
+                                            <constraint firstItem="jkc-PN-1r5" firstAttribute="leading" secondItem="uyA-Tn-7Lx" secondAttribute="leading" id="P2X-mx-8cT"/>
+                                            <constraint firstAttribute="bottom" secondItem="jkc-PN-1r5" secondAttribute="bottom" id="gjn-Ym-dxt"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="uyA-Tn-7Lx" secondAttribute="bottom" id="0Ke-zq-BXa"/>
+                                    <constraint firstItem="uyA-Tn-7Lx" firstAttribute="leading" secondItem="bcb-a3-gkj" secondAttribute="leading" id="N5R-lU-heL"/>
+                                    <constraint firstItem="uyA-Tn-7Lx" firstAttribute="height" secondItem="bcb-a3-gkj" secondAttribute="height" id="O2K-1K-68p"/>
+                                    <constraint firstItem="uyA-Tn-7Lx" firstAttribute="top" secondItem="bcb-a3-gkj" secondAttribute="top" id="Rfz-mD-UqG"/>
+                                    <constraint firstAttribute="height" constant="20" id="SuR-eA-b1R"/>
+                                    <constraint firstAttribute="trailing" secondItem="uyA-Tn-7Lx" secondAttribute="trailing" id="hVc-ir-hrX"/>
+                                </constraints>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcN-hg-Ja4">
+                                <rect key="frame" x="0.0" y="538" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Tableview demo"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewF-mV-d0o">
+                                <rect key="frame" x="0.0" y="518" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Update a title"/>
+                                <connections>
+                                    <action selector="updateTitleDemo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Phi-Hg-W5c"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wi8-8Z-fGm">
+                                <rect key="frame" x="255" y="479" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="multipleSelectionSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="m86-Ii-Fng"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Allow multiple selection?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeM-kG-2lo">
+                                <rect key="frame" x="16" y="484" width="231" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -145,15 +203,19 @@
                             <constraint firstItem="n5B-Sc-Dfo" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="83g-dB-Ajs"/>
                             <constraint firstItem="4S7-JK-aUE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="D2Y-5C-XGu"/>
                             <constraint firstItem="2SR-iU-xRm" firstAttribute="top" secondItem="n5B-Sc-Dfo" secondAttribute="bottom" constant="8" id="Y6E-lw-HXe"/>
+                            <constraint firstItem="bcb-a3-gkj" firstAttribute="top" secondItem="2SR-iU-xRm" secondAttribute="bottom" constant="8" id="ZNd-Sb-F9E"/>
                             <constraint firstItem="4S7-JK-aUE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="d8Y-4V-oL5"/>
                             <constraint firstItem="2SR-iU-xRm" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="fuA-P4-SWk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bcb-a3-gkj" secondAttribute="trailing" constant="-16" id="kgq-fn-ONo"/>
                             <constraint firstItem="n5B-Sc-Dfo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="n0l-5w-CYK"/>
+                            <constraint firstItem="bcb-a3-gkj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="pmY-t6-wtJ"/>
                             <constraint firstItem="2SR-iU-xRm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tke-jW-Oh5"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="biggerTagListView" destination="n5B-Sc-Dfo" id="twE-Sg-GwG"/>
                         <outlet property="biggestTagListView" destination="2SR-iU-xRm" id="ZFD-vV-8WH"/>
+                        <outlet property="scrollViewTagListView" destination="jkc-PN-1r5" id="pc5-51-l2a"/>
                         <outlet property="tagListView" destination="4S7-JK-aUE" id="8yD-JT-l4t"/>
                     </connections>
                 </viewController>
