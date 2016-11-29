@@ -5,14 +5,14 @@
 //  Created by Dongyuan Liu on 2015-05-09.
 //  Copyright (c) 2015 Ela. All rights reserved.
 //
-
 import UIKit
 
 class ViewController: UIViewController, TagListViewDelegate {
-
+    
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var biggerTagListView: TagListView!
     @IBOutlet weak var biggestTagListView: TagListView!
+    @IBOutlet weak var scrollViewTagListView: TagListView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         tagView.onTap = { tagView in
             print("Don’t tap me!")
         }
-
+        
         tagListView.insertTag("This should be the third tag", at: 2)
         
         biggerTagListView.delegate = self
@@ -58,13 +58,40 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggestTagListView.addTag("us")
         biggestTagListView.alignment = .right
         
+        // This is an example of a TagListView inside a UIScrollView
+        // You should fix the height of the UIScrollView
+        // It only uses the default settings of a TagListView.
+        
+        scrollViewTagListView.delegate = self
+        scrollViewTagListView.addTag("This")
+        scrollViewTagListView.addTag("is")
+        scrollViewTagListView.addTag("a")
+        scrollViewTagListView.addTag("TagListView")
+        scrollViewTagListView.addTag("within")
+        scrollViewTagListView.addTag("a")
+        scrollViewTagListView.addTag("scrollView.")
+        scrollViewTagListView.addTag("If")
+        scrollViewTagListView.addTag("the")
+        scrollViewTagListView.addTag("data")
+        scrollViewTagListView.addTag("does")
+        scrollViewTagListView.addTag("not")
+        scrollViewTagListView.addTag("fit")
+        scrollViewTagListView.addTag("the")
+        scrollViewTagListView.addTag("view")
+        scrollViewTagListView.addTag("you")
+        scrollViewTagListView.addTag("should")
+        scrollViewTagListView.addTag("be")
+        scrollViewTagListView.addTag("able")
+        scrollViewTagListView.addTag("to")
+        scrollViewTagListView.addTag("scroll")
+        scrollViewTagListView.addTag("horizontally.")
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: TagListViewDelegate
     func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
         print("Tag pressed: \(title), \(sender)")
@@ -76,4 +103,3 @@ class ViewController: UIViewController, TagListViewDelegate {
         sender.removeTagView(tagView)
     }
 }
-
