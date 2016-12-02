@@ -13,7 +13,7 @@ Supports Storyboard, Auto Layout, and @IBDesignable.
 
 ## Usage
 
-The most convinient way is to use Storyboard. Drag a view to Storyboard and set Class to `TagListView` (if you use CocoaPods, also set Module to `TagListView`). Then you can play with the attributes in the right pane, and see the preview in real time thanks to [@IBDesignable](http://nshipster.com/ibinspectable-ibdesignable/).
+The most convenient way is to use Storyboard. Drag a view to Storyboard and set Class to `TagListView` (if you use CocoaPods, also set Module to `TagListView`). Then you can play with the attributes in the right pane, and see the preview in real time thanks to [@IBDesignable](http://nshipster.com/ibinspectable-ibdesignable/).
 
 <img alt="Interface Builder" src="Screenshots/InterfaceBuilder.png" width="566">
 
@@ -30,18 +30,26 @@ tagListView.removeTag("meow") // all tags with title “meow” will be removed
 tagListView.removeAllTags()
 ```
 
+### Finding tags
+You can find the index of specific tags or titles with:
+```swift
+- tagListView.indexForSelectedTag: Int? {
+- tagListView.indecesForSelectedTags: [Int] {
+- tagListView.indecesWithTag(_ title: String) -> [Int] {
+```
+
 You can implement `TagListViewDelegate` to receive tag pressed event:
 
 ```swift
 // ...
 {
-    // ...
-    tagListView.delegate = self
-    // ...
+// ...
+tagListView.delegate = self
+// ...
 }
 
 func tagPressed(title: String, tagView: TagView, sender: TagListView) {
-    println("Tag pressed: \(title), \(sender)")
+print("Tag pressed: \(title), \(sender)")
 }
 ```
 
@@ -51,7 +59,7 @@ You can also customize a particular tag, or set tap handler for it by manipulati
 let tagView = tagListView.addTag("blue")
 tagView.tagBackgroundColor = UIColor.blueColor()
 tagView.onTap = { tagView in
-    println("Don’t tap me!")
+print("Don’t tap me!")
 }
 ```
 

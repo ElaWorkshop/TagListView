@@ -314,7 +314,7 @@ open class TagListView: UIView {
         
         return tagView
     }
-
+    
     @discardableResult
     open func addTag(_ title: String) -> TagView {
         return addTagView(createNewTagView(title))
@@ -333,7 +333,7 @@ open class TagListView: UIView {
         
         return tagView
     }
-
+    
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
         tagViews.insert(tagView, at: index)
@@ -372,9 +372,42 @@ open class TagListView: UIView {
         tagBackgroundViews = []
         rearrangeViews()
     }
-
+    
     open func selectedTags() -> [TagView] {
         return tagViews.filter() { $0.isSelected == true }
+    }
+    
+    // MARK: Index functions
+    
+    var indexForSelectedTag: Int? {
+        get {
+            for (index, tagView) in tagViews.enumerated() {
+                if tagView.isSelected { return index }
+            }
+            return nil
+        }
+    }
+    
+    var indecesForSelectedTags: [Int] {
+        get {
+            var selectedIndeces: [Int] = []
+            for (index, tagView) in tagViews.enumerated() {
+                if tagView.isSelected {
+                    selectedIndeces.append(index)
+                }
+            }
+            return selectedIndeces
+        }
+    }
+    
+    func indecesWithTag(_ title: String) -> [Int] {
+        var indeces: [Int] = []
+        for (index, tagView) in tagViews.enumerated() {
+            if tagView.titleLabel?.text == title {
+                indeces.append(index)
+            }
+        }
+        return indeces
     }
     
     // MARK: - Events
