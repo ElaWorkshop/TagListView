@@ -26,6 +26,8 @@ tagListView.alignment = .Center // possible values are .Left, .Center, and .Righ
 tagListView.addTag("TagListView")
 tagListView.insertTag("This should be the second tag", at: 1)
 
+tagListView.setTitle("New Title", at:6) // to replace the title a tag
+
 tagListView.removeTag("meow") // all tags with title “meow” will be removed
 tagListView.removeAllTags()
 ```
@@ -35,13 +37,13 @@ You can implement `TagListViewDelegate` to receive tag pressed event:
 ```swift
 // ...
 {
-    // ...
-    tagListView.delegate = self
-    // ...
+// ...
+tagListView.delegate = self
+// ...
 }
 
 func tagPressed(title: String, tagView: TagView, sender: TagListView) {
-    print("Tag pressed: \(title), \(sender)")
+print("Tag pressed: \(title), \(sender)")
 }
 ```
 
@@ -51,7 +53,7 @@ You can also customize a particular tag, or set tap handler for it by manipulati
 let tagView = tagListView.addTag("blue")
 tagView.tagBackgroundColor = UIColor.blueColor()
 tagView.onTap = { tagView in
-    print("Don’t tap me!")
+print("Don’t tap me!")
 }
 ```
 
