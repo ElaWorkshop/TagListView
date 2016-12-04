@@ -395,14 +395,14 @@ open class TagListView: UIView {
     open func selectedTags() -> [TagView] {
         return tagViews.filter() { $0.isSelected == true }
     }
-
+    
     // MARK: - Events
 
     func tagPressed(_ sender: TagView!) {
         sender.onTap?(sender)
         delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
     }
-
+    
     func removeButtonPressed(_ closeButton: CloseButton!) {
         if let tagView = closeButton.tagView {
             delegate?.tagRemoveButtonPressed?(tagView.currentTitle ?? "", tagView: tagView, sender: self)
