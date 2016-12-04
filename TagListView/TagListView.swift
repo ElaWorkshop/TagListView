@@ -343,7 +343,7 @@ open class TagListView: UIView {
     open func insertTag(_ title: String, at index: Int) -> TagView {
         return insertTagView(createNewTagView(title), at: index)
     }
-
+    
     @discardableResult
     open func addTagView(_ tagView: TagView) -> TagView {
         tagViews.append(tagView)
