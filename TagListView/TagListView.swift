@@ -352,7 +352,7 @@ open class TagListView: UIView {
         
         return tagView
     }
-    
+
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
         tagViews.insert(tagView, at: index)
