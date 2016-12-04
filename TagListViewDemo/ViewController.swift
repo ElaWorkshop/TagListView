@@ -5,6 +5,7 @@
 //  Created by Dongyuan Liu on 2015-05-09.
 //  Copyright (c) 2015 Ela. All rights reserved.
 //
+
 import UIKit
 
 class ViewController: UIViewController, TagListViewDelegate {
@@ -33,7 +34,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         tagView.onTap = { tagView in
             print("Don’t tap me!")
         }
-        
+
         tagListView.insertTag("This should be the third tag", at: 2)
         
         biggerTagListView.delegate = self
