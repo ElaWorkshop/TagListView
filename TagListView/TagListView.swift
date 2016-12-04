@@ -5,7 +5,6 @@
 //  Created by Dongyuan Liu on 2015-05-09.
 //  Copyright (c) 2015 Ela. All rights reserved.
 //
-
 import UIKit
 
 @objc public protocol TagListViewDelegate {
@@ -314,7 +313,7 @@ open class TagListView: UIView {
         
         return tagView
     }
-
+    
     @discardableResult
     open func addTag(_ title: String) -> TagView {
         return addTagView(createNewTagView(title))
@@ -333,7 +332,7 @@ open class TagListView: UIView {
         
         return tagView
     }
-
+    
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
         tagViews.insert(tagView, at: index)
@@ -341,6 +340,10 @@ open class TagListView: UIView {
         rearrangeViews()
         
         return tagView
+    }
+    
+    open func setTitle(_ title: String, at index: Int) {
+        tagViews[index].titleLabel?.text = title
     }
     
     open func removeTag(_ title: String) {
@@ -372,7 +375,7 @@ open class TagListView: UIView {
         tagBackgroundViews = []
         rearrangeViews()
     }
-
+    
     open func selectedTags() -> [TagView] {
         return tagViews.filter() { $0.isSelected == true }
     }
