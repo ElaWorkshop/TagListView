@@ -352,7 +352,7 @@ open class TagListView: UIView {
         
         return tagView
     }
-
+    
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
         tagViews.insert(tagView, at: index)
@@ -361,7 +361,7 @@ open class TagListView: UIView {
         
         return tagView
     }
-
+    
     open func removeTag(_ title: String) {
         // loop the array in reversed order to remove items during loop
         for index in stride(from: (tagViews.count - 1), through: 0, by: -1) {
@@ -371,7 +371,7 @@ open class TagListView: UIView {
             }
         }
     }
-
+    
     open func removeTagView(_ tagView: TagView) {
         tagView.removeFromSuperview()
         if let index = tagViews.index(of: tagView) {
@@ -381,7 +381,7 @@ open class TagListView: UIView {
         
         rearrangeViews()
     }
-
+    
     open func removeAllTags() {
         let views = tagViews as [UIView] + tagBackgroundViews
         for view in views {
