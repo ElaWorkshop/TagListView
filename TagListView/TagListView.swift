@@ -397,7 +397,7 @@ open class TagListView: UIView {
     }
     
     // MARK: - Events
-
+    
     func tagPressed(_ sender: TagView!) {
         sender.onTap?(sender)
         delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
