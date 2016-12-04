@@ -33,7 +33,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         tagView.onTap = { tagView in
             print("Don’t tap me!")
         }
-        
+
         tagListView.insertTag("This should be the third tag", at: 2)
         
         biggerTagListView.delegate = self
@@ -59,7 +59,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     // MARK: TagListViewDelegate
     func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
         print("Tag pressed: \(title), \(sender)")
@@ -71,3 +71,4 @@ class ViewController: UIViewController, TagListViewDelegate {
         sender.removeTagView(tagView)
     }
 }
+
