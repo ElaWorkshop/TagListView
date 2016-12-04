@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController, TagListViewDelegate {
-    
+
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var biggerTagListView: TagListView!
     @IBOutlet weak var biggestTagListView: TagListView!
