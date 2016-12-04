@@ -62,7 +62,6 @@ class ViewController: UIViewController, TagListViewDelegate {
         // This is an example of a TagListView inside a UIScrollView
         // You should fix the height of the UIScrollView
         // It only uses the default settings of a TagListView.
-        
         scrollViewTagListView.delegate = self
         scrollViewTagListView.addTag("This")
         scrollViewTagListView.addTag("is")
