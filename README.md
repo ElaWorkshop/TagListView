@@ -24,7 +24,7 @@ tagListView.textFont = UIFont.systemFontOfSize(24)
 tagListView.alignment = .Center // possible values are .Left, .Center, and .Right
 
 tagListView.addTag("TagListView")
-tagListView.addTags(["Add","two","tags"])
+tagListView.addTags(["Add", "two", "tags"])
 
 tagListView.insertTag("This should be the second tag", at: 1)
 
