@@ -314,7 +314,7 @@ open class TagListView: UIView {
         
         return tagView
     }
-    
+
     @discardableResult
     open func addTag(_ title: String) -> TagView {
         return addTagView(createNewTagView(title))
