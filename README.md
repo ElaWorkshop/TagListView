@@ -33,12 +33,12 @@ You can implement `TagListViewDelegate` to receive tag pressed event:
 // ...
 {
 // ...
-tagListView.delegate = self
+  tagListView.delegate = self
 // ...
 }
 
 func tagPressed(title: String, tagView: TagView, sender: TagListView) {
-println("Tag pressed: \(title), \(sender)")
+  print("Tag pressed: \(title), \(sender)")
 }
 ```
 ### Layouting tags
@@ -73,7 +73,7 @@ You can also customize a particular tag, or set tap handler for it by manipulati
 let tagView = tagListView.addTag("blue")
 tagView.tagBackgroundColor = UIColor.blueColor()
 tagView.onTap = { tagView in
-println("Don’t tap me!")
+  print("Don’t tap me!")
 }
 ```
 
