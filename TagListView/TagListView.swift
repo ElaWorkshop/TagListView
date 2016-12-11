@@ -321,6 +321,25 @@ open class TagListView: UIView {
     }
     
     @discardableResult
+    open func addTags(_ titles: [String]) -> [TagView] {
+        var tagViews: [TagView] = []
+        for title in titles {
+            tagViews.append(createNewTagView(title))
+        }
+        return addTagViews(tagViews)
+    }
+    
+    @discardableResult
+    open func addTagViews(_ tagViews: [TagView]) -> [TagView] {
+        for tagView in tagViews {
+            self.tagViews.append(tagView)
+            tagBackgroundViews.append(UIView(frame: tagView.bounds))
+        }
+        rearrangeViews()
+        return tagViews
+    }
+
+    @discardableResult
     open func insertTag(_ title: String, at index: Int) -> TagView {
         return insertTagView(createNewTagView(title), at: index)
     }
