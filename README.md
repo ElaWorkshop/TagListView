@@ -28,6 +28,8 @@ tagListView.addTags(["Add", "two", "tags"])
 
 tagListView.insertTag("This should be the second tag", at: 1)
 
+tagListView.setTitle("New Title", at:6) // to replace the title a tag
+
 tagListView.removeTag("meow") // all tags with title “meow” will be removed
 tagListView.removeAllTags()
 ```

@@ -362,6 +362,10 @@ open class TagListView: UIView {
         return tagView
     }
     
+    open func setTitle(_ title: String, at index: Int) {
+        tagViews[index].titleLabel?.text = title
+    }
+    
     open func removeTag(_ title: String) {
         // loop the array in reversed order to remove items during loop
         for index in stride(from: (tagViews.count - 1), through: 0, by: -1) {
