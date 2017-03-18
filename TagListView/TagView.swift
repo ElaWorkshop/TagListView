@@ -181,6 +181,9 @@ open class TagView: UIButton {
         var size = titleLabel?.text?.size(attributes: [NSFontAttributeName: textFont]) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
         size.width += paddingX * 2
+        if size.width < size.height {
+            size.width = size.height
+        }
         if enableRemoveButton {
             size.width += removeButtonIconSize + paddingX
         }
