@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,20 +19,18 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4S7-JK-aUE" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="122" width="297" height="24"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="120"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="277" id="1oP-qJ-5CN"/>
-                                    <constraint firstAttribute="height" priority="250" constant="82" id="Eqd-9H-22r"/>
-                                    <constraint firstAttribute="width" constant="297" id="U00-5W-a6y"/>
+                                    <constraint firstAttribute="height" constant="120" id="T3h-hw-Ijy"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
-                                        <color key="value" red="0.34403669720000002" green="0.55810397550000002" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.34403669720000002" green="0.55810397550000002" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="12"/>
@@ -53,39 +55,31 @@
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="removeIconLineColor">
-                                        <color key="value" white="1" alpha="0.60282023993808054" colorSpace="calibratedWhite"/>
+                                        <color key="value" red="1" green="1" blue="1" alpha="0.60282023993808054" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="tagBorderColor">
-                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedBorderColor">
-                                        <color key="value" red="0.99215686270000003" green="0.73563590570000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.99215686270000003" green="0.73563590570000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
-                                        <color key="value" red="0.98823529409999999" green="0.23921568630000001" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.97199046611785889" green="0.13802945613861084" blue="0.17296624183654785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="1oP-qJ-5CN"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5B-Sc-Dfo" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="158" width="277" height="22"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="148" width="320" height="80"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="250" constant="82" id="935-sK-xao"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="277" id="9PT-A0-Th9"/>
-                                    <constraint firstAttribute="width" constant="277" id="IfW-mB-a8e"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="82" id="xfa-EG-J63"/>
+                                    <constraint firstAttribute="height" constant="80" id="xfa-EG-J63"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
-                                        <color key="value" red="0.97254901960784312" green="0.46666666666666667" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.97254901960784312" green="0.46666666666666667" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
                                         <real key="value" value="5"/>
@@ -103,40 +97,29 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.98823529409999999" green="0.23921568630000001" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.97199046611785889" green="0.13802945613861084" blue="0.17296624183654785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
-                                        <color key="value" red="0.97254901960784312" green="0.60703363914373087" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.97254901960784312" green="0.60703363914373087" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="enableRemoveButton" value="NO"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tagHighlightedBackgroundColor">
-                                        <color key="value" red="0.98823529409999999" green="0.23921568630000001" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.97199046611785889" green="0.13802945613861084" blue="0.17296624183654785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="9PT-A0-Th9"/>
-                                        <exclude reference="xfa-EG-J63"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-iU-xRm" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="195" width="277" height="22"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="236" width="320" height="160"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="250" constant="82" id="0nr-i2-gTA"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="277" id="3mJ-aW-u2O"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="277" id="6hg-8p-cJc"/>
-                                    <constraint firstAttribute="width" constant="277" id="am0-Wm-2kd"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="aqT-Bn-XvQ"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="82" id="ecU-eS-Rcd"/>
+                                    <constraint firstAttribute="height" constant="160" id="Mi8-ZG-8mF"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
-                                        <color key="value" red="0.20000000000000001" green="0.8666666666666667" blue="0.015686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.20000000000000001" green="0.8666666666666667" blue="0.015686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
                                         <real key="value" value="5"/>
@@ -151,38 +134,67 @@
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
-                                        <color key="value" red="0.20000000000000001" green="0.86666666670000003" blue="0.015686274510000001" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.20000000000000001" green="0.86666666670000003" blue="0.015686274510000001" alpha="0.70000000000000007" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="3mJ-aW-u2O"/>
-                                        <exclude reference="6hg-8p-cJc"/>
-                                        <exclude reference="aqT-Bn-XvQ"/>
-                                        <exclude reference="ecU-eS-Rcd"/>
-                                    </mask>
-                                </variation>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcb-a3-gkj">
+                                <rect key="frame" x="0.0" y="404" width="320" height="20"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uyA-Tn-7Lx" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="5000" height="20"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkc-PN-1r5" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="5000" height="20"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="5000" id="8OR-5G-yWT"/>
+                                            <constraint firstItem="jkc-PN-1r5" firstAttribute="top" secondItem="uyA-Tn-7Lx" secondAttribute="top" id="AAO-p4-0Js"/>
+                                            <constraint firstAttribute="trailing" secondItem="jkc-PN-1r5" secondAttribute="trailing" id="Nzb-Wz-SyT"/>
+                                            <constraint firstItem="jkc-PN-1r5" firstAttribute="leading" secondItem="uyA-Tn-7Lx" secondAttribute="leading" id="P2X-mx-8cT"/>
+                                            <constraint firstAttribute="bottom" secondItem="jkc-PN-1r5" secondAttribute="bottom" id="gjn-Ym-dxt"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="uyA-Tn-7Lx" secondAttribute="bottom" id="0Ke-zq-BXa"/>
+                                    <constraint firstItem="uyA-Tn-7Lx" firstAttribute="leading" secondItem="bcb-a3-gkj" secondAttribute="leading" id="N5R-lU-heL"/>
+                                    <constraint firstItem="uyA-Tn-7Lx" firstAttribute="height" secondItem="bcb-a3-gkj" secondAttribute="height" id="O2K-1K-68p"/>
+                                    <constraint firstItem="uyA-Tn-7Lx" firstAttribute="top" secondItem="bcb-a3-gkj" secondAttribute="top" id="Rfz-mD-UqG"/>
+                                    <constraint firstAttribute="height" constant="20" id="SuR-eA-b1R"/>
+                                    <constraint firstAttribute="trailing" secondItem="uyA-Tn-7Lx" secondAttribute="trailing" id="hVc-ir-hrX"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="2SR-iU-xRm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="1ze-6J-vf8"/>
-                            <constraint firstItem="4S7-JK-aUE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="M7a-Ac-6Qz"/>
-                            <constraint firstItem="n5B-Sc-Dfo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="URs-N9-4Pt"/>
-                            <constraint firstItem="n5B-Sc-Dfo" firstAttribute="top" secondItem="4S7-JK-aUE" secondAttribute="bottom" constant="12" id="Xgd-WB-f07"/>
-                            <constraint firstItem="2SR-iU-xRm" firstAttribute="top" secondItem="n5B-Sc-Dfo" secondAttribute="bottom" constant="15" id="uid-Jg-Dhl"/>
-                            <constraint firstItem="4S7-JK-aUE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="102" id="zFE-TU-Kx6"/>
+                            <constraint firstItem="n5B-Sc-Dfo" firstAttribute="top" secondItem="4S7-JK-aUE" secondAttribute="bottom" constant="8" id="0je-OA-gU2"/>
+                            <constraint firstItem="4S7-JK-aUE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4wQ-3D-cEP"/>
+                            <constraint firstItem="n5B-Sc-Dfo" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="83g-dB-Ajs"/>
+                            <constraint firstItem="4S7-JK-aUE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="D2Y-5C-XGu"/>
+                            <constraint firstItem="2SR-iU-xRm" firstAttribute="top" secondItem="n5B-Sc-Dfo" secondAttribute="bottom" constant="8" id="Y6E-lw-HXe"/>
+                            <constraint firstItem="bcb-a3-gkj" firstAttribute="top" secondItem="2SR-iU-xRm" secondAttribute="bottom" constant="8" id="ZNd-Sb-F9E"/>
+                            <constraint firstItem="4S7-JK-aUE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="d8Y-4V-oL5"/>
+                            <constraint firstItem="2SR-iU-xRm" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="fuA-P4-SWk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bcb-a3-gkj" secondAttribute="trailing" constant="-16" id="kgq-fn-ONo"/>
+                            <constraint firstItem="n5B-Sc-Dfo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="n0l-5w-CYK"/>
+                            <constraint firstItem="bcb-a3-gkj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="pmY-t6-wtJ"/>
+                            <constraint firstItem="2SR-iU-xRm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tke-jW-Oh5"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="biggerTagListView" destination="n5B-Sc-Dfo" id="twE-Sg-GwG"/>
                         <outlet property="biggestTagListView" destination="2SR-iU-xRm" id="ZFD-vV-8WH"/>
+                        <outlet property="scrollViewTagListView" destination="jkc-PN-1r5" id="pc5-51-l2a"/>
                         <outlet property="tagListView" destination="4S7-JK-aUE" id="8yD-JT-l4t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="366" y="467"/>
+            <point key="canvasLocation" x="365.625" y="466.25"/>
         </scene>
     </scenes>
 </document>

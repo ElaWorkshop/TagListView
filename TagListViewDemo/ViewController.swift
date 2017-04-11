@@ -13,6 +13,7 @@ class ViewController: UIViewController, TagListViewDelegate {
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var biggerTagListView: TagListView!
     @IBOutlet weak var biggestTagListView: TagListView!
+    @IBOutlet weak var scrollViewTagListView: TagListView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,32 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggestTagListView.addTags(["all", "your", "tag", "are", "belong", "to", "us"])
         biggestTagListView.alignment = .right
         
+        // This is an example of a TagListView inside a UIScrollView
+        // You should fix the height of the UIScrollView
+        // It only uses the default settings of a TagListView.
+        scrollViewTagListView.delegate = self
+        scrollViewTagListView.addTag("This")
+        scrollViewTagListView.addTag("is")
+        scrollViewTagListView.addTag("a")
+        scrollViewTagListView.addTag("TagListView")
+        scrollViewTagListView.addTag("within")
+        scrollViewTagListView.addTag("a")
+        scrollViewTagListView.addTag("scrollView.")
+        scrollViewTagListView.addTag("If")
+        scrollViewTagListView.addTag("the")
+        scrollViewTagListView.addTag("data")
+        scrollViewTagListView.addTag("does")
+        scrollViewTagListView.addTag("not")
+        scrollViewTagListView.addTag("fit")
+        scrollViewTagListView.addTag("the")
+        scrollViewTagListView.addTag("view")
+        scrollViewTagListView.addTag("you")
+        scrollViewTagListView.addTag("should")
+        scrollViewTagListView.addTag("be")
+        scrollViewTagListView.addTag("able")
+        scrollViewTagListView.addTag("to")
+        scrollViewTagListView.addTag("scroll")
+        scrollViewTagListView.addTag("horizontally.")
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,4 +98,3 @@ class ViewController: UIViewController, TagListViewDelegate {
         sender.removeTagView(tagView)
     }
 }
-
