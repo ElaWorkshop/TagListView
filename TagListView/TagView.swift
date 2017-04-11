@@ -51,6 +51,11 @@ open class TagView: UIButton {
             updateRightInsets()
         }
     }
+    @IBInspectable open var maxWidth: CGFloat = .greatestFiniteMagnitude {
+        didSet {
+            setNeedsLayout()
+        }
+    }
 
     @IBInspectable open var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
@@ -186,6 +191,9 @@ open class TagView: UIButton {
         }
         if enableRemoveButton {
             size.width += removeButtonIconSize + paddingX
+        }
+        if size.width > maxWidth {
+            size.width = maxWidth
         }
         return size
     }

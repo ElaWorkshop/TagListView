@@ -103,6 +103,14 @@ open class TagListView: UIView {
             rearrangeViews()
         }
     }
+    @IBInspectable open dynamic var maxWidth: CGFloat = .greatestFiniteMagnitude {
+        didSet {
+            for tagView in tagViews {
+                tagView.maxWidth = maxWidth
+            }
+            rearrangeViews()
+        }
+    }
     @IBInspectable open dynamic var marginY: CGFloat = 2 {
         didSet {
             rearrangeViews()
@@ -113,7 +121,7 @@ open class TagListView: UIView {
             rearrangeViews()
         }
     }
-    
+
     @objc public enum Alignment: Int {
         case left
         case center
@@ -297,6 +305,7 @@ open class TagListView: UIView {
         tagView.selectedBorderColor = selectedBorderColor
         tagView.paddingX = paddingX
         tagView.paddingY = paddingY
+        tagView.maxWidth = maxWidth
         tagView.textFont = textFont
         tagView.removeIconLineWidth = removeIconLineWidth
         tagView.removeButtonIconSize = removeButtonIconSize
