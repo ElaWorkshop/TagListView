@@ -284,7 +284,7 @@ open class TagListView: UIView {
     }
     
     private func createNewTagView(_ title: String) -> TagView {
-        let tagView = TagView(title: title)
+        let tagView = TagView(title: title, maxWidth: self.frame.width)
         
         tagView.textColor = textColor
         tagView.selectedTextColor = selectedTextColor

@@ -82,6 +82,8 @@ open class TagView: UIButton {
         }
     }
     
+    var maxWidth : CGFloat = UIScreen.main.bounds.width
+    
     private func reloadStyles() {
         if isHighlighted {
             if let highlightedBackgroundColor = highlightedBackgroundColor {
@@ -162,6 +164,13 @@ open class TagView: UIButton {
         setupView()
     }
     
+    public init(title: String, maxWidth:CGFloat) {
+        super.init(frame: CGRect.zero)
+        setTitle(title, for: UIControlState())
+        self.maxWidth = maxWidth
+        setupView()
+    }
+    
     private func setupView() {
         frame.size = intrinsicContentSize
         addSubview(removeButton)
@@ -187,6 +196,12 @@ open class TagView: UIButton {
         if enableRemoveButton {
             size.width += removeButtonIconSize + paddingX
         }
+    
+        if maxWidth < size.width {
+            size.width = maxWidth
+            self.titleLabel?.lineBreakMode = .byTruncatingTail
+        }
+
         return size
     }
     
