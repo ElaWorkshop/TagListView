@@ -180,6 +180,8 @@ open class TagListView: UIView {
         }
     }
     
+    @IBInspectable open dynamic var enableMutipleSelection: Bool = false
+    
     open dynamic var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
             for tagView in tagViews {
@@ -306,9 +308,13 @@ open class TagListView: UIView {
         tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), for: .touchUpInside)
         
         // On long press, deselect all tags except this one
-        tagView.onLongPress = { [unowned self] this in
-            for tag in self.tagViews {
-                tag.isSelected = (tag == this)
+        tagView.onTap = { [unowned self] this in
+            if self.enableMutipleSelection {
+                this.isSelected = !this.isSelected
+            } else {
+                for tag in self.tagViews {
+                    tag.isSelected = (tag == this)
+                }
             }
         }
         
@@ -364,6 +370,16 @@ open class TagListView: UIView {
     
     open func setTitle(_ title: String, at index: Int) {
         tagViews[index].titleLabel?.text = title
+    }
+    
+    open func selectTags(_ tags: [String]) {
+        for tag in tags {
+            for tagView in self.tagViews {
+                if tagView.titleLabel?.text == tag {
+                    tagView.isSelected = true
+                }
+            }
+        }
     }
     
     open func removeTag(_ title: String) {
