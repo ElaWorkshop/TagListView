@@ -201,6 +201,7 @@ open class TagListView: UIView {
     private(set) var tagBackgroundViews: [UIView] = []
     private(set) var rowViews: [UIView] = []
     private(set) var tagViewHeight: CGFloat = 0
+    private(set) var totalTagViewsWidth: CGFloat = 0
     private(set) var rows = 0 {
         didSet {
             invalidateIntrinsicContentSize()
@@ -231,13 +232,14 @@ open class TagListView: UIView {
         rowViews.removeAll(keepingCapacity: true)
         
         var currentRow = 0
+        totalTagViewsWidth = 0
         var currentRowView: UIView!
         var currentRowTagCount = 0
         var currentRowWidth: CGFloat = 0
         for (index, tagView) in tagViews.enumerated() {
             tagView.frame.size = tagView.intrinsicContentSize
             tagViewHeight = tagView.frame.height
-            
+            totalTagViewsWidth += tagView.frame.width
             if currentRowTagCount == 0 ||
                 (currentRowWidth + tagView.frame.width > frame.width && wrapTagsToNextRow) {
                 currentRow += 1
@@ -287,7 +289,11 @@ open class TagListView: UIView {
         if rows > 0 {
             height -= marginY
         }
-        return CGSize(width: frame.width, height: height)
+        var width = frame.width
+        if !wrapTagsToNextRow {
+            width = (CGFloat(tagViews.count - 1) * marginX) + totalTagViewsWidth
+        }
+        return CGSize(width: width, height: height)
     }
     
     private func createNewTagView(_ title: String) -> TagView {
