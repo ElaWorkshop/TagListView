@@ -180,7 +180,7 @@ open class TagListView: UIView {
         }
     }
     
-    open dynamic var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
+    @objc open dynamic var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
             for tagView in tagViews {
                 tagView.textFont = textFont
@@ -402,12 +402,12 @@ open class TagListView: UIView {
     
     // MARK: - Events
     
-    func tagPressed(_ sender: TagView!) {
+    @objc func tagPressed(_ sender: TagView!) {
         sender.onTap?(sender)
         delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
     }
     
-    func removeButtonPressed(_ closeButton: CloseButton!) {
+    @objc func removeButtonPressed(_ closeButton: CloseButton!) {
         if let tagView = closeButton.tagView {
             delegate?.tagRemoveButtonPressed?(tagView.currentTitle ?? "", tagView: tagView, sender: self)
         }
