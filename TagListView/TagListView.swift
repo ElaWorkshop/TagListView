@@ -201,6 +201,16 @@ open class TagListView: UIView {
         }
     }
     
+    // MARK: - Init
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
     // MARK: - Interface Builder
     
     open override func prepareForInterfaceBuilder() {
