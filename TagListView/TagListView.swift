@@ -233,6 +233,7 @@ open class TagListView: UIView {
             })
             let originalFrame = tagView.layer.frame
             tagView.frame.size = tagView.intrinsicContentSize
+            NotificationCenter.default.post(name: .TagViewFrameWasUpdatedNotification, object: tagView)
             tagViewHeight = tagView.frame.height
             if let originalFrames = originalSublayerFrames, let sublayers = tagView.layer.sublayers{
                 for (index, sublayer) in sublayers.enumerated(){
@@ -416,10 +417,14 @@ open class TagListView: UIView {
         sender.onTap?(sender)
         delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
     }
-    
+
     @objc func removeButtonPressed(_ closeButton: CloseButton!) {
         if let tagView = closeButton.tagView {
             delegate?.tagRemoveButtonPressed?(tagView.currentTitle ?? "", tagView: tagView, sender: self)
         }
     }
+}
+
+extension Notification.Name{
+    static let TagViewFrameWasUpdatedNotification = Notification.Name("TagViewFrameWasUpdatedNotification")
 }

@@ -38,6 +38,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         gradient.endPoint = CGPoint(x: 1, y: 1)
         gradient.frame = CGRect(origin: CGPoint(x: 5, y: 5), size: tag.layer.frame.size)
         tag.layer.addSublayer(gradient)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTagFrame(from:)), name: .TagViewFrameWasUpdatedNotification, object: tag)
 
         let tagView = tagListView.addTag("gray")
         tagView.tagBackgroundColor = UIColor.gray
@@ -80,6 +81,15 @@ class ViewController: UIViewController, TagListViewDelegate {
     func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
         print("Tag Remove pressed: \(title), \(sender)")
         sender.removeTagView(tagView)
+    }
+
+    @objc func updateTagFrame(from notification: Notification) -> Void{
+        guard let tag = notification.object as? TagView, let sublayers = tag.layer.sublayers else{
+            return
+        }
+        for gradient in sublayers where gradient is CAGradientLayer{
+            gradient.frame = CGRect(origin: gradient.frame.origin, size: tag.layer.frame.size)
+        }
     }
 }
 
