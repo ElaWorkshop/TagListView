@@ -27,7 +27,18 @@ class ViewController: UIViewController, TagListViewDelegate {
         tagListView.addTag("On tap will be removed").onTap = { [weak self] tagView in
             self?.tagListView.removeTagView(tagView)
         }
-        
+
+        let tag = tagListView.addTag("Example")
+        tag.paddingX = 12
+        tag.paddingY = 14
+        tag.enableRemoveButton = true
+        let gradient = CAGradientLayer()
+        gradient.colors = [#colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0.9803921569, green: 0.8156862745, blue: 0, alpha: 1).cgColor]
+        gradient.startPoint = .zero
+        gradient.endPoint = CGPoint(x: 1, y: 1)
+        gradient.frame = tag.layer.frame
+        tag.layer.addSublayer(gradient)
+
         let tagView = tagListView.addTag("gray")
         tagView.tagBackgroundColor = UIColor.gray
         tagView.onTap = { tagView in

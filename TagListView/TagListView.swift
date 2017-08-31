@@ -213,7 +213,6 @@ open class TagListView: UIView {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        
         rearrangeViews()
     }
     
@@ -231,6 +230,11 @@ open class TagListView: UIView {
         for (index, tagView) in tagViews.enumerated() {
             tagView.frame.size = tagView.intrinsicContentSize
             tagViewHeight = tagView.frame.height
+            if let subs = tagView.layer.sublayers{
+                for sub in subs{
+                    sub.frame = tagView.layer.frame
+                }
+            }
             
             if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frame.width {
                 currentRow += 1
