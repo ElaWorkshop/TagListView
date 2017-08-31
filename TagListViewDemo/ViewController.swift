@@ -36,7 +36,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         gradient.colors = [#colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0.9803921569, green: 0.8156862745, blue: 0, alpha: 1).cgColor]
         gradient.startPoint = .zero
         gradient.endPoint = CGPoint(x: 1, y: 1)
-        gradient.frame = tag.layer.frame
+        gradient.frame = CGRect(origin: CGPoint(x: 5, y: 5), size: tag.layer.frame.size)
         tag.layer.addSublayer(gradient)
 
         let tagView = tagListView.addTag("gray")

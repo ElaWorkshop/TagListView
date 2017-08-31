@@ -228,14 +228,20 @@ open class TagListView: UIView {
         var currentRowTagCount = 0
         var currentRowWidth: CGFloat = 0
         for (index, tagView) in tagViews.enumerated() {
+            let originalSublayerFrames = tagView.layer.sublayers?.map({ (layer: CALayer) -> CGRect in
+                return layer.frame
+            })
+            let originalFrame = tagView.layer.frame
             tagView.frame.size = tagView.intrinsicContentSize
             tagViewHeight = tagView.frame.height
-            if let subs = tagView.layer.sublayers{
-                for sub in subs{
-                    sub.frame = tagView.layer.frame
+            if let originalFrames = originalSublayerFrames, let sublayers = tagView.layer.sublayers{
+                for (index, sublayer) in sublayers.enumerated(){
+                    if originalFrames[index] == originalFrame{
+                        sublayer.frame = tagView.layer.frame
+                    }
                 }
             }
-            
+
             if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frame.width {
                 currentRow += 1
                 currentRowWidth = 0
