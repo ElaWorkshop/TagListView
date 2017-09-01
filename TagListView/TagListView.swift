@@ -217,6 +217,17 @@ open class TagListView: UIView {
     }
     
     private func rearrangeViews() {
+        func updateSublayers(of view: UIView, from originalFrames: [CGRect], with originalFrame: CGRect) -> Void{
+            guard  let sublayers =  view.layer.sublayers else{
+                return
+            }
+            for (index, sublayer) in sublayers.enumerated(){
+                guard originalFrames[index] == originalFrame else{
+                    continue
+                }
+                sublayer.frame = view.layer.frame
+            }
+        }
         let views = tagViews as [UIView] + tagBackgroundViews + rowViews
         for view in views {
             view.removeFromSuperview()
@@ -228,19 +239,20 @@ open class TagListView: UIView {
         var currentRowTagCount = 0
         var currentRowWidth: CGFloat = 0
         for (index, tagView) in tagViews.enumerated() {
-            let originalSublayerFrames = tagView.layer.sublayers?.map({ (layer: CALayer) -> CGRect in
+            let originalTagSublayerFrames = (tag: tagView.layer.sublayers?.map({ (layer: CALayer) -> CGRect in
                 return layer.frame
-            })
-            let originalFrame = tagView.layer.frame
+            }), background: tagBackgroundViews[index].layer.sublayers?.map({ (layer: CALayer) -> CGRect in
+                return layer.frame
+            }))
+            let originalTagFrame = (tag: tagView.layer.frame, background: tagBackgroundViews[index].layer.frame)
             tagView.frame.size = tagView.intrinsicContentSize
             NotificationCenter.default.post(name: .TagViewFrameWasUpdatedNotification, object: tagView)
             tagViewHeight = tagView.frame.height
-            if let originalFrames = originalSublayerFrames, let sublayers = tagView.layer.sublayers{
-                for (index, sublayer) in sublayers.enumerated(){
-                    if originalFrames[index] == originalFrame{
-                        sublayer.frame = tagView.layer.frame
-                    }
-                }
+            if let originalTagFrames = originalTagSublayerFrames.tag{
+                updateSublayers(of: tagView, from: originalTagFrames, with: originalTagFrame.tag)
+            }
+            if let originalTagBackgroundFrames = originalTagSublayerFrames.background{
+                updateSublayers(of: tagBackgroundViews[index], from: originalTagBackgroundFrames, with: originalTagFrame.background)
             }
 
             if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frame.width {
@@ -425,6 +437,6 @@ open class TagListView: UIView {
     }
 }
 
-extension Notification.Name{
-    static let TagViewFrameWasUpdatedNotification = Notification.Name("TagViewFrameWasUpdatedNotification")
+public extension Notification.Name{
+    public static let TagViewFrameWasUpdatedNotification = Notification.Name("TagViewFrameWasUpdatedNotification")
 }
