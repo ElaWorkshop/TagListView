@@ -28,18 +28,6 @@ class ViewController: UIViewController, TagListViewDelegate {
             self?.tagListView.removeTagView(tagView)
         }
 
-        let tag = tagListView.addTag("Example")
-        tag.paddingX = 12
-        tag.paddingY = 14
-        tag.enableRemoveButton = true
-        let gradient = CAGradientLayer()
-        gradient.colors = [#colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0.9803921569, green: 0.8156862745, blue: 0, alpha: 1).cgColor]
-        gradient.startPoint = .zero
-        gradient.endPoint = CGPoint(x: 1, y: 1)
-        gradient.frame = CGRect(origin: CGPoint(x: 5, y: 5), size: tag.layer.frame.size)
-        tag.layer.addSublayer(gradient)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTagFrame(from:)), name: .TagViewFrameWasUpdatedNotification, object: tag)
-
         let tagView = tagListView.addTag("gray")
         tagView.tagBackgroundColor = UIColor.gray
         tagView.onTap = { tagView in
@@ -81,15 +69,6 @@ class ViewController: UIViewController, TagListViewDelegate {
     func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
         print("Tag Remove pressed: \(title), \(sender)")
         sender.removeTagView(tagView)
-    }
-
-    @objc func updateTagFrame(from notification: Notification) -> Void{
-        guard let tag = notification.object as? TagView, let sublayers = tag.layer.sublayers else{
-            return
-        }
-        for gradient in sublayers where gradient is CAGradientLayer{
-            gradient.frame = CGRect(origin: gradient.frame.origin, size: tag.layer.frame.size)
-        }
     }
 }
 
