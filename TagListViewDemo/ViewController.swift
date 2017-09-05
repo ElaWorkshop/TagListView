@@ -13,7 +13,6 @@ class ViewController: UIViewController, TagListViewDelegate {
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var biggerTagListView: TagListView!
     @IBOutlet weak var biggestTagListView: TagListView!
-    @IBOutlet weak var testView: TagListView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,12 +52,6 @@ class ViewController: UIViewController, TagListViewDelegate {
         // it is also possible to add all tags in one go
         biggestTagListView.addTags(["all", "your", "tag", "are", "belong", "to", "us"])
         biggestTagListView.alignment = .right
-
-        let tag = MHCustomTag(title: "This is a test")
-        tag.setTitle(tag.example, for: .normal)
-        testView.addTagView(tag)
-        tag.enableRemoveButton = true
-        tag.removeIconLineColor = #colorLiteral(red: 0.9794525504, green: 0.5596447587, blue: 0, alpha: 1)
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,8 +69,4 @@ class ViewController: UIViewController, TagListViewDelegate {
         print("Tag Remove pressed: \(title), \(sender)")
         sender.removeTagView(tagView)
     }
-}
-
-class MHCustomTag: TagView{
-    let example = "This is an example"
 }

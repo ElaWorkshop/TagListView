@@ -167,67 +167,10 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q2Z-C8-NIk" customClass="TagListView" customModule="TagListViewDemo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="225" width="277" height="32"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="82" id="B4z-Cq-IJm"/>
-                                    <constraint firstAttribute="width" constant="277" id="J74-v2-CsP"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="277" id="PeU-30-hBp"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="277" id="Xyh-lb-Md8"/>
-                                    <constraint firstAttribute="height" priority="250" constant="82" id="hJv-FT-IOf"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="w4K-Uw-BzT"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
-                                        <color key="value" red="0.035294117649999998" green="0.035294117649999998" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
-                                        <real key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="marginX">
-                                        <real key="value" value="7"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="marginY">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
-                                        <color key="value" red="0.96470588239999999" green="0.4823529412" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="0.98039215690000003" green="0.89411764709999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTextColor">
-                                        <color key="value" red="0.98039215690000003" green="0.89411764709999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="removeButtonIconSize">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="removeIconLineWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="B4z-Cq-IJm"/>
-                                        <exclude reference="PeU-30-hBp"/>
-                                        <exclude reference="Xyh-lb-Md8"/>
-                                        <exclude reference="w4K-Uw-BzT"/>
-                                    </mask>
-                                </variation>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2SR-iU-xRm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="1ze-6J-vf8"/>
-                            <constraint firstItem="Q2Z-C8-NIk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="5UK-hG-y58"/>
-                            <constraint firstItem="Q2Z-C8-NIk" firstAttribute="top" secondItem="2SR-iU-xRm" secondAttribute="bottom" constant="8" id="Bdo-rt-EBl"/>
                             <constraint firstItem="4S7-JK-aUE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="M7a-Ac-6Qz"/>
                             <constraint firstItem="n5B-Sc-Dfo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="URs-N9-4Pt"/>
                             <constraint firstItem="n5B-Sc-Dfo" firstAttribute="top" secondItem="4S7-JK-aUE" secondAttribute="bottom" constant="12" id="Xgd-WB-f07"/>
@@ -239,7 +182,6 @@
                         <outlet property="biggerTagListView" destination="n5B-Sc-Dfo" id="twE-Sg-GwG"/>
                         <outlet property="biggestTagListView" destination="2SR-iU-xRm" id="ZFD-vV-8WH"/>
                         <outlet property="tagListView" destination="4S7-JK-aUE" id="8yD-JT-l4t"/>
-                        <outlet property="testView" destination="Q2Z-C8-NIk" id="yMa-fD-fQO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
