@@ -274,18 +274,9 @@ open class TagListView: UIView {
     }
     
     // MARK: - Manage tags
-    
-    override open var intrinsicContentSize: CGSize {
-        var height = CGFloat(rows) * (tagViewHeight + marginY)
-        if rows > 0 {
-            height -= marginY
-        }
-        return CGSize(width: frame.width, height: height)
-    }
-    
-    private func createNewTagView(_ title: String) -> TagView {
-        let tagView = TagView(title: title)
-        
+
+    @discardableResult
+    open func stylize(tag tagView: TagView) -> TagView{
         tagView.textColor = textColor
         tagView.selectedTextColor = selectedTextColor
         tagView.tagBackgroundColor = tagBackgroundColor
@@ -304,27 +295,35 @@ open class TagListView: UIView {
         tagView.removeIconLineColor = removeIconLineColor
         tagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), for: .touchUpInside)
-        
+
         // On long press, deselect all tags except this one
         tagView.onLongPress = { [unowned self] this in
             for tag in self.tagViews {
                 tag.isSelected = (tag == this)
             }
         }
-        
+
         return tagView
+    }
+    
+    override open var intrinsicContentSize: CGSize {
+        var height = CGFloat(rows) * (tagViewHeight + marginY)
+        if rows > 0 {
+            height -= marginY
+        }
+        return CGSize(width: frame.width, height: height)
     }
 
     @discardableResult
     open func addTag(_ title: String) -> TagView {
-        return addTagView(createNewTagView(title))
+        return addTagView(TagView(title: title))
     }
     
     @discardableResult
     open func addTags(_ titles: [String]) -> [TagView] {
         var tagViews: [TagView] = []
         for title in titles {
-            tagViews.append(createNewTagView(title))
+            tagViews.append(TagView(title: title))
         }
         return addTagViews(tagViews)
     }
@@ -332,8 +331,7 @@ open class TagListView: UIView {
     @discardableResult
     open func addTagViews(_ tagViews: [TagView]) -> [TagView] {
         for tagView in tagViews {
-            self.tagViews.append(tagView)
-            tagBackgroundViews.append(UIView(frame: tagView.bounds))
+            addTagView(tagView)
         }
         rearrangeViews()
         return tagViews
@@ -341,12 +339,12 @@ open class TagListView: UIView {
 
     @discardableResult
     open func insertTag(_ title: String, at index: Int) -> TagView {
-        return insertTagView(createNewTagView(title), at: index)
+        return insertTagView(TagView(title: title), at: index)
     }
     
     @discardableResult
     open func addTagView(_ tagView: TagView) -> TagView {
-        tagViews.append(tagView)
+        tagViews.append(stylize(tag: tagView))
         tagBackgroundViews.append(UIView(frame: tagView.bounds))
         rearrangeViews()
         
@@ -355,7 +353,7 @@ open class TagListView: UIView {
 
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
-        tagViews.insert(tagView, at: index)
+        tagViews.insert(stylize(tag: tagView), at: index)
         tagBackgroundViews.insert(UIView(frame: tagView.bounds), at: index)
         rearrangeViews()
         
