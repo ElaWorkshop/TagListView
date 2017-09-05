@@ -327,7 +327,13 @@ open class TagListView: UIView {
         }
         return addTagViews(tagViews)
     }
-    
+
+    /**
+     Adds the specified `TagView`s to the `TagListView`
+     - Parameter tagViews: The `TagView`s to be added
+     - Returns: The `TagView`s that were added
+     - Important: This method applies all default styling of the `TagListView`, so if you're gonna do any special styling it individual tags, do it after calling this method
+     */
     @discardableResult
     open func addTagViews(_ tagViews: [TagView]) -> [TagView] {
         for tagView in tagViews {
@@ -341,7 +347,13 @@ open class TagListView: UIView {
     open func insertTag(_ title: String, at index: Int) -> TagView {
         return insertTagView(TagView(title: title), at: index)
     }
-    
+
+    /**
+     Adds the specified `TagView` to the `TagListView`
+     - Parameter tagView: The `TagView` to be added
+     - Returns: The `TagView` that was added
+     - Important: This method applies all default styling of the `TagListView`, so if you're gonna do any special styling, do it after calling this method
+     */
     @discardableResult
     open func addTagView(_ tagView: TagView) -> TagView {
         tagViews.append(stylize(tag: tagView))
@@ -351,6 +363,13 @@ open class TagListView: UIView {
         return tagView
     }
 
+    /**
+     Adds the specified `TagView` to the `TagListView` at the specified index
+     - Parameter tagView: The `TagView` to be added
+     - Parameter index: The index at which to insert the `tagView`
+     - Returns: The `TagView` that was added
+     - Important: This method applies all default styling of the `TagListView`, so if you're gonna do any special styling, do it after calling this method
+     */
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
         tagViews.insert(stylize(tag: tagView), at: index)
