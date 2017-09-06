@@ -31,6 +31,14 @@ open class TagListView: UIView {
             }
         }
     }
+
+    @IBInspectable open dynamic var tagLineBreakMode: NSLineBreakMode = .byTruncatingMiddle {
+        didSet {
+            for tagView in tagViews {
+                tagView.titleLineBreakMode = tagLineBreakMode
+            }
+        }
+    }
     
     @IBInspectable open dynamic var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
@@ -241,6 +249,8 @@ open class TagListView: UIView {
                 
                 rowViews.append(currentRowView)
                 addSubview(currentRowView)
+
+                tagView.frame.size.width = min(tagView.frame.size.width, frame.width)
             }
             
             let tagBackgroundView = tagBackgroundViews[index]
@@ -291,6 +301,7 @@ open class TagListView: UIView {
         tagView.tagBackgroundColor = tagBackgroundColor
         tagView.highlightedBackgroundColor = tagHighlightedBackgroundColor
         tagView.selectedBackgroundColor = tagSelectedBackgroundColor
+        tagView.titleLineBreakMode = tagLineBreakMode
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
         tagView.borderColor = borderColor
