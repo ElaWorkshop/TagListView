@@ -276,7 +276,7 @@ open class TagListView: UIView {
     // MARK: - Manage tags
 
     @discardableResult
-    open func stylize(_ tagView: TagView) -> TagView{
+    open func stylize(_ tagView: TagView) -> TagView {
         tagView.textColor = textColor
         tagView.selectedTextColor = selectedTextColor
         tagView.tagBackgroundColor = tagBackgroundColor
