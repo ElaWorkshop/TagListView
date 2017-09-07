@@ -337,7 +337,7 @@ open class TagListView: UIView {
     @discardableResult
     open func addTagViews(_ tagViews: [TagView]) -> [TagView] {
         for tagView in tagViews {
-            addTagView(tagView)
+            addTagView(tagView, layout: false)
         }
         rearrangeViews()
         return tagViews
@@ -351,14 +351,17 @@ open class TagListView: UIView {
     /**
      Adds the specified `TagView` to the `TagListView`
      - Parameter tagView: The `TagView` to be added
+     - Parameter layout: Secifies if the `TagListView` should call `rearrangeViews()` to re-layout its `TagView`s. `true` by default
      - Returns: The `TagView` that was added
      - Important: This method applies all default styling of the `TagListView`, so if you're gonna do any special styling, do it after calling this method
      */
     @discardableResult
-    open func addTagView(_ tagView: TagView) -> TagView {
+    open func addTagView(_ tagView: TagView, layout: Bool = true) -> TagView {
         tagViews.append(stylize(tagView))
         tagBackgroundViews.append(UIView(frame: tagView.bounds))
-        rearrangeViews()
+        if layout {
+            rearrangeViews()
+        }
         
         return tagView
     }
