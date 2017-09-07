@@ -276,7 +276,7 @@ open class TagListView: UIView {
     // MARK: - Manage tags
 
     @discardableResult
-    open func stylize(tag tagView: TagView) -> TagView{
+    open func stylize(_ tagView: TagView) -> TagView{
         tagView.textColor = textColor
         tagView.selectedTextColor = selectedTextColor
         tagView.tagBackgroundColor = tagBackgroundColor
@@ -356,7 +356,7 @@ open class TagListView: UIView {
      */
     @discardableResult
     open func addTagView(_ tagView: TagView) -> TagView {
-        tagViews.append(stylize(tag: tagView))
+        tagViews.append(stylize(tagView))
         tagBackgroundViews.append(UIView(frame: tagView.bounds))
         rearrangeViews()
         
@@ -372,7 +372,7 @@ open class TagListView: UIView {
      */
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
-        tagViews.insert(stylize(tag: tagView), at: index)
+        tagViews.insert(stylize(tagView), at: index)
         tagBackgroundViews.insert(UIView(frame: tagView.bounds), at: index)
         rearrangeViews()
         
