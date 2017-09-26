@@ -39,6 +39,11 @@ open class TagView: UIButton {
             reloadStyles()
         }
     }
+    @IBInspectable open var titleLineBreakMode: NSLineBreakMode = .byTruncatingMiddle {
+        didSet {
+            titleLabel?.lineBreakMode = titleLineBreakMode
+        }
+    }
     @IBInspectable open var paddingY: CGFloat = 2 {
         didSet {
             titleEdgeInsets.top = paddingY
@@ -163,6 +168,8 @@ open class TagView: UIButton {
     }
     
     private func setupView() {
+        titleLabel?.lineBreakMode = titleLineBreakMode
+
         frame.size = intrinsicContentSize
         addSubview(removeButton)
         removeButton.tagView = self
