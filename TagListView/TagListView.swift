@@ -11,6 +11,7 @@ import UIKit
 @objc public protocol TagListViewDelegate {
     @objc optional func tagPressed(_ title: String, tagView: TagView, sender: TagListView) -> Void
     @objc optional func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) -> Void
+    @objc optional func tagInfoButtonPressed(_ title: String, tagView: TagView, sender: TagListView) -> Void
 }
 
 @IBDesignable
@@ -376,7 +377,7 @@ open class TagListView: UIView {
         
         tagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), for: .touchUpInside)
-        //        tagView.infoButton.addTarget(self, action: #selector(infoButtonPressed(_:)), for: .touchUpInside)
+        tagView.infoButton.addTarget(self, action: #selector(infoButtonPressed(_:)), for: .touchUpInside)
         
         // On long press, deselect all tags except this one
         tagView.onLongPress = { [unowned self] this in
@@ -483,6 +484,12 @@ open class TagListView: UIView {
     func removeButtonPressed(_ closeButton: CloseButton!) {
         if let tagView = closeButton.tagView {
             delegate?.tagRemoveButtonPressed?(tagView.currentTitle ?? "", tagView: tagView, sender: self)
+        }
+    }
+    
+    func infoButtonPressed(_ closeButton: InfoButton!) {
+        if let tagView = closeButton.tagView {
+            delegate?.tagInfoButtonPressed?(tagView.currentTitle ?? "", tagView: tagView, sender: self)
         }
     }
 }
