@@ -180,6 +180,60 @@ open class TagListView: UIView {
         }
     }
     
+    @IBInspectable open dynamic var enableInfoButton: Bool = false {
+        didSet {
+            for tagView in tagViews {
+                tagView.enableInfoButton = enableInfoButton
+            }
+            rearrangeViews()
+        }
+    }
+    
+    @IBInspectable open dynamic var infoButtonIconSize: CGFloat = 12 {
+        didSet {
+            for tagView in tagViews {
+                tagView.infoButtonIconSize = infoButtonIconSize
+            }
+            rearrangeViews()
+        }
+    }
+    @IBInspectable open dynamic var infoIconLineWidth: CGFloat = 1 {
+        didSet {
+            for tagView in tagViews {
+                tagView.infoIconLineWidth = infoIconLineWidth
+            }
+            rearrangeViews()
+        }
+    }
+    
+    @IBInspectable open dynamic var infoIconLineColor: UIColor = UIColor.white.withAlphaComponent(0.54) {
+        didSet {
+            for tagView in tagViews {
+                tagView.infoIconLineColor = infoIconLineColor
+            }
+            rearrangeViews()
+        }
+    }
+    
+    @IBInspectable open dynamic var infoIcon: UIImage? = nil {
+        didSet {
+            for tagView in tagViews {
+                tagView.infoIcon = infoIcon
+            }
+            rearrangeViews()
+        }
+    }
+    
+    @IBInspectable open dynamic var infoButtonPaddingX: CGFloat = 5 {
+        didSet {
+            for tagView in tagViews {
+                tagView.infoButtonPaddingX = infoButtonPaddingX
+            }
+            rearrangeViews()
+        }
+    }
+    
+    
     open dynamic var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
             for tagView in tagViews {
@@ -312,8 +366,17 @@ open class TagListView: UIView {
         tagView.removeButtonIconSize = removeButtonIconSize
         tagView.enableRemoveButton = enableRemoveButton
         tagView.removeIconLineColor = removeIconLineColor
+        
+        tagView.infoIconLineWidth = infoIconLineWidth
+        tagView.infoButtonIconSize = infoButtonIconSize
+        tagView.enableInfoButton = enableInfoButton
+        tagView.infoIconLineColor = infoIconLineColor
+        tagView.infoIcon = infoIcon
+        tagView.infoButtonPaddingX = infoButtonPaddingX
+        
         tagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), for: .touchUpInside)
+        //        tagView.infoButton.addTarget(self, action: #selector(infoButtonPressed(_:)), for: .touchUpInside)
         
         // On long press, deselect all tags except this one
         tagView.onLongPress = { [unowned self] this in
@@ -324,7 +387,7 @@ open class TagListView: UIView {
         
         return tagView
     }
-
+    
     @discardableResult
     open func addTag(_ title: String) -> TagView {
         return addTagView(createNewTagView(title))
@@ -348,7 +411,7 @@ open class TagListView: UIView {
         rearrangeViews()
         return tagViews
     }
-
+    
     @discardableResult
     open func insertTag(_ title: String, at index: Int) -> TagView {
         return insertTagView(createNewTagView(title), at: index)
@@ -362,7 +425,7 @@ open class TagListView: UIView {
         
         return tagView
     }
-
+    
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
         tagViews.insert(tagView, at: index)
@@ -405,7 +468,7 @@ open class TagListView: UIView {
         tagBackgroundViews = []
         rearrangeViews()
     }
-
+    
     open func selectedTags() -> [TagView] {
         return tagViews.filter() { $0.isSelected == true }
     }
@@ -423,3 +486,4 @@ open class TagListView: UIView {
         }
     }
 }
+

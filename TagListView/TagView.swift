@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 open class TagView: UIButton {
-
+    
     @IBInspectable open var cornerRadius: CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
@@ -51,7 +51,7 @@ open class TagView: UIButton {
             updateRightInsets()
         }
     }
-
+    
     @IBInspectable open var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
             reloadStyles()
@@ -143,6 +143,47 @@ open class TagView: UIButton {
         }
     }
     
+    // MARK: info button
+    
+    let infoButton = InfoButton()
+    
+    @IBInspectable open var enableInfoButton: Bool = false {
+        didSet {
+            infoButton.isHidden = !enableInfoButton
+            updateLeftInsets()
+        }
+    }
+    
+    @IBInspectable open var infoButtonIconSize: CGFloat = 15 {
+        didSet {
+            infoButton.iconSize = infoButtonIconSize
+            updateLeftInsets()
+        }
+    }
+    
+    @IBInspectable open var infoIconLineWidth: CGFloat = 3 {
+        didSet {
+            infoButton.lineWidth = infoIconLineWidth
+        }
+    }
+    @IBInspectable open var infoIconLineColor: UIColor = UIColor.white.withAlphaComponent(0.54) {
+        didSet {
+            infoButton.lineColor = infoIconLineColor
+        }
+    }
+    
+    @IBInspectable open var infoIcon: UIImage? = nil {
+        didSet {
+            infoButton.setImage(infoIcon, for: .normal)
+        }
+    }
+    
+    @IBInspectable open var infoButtonPaddingX: CGFloat = 5 {
+        didSet {
+            infoButton.frame.origin.x = infoButtonPaddingX
+        }
+    }
+    
     /// Handles Tap (TouchUpInside)
     open var onTap: ((TagView) -> Void)?
     open var onLongPress: ((TagView) -> Void)?
@@ -167,6 +208,9 @@ open class TagView: UIButton {
         addSubview(removeButton)
         removeButton.tagView = self
         
+        addSubview(infoButton)
+        infoButton.tagView = self
+        
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
         self.addGestureRecognizer(longPress)
     }
@@ -176,7 +220,7 @@ open class TagView: UIButton {
     }
     
     // MARK: - layout
-
+    
     override open var intrinsicContentSize: CGSize {
         var size = titleLabel?.text?.size(attributes: [NSFontAttributeName: textFont]) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
@@ -187,6 +231,11 @@ open class TagView: UIButton {
         if enableRemoveButton {
             size.width += removeButtonIconSize + paddingX
         }
+        
+        if enableInfoButton {
+            size.width += infoButtonIconSize + paddingX
+        }
+        
         return size
     }
     
@@ -199,6 +248,15 @@ open class TagView: UIButton {
         }
     }
     
+    private func updateLeftInsets() {
+        if enableInfoButton {
+            titleEdgeInsets.left = infoButtonPaddingX  + infoButtonIconSize + paddingX
+        }
+        else {
+            titleEdgeInsets.left = paddingX
+        }
+    }
+    
     open override func layoutSubviews() {
         super.layoutSubviews()
         if enableRemoveButton {
@@ -207,5 +265,19 @@ open class TagView: UIButton {
             removeButton.frame.size.height = self.frame.height
             removeButton.frame.origin.y = 0
         }
+        
+        if enableInfoButton {
+            infoButton.frame.size.width = infoButtonIconSize
+            infoButton.frame.origin.x = infoButtonPaddingX
+            
+            if infoButtonIconSize <= self.frame.height {
+                infoButton.frame.size.height = infoButtonIconSize
+                infoButton.frame.origin.y = (self.frame.height / 2) - (infoButtonIconSize / 2)
+            } else {
+                infoButton.frame.size.height = self.frame.height
+                infoButton.frame.origin.y = 0
+            }
+        }
     }
 }
+
