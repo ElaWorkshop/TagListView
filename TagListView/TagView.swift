@@ -39,6 +39,11 @@ open class TagView: UIButton {
             reloadStyles()
         }
     }
+    @IBInspectable open var titleLineBreakMode: NSLineBreakMode = .byTruncatingMiddle {
+        didSet {
+            titleLabel?.lineBreakMode = titleLineBreakMode
+        }
+    }
     @IBInspectable open var paddingY: CGFloat = 2 {
         didSet {
             titleEdgeInsets.top = paddingY
@@ -163,6 +168,8 @@ open class TagView: UIButton {
     }
     
     private func setupView() {
+        titleLabel?.lineBreakMode = titleLineBreakMode
+
         frame.size = intrinsicContentSize
         addSubview(removeButton)
         removeButton.tagView = self
@@ -171,14 +178,14 @@ open class TagView: UIButton {
         self.addGestureRecognizer(longPress)
     }
     
-    func longPress() {
+    @objc func longPress() {
         onLongPress?(self)
     }
     
     // MARK: - layout
 
     override open var intrinsicContentSize: CGSize {
-        var size = titleLabel?.text?.size(attributes: [NSFontAttributeName: textFont]) ?? CGSize.zero
+        var size = titleLabel?.text?.size(withAttributes: [NSAttributedStringKey.font: textFont]) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
         size.width += paddingX * 2
         if size.width < size.height {

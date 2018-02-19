@@ -31,6 +31,14 @@ open class TagListView: UIView {
             }
         }
     }
+
+    @IBInspectable open dynamic var tagLineBreakMode: NSLineBreakMode = .byTruncatingMiddle {
+        didSet {
+            for tagView in tagViews {
+                tagView.titleLineBreakMode = tagLineBreakMode
+            }
+        }
+    }
     
     @IBInspectable open dynamic var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
@@ -186,7 +194,7 @@ open class TagListView: UIView {
         }
     }
     
-    open dynamic var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
+    @objc open dynamic var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
             for tagView in tagViews {
                 tagView.textFont = textFont
@@ -250,6 +258,8 @@ open class TagListView: UIView {
                 
                 rowViews.append(currentRowView)
                 addSubview(currentRowView)
+
+                tagView.frame.size.width = min(tagView.frame.size.width, frame.width)
             }
             
             let tagBackgroundView = tagBackgroundViews[index]
@@ -304,6 +314,7 @@ open class TagListView: UIView {
         tagView.tagBackgroundColor = tagBackgroundColor
         tagView.highlightedBackgroundColor = tagHighlightedBackgroundColor
         tagView.selectedBackgroundColor = tagSelectedBackgroundColor
+        tagView.titleLineBreakMode = tagLineBreakMode
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
         tagView.borderColor = borderColor
@@ -415,12 +426,12 @@ open class TagListView: UIView {
     
     // MARK: - Events
     
-    func tagPressed(_ sender: TagView!) {
+    @objc func tagPressed(_ sender: TagView!) {
         sender.onTap?(sender)
         delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
     }
     
-    func removeButtonPressed(_ closeButton: CloseButton!) {
+    @objc func removeButtonPressed(_ closeButton: CloseButton!) {
         if let tagView = closeButton.tagView {
             delegate?.tagRemoveButtonPressed?(tagView.currentTitle ?? "", tagView: tagView, sender: self)
         }
