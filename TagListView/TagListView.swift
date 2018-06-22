@@ -426,7 +426,11 @@ open class TagListView: UIView {
     
     @objc func tagPressed(_ sender: TagView!) {
         sender.onTap?(sender)
-        delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
+        if let delegate = delegate {
+          delegate.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
+        } else {
+          sender.isSelected = !sender.isSelected
+        }
     }
     
     @objc func removeButtonPressed(_ closeButton: CloseButton!) {
