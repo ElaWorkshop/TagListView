@@ -14,6 +14,7 @@ import UIKit
 }
 
 @IBDesignable
+@objcMembers // All class members will be exposed to Objective-C
 open class TagListView: UIView {
     
     @IBInspectable open dynamic var textColor: UIColor = UIColor.white {
@@ -413,12 +414,12 @@ open class TagListView: UIView {
     
     // MARK: - Events
     
-    @objc func tagPressed(_ sender: TagView!) {
+    func tagPressed(_ sender: TagView!) {
         sender.onTap?(sender)
         delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
     }
     
-    @objc func removeButtonPressed(_ closeButton: CloseButton!) {
+    func removeButtonPressed(_ closeButton: CloseButton!) {
         if let tagView = closeButton.tagView {
             delegate?.tagRemoveButtonPressed?(tagView.currentTitle ?? "", tagView: tagView, sender: self)
         }
