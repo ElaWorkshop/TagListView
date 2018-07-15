@@ -377,6 +377,12 @@ open class TagListView: UIView {
         tagViews[index].titleLabel?.text = title
     }
     
+    open func addTagViews(titles: [String]) {
+        for title in titles {
+            addTag(title)
+        }
+    }
+    
     open func removeTag(_ title: String) {
         // loop the array in reversed order to remove items during loop
         for index in stride(from: (tagViews.count - 1), through: 0, by: -1) {
@@ -411,6 +417,11 @@ open class TagListView: UIView {
         return tagViews.filter() { $0.isSelected == true }
     }
     
+    //track all selected indexes whenever user selects the tag each time.
+    open func selectedTagIndexes() -> [Int] {
+        return tagViews.enumerated().filter{ $1.isSelected == true }.map { $0.offset }
+    }
+    
     // MARK: - Events
     
     @objc func tagPressed(_ sender: TagView!) {
@@ -424,3 +435,4 @@ open class TagListView: UIView {
         }
     }
 }
+
