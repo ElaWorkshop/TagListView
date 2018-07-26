@@ -18,7 +18,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         super.viewDidLoad()
         
         tagListView.delegate = self
-        tagListView.addTag("TagListView")
+        tagListView.addTag("TagListView", image: #imageLiteral(resourceName: "missing_person"))
         tagListView.addTag("TEAChart")
         tagListView.addTag("To Be Removed")
         tagListView.addTag("To Be Removed")
@@ -42,7 +42,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggerTagListView.shadowOpacity = 0.4
         biggerTagListView.shadowColor = UIColor.black
         biggerTagListView.shadowOffset = CGSize(width: 1, height: 1)
-        biggerTagListView.addTag("Inboard")
+        biggerTagListView.addTag("Inboard", image: #imageLiteral(resourceName: "missing_person"))
         biggerTagListView.addTag("Pomotodo")
         biggerTagListView.addTag("Halo Word")
         biggerTagListView.alignment = .center

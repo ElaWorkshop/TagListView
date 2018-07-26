@@ -29,10 +29,11 @@ internal class CloseButton: UIButton {
             height: iconSize
         )
 
-        path.move(to: iconFrame.origin)
-        path.addLine(to: CGPoint(x: iconFrame.maxX, y: iconFrame.maxY))
-        path.move(to: CGPoint(x: iconFrame.maxX, y: iconFrame.minY))
-        path.addLine(to: CGPoint(x: iconFrame.minX, y: iconFrame.maxY))
+        // lineWidth/2 is so the edge of the stroke is not cut off
+        path.move(to: CGPoint(x: iconFrame.minX + lineWidth/2, y: iconFrame.minY + lineWidth/2))
+        path.addLine(to: CGPoint(x: iconFrame.maxX - lineWidth/2, y: iconFrame.maxY - lineWidth/2))
+        path.move(to: CGPoint(x: iconFrame.maxX - lineWidth/2, y: iconFrame.minY + lineWidth/2))
+        path.addLine(to: CGPoint(x: iconFrame.minX + lineWidth/2, y: iconFrame.maxY - lineWidth/2))
 
         lineColor.setStroke()
 

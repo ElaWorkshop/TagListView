@@ -56,6 +56,26 @@ open class TagView: UIButton {
             updateRightInsets()
         }
     }
+    
+    private var imagePaddingY: CGFloat {
+        // If both image and TagView are rounded, image should fit snugly into corner.
+        // If not, image should still be larger than text.
+        return hasOvalShape ? borderWidth : (paddingY / 2) + borderWidth
+    }
+    
+    private var imagePaddingX: CGFloat {
+        // If both the image and TagView are rounded, left indent by Y padding so image snugly fits on left side of TagView
+        // If not, indent by half padding - full padding looks terrible.
+        return hasOvalShape ? imagePaddingY : (paddingX / 2)
+    }
+    
+    private var imageWidth: CGFloat {
+        return self.frame.height - imagePaddingY*2
+    }
+    
+    private var hasOvalShape: Bool {
+        return layer.cornerRadius == self.frame.height / 2
+    }
 
     @IBInspectable open var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
@@ -176,6 +196,8 @@ open class TagView: UIButton {
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
         self.addGestureRecognizer(longPress)
+        
+        imageView?.contentMode = .scaleAspectFit
     }
     
     @objc func longPress() {
@@ -194,6 +216,10 @@ open class TagView: UIButton {
         if enableRemoveButton {
             size.width += removeButtonIconSize + paddingX
         }
+        if let _ = imageView?.image {
+            size.width += imageView!.frame.width + imagePaddingX
+        }
+        
         return size
     }
     
@@ -208,9 +234,24 @@ open class TagView: UIButton {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
+        if let _ = imageView?.image {
+            // ImageView size is square, and slightly larger than the text
+            imageView?.frame.size.width = imageWidth
+            imageView?.frame.size.height = imageWidth
+            imageView?.frame.origin.x = imagePaddingX
+            imageView?.frame.origin.y = imagePaddingY
+            
+            // TitleLabel disappears if not explicitly set
+            titleLabel?.frame.size.width = titleLabel?.text?.size(withAttributes: [NSAttributedString.Key.font: textFont]).width ?? 0
+            titleLabel?.frame.size.height = textFont.pointSize + paddingY*2
+            titleLabel?.frame.origin.x = imageView!.frame.maxX + paddingX
+            titleLabel?.frame.origin.y = 0
+        } else {
+            imageView?.frame = CGRect.zero
+        }
         if enableRemoveButton {
-            removeButton.frame.size.width = paddingX + removeButtonIconSize + paddingX
-            removeButton.frame.origin.x = self.frame.width - removeButton.frame.width
+            removeButton.frame.size.width = removeButtonIconSize
+            removeButton.frame.origin.x = self.frame.width - removeButton.frame.width - paddingX
             removeButton.frame.size.height = self.frame.height
             removeButton.frame.origin.y = 0
         }
