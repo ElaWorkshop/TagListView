@@ -293,7 +293,7 @@ open class TagListView: UIView {
         return CGSize(width: frame.width, height: height)
     }
     
-    private func createNewTagView(_ title: String) -> TagView {
+    private func createNewTagView(_ title: String, image: UIImage? = nil) -> TagView {
         let tagView = TagView(title: title)
         
         tagView.textColor = textColor
@@ -316,6 +316,10 @@ open class TagListView: UIView {
         tagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), for: .touchUpInside)
         
+        if let image = image {
+            tagView.setImage(image, for: .normal)
+        }
+        
         // On long press, deselect all tags except this one
         tagView.onLongPress = { [unowned self] this in
             for tag in self.tagViews {
@@ -327,8 +331,8 @@ open class TagListView: UIView {
     }
 
     @discardableResult
-    open func addTag(_ title: String) -> TagView {
-        return addTagView(createNewTagView(title))
+    open func addTag(_ title: String, image: UIImage? = nil) -> TagView {
+        return addTagView(createNewTagView(title, image: image))
     }
     
     @discardableResult

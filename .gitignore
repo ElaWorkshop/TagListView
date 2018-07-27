@@ -19,3 +19,6 @@ DerivedData
 
 # CocoaPods
 Pods/
+/TagListViewDemo/Images.xcassets/.DS_Store
+/TagListViewDemo/.DS_Store
+/.DS_Store
