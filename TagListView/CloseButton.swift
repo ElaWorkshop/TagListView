@@ -29,7 +29,7 @@ internal class CloseButton: UIButton {
             height: iconSize
         )
 
-        // lineWidth/2 is so the edge of the stroke is not cut off
+        // If path starts at the edge of the frame, we only see half the width of the first part of the stroke. (The other half is outside the bounds of the frame, and are cut off.) Pulling the path in from the edges by lineWidth/2 allows the edge to not be cut off.
         path.move(to: CGPoint(x: iconFrame.minX + lineWidth/2, y: iconFrame.minY + lineWidth/2))
         path.addLine(to: CGPoint(x: iconFrame.maxX - lineWidth/2, y: iconFrame.maxY - lineWidth/2))
         path.move(to: CGPoint(x: iconFrame.maxX - lineWidth/2, y: iconFrame.minY + lineWidth/2))

@@ -44,29 +44,29 @@ open class TagView: UIButton {
             titleLabel?.lineBreakMode = titleLineBreakMode
         }
     }
-    @IBInspectable open var paddingY: CGFloat = 2 {
-        didSet {
-            titleEdgeInsets.top = paddingY
-            titleEdgeInsets.bottom = paddingY
-        }
-    }
+    
     @IBInspectable open var paddingX: CGFloat = 5 {
         didSet {
             titleEdgeInsets.left = paddingX
             updateRightInsets()
         }
     }
-    
-    private var imagePaddingY: CGFloat {
-        // If both image and TagView are rounded, image should fit snugly into corner.
-        // If not, image should still be larger than text.
-        return hasOvalShape ? borderWidth : (paddingY / 2) + borderWidth
+    @IBInspectable open var paddingY: CGFloat = 2 {
+        didSet {
+            titleEdgeInsets.top = paddingY
+            titleEdgeInsets.bottom = paddingY
+        }
     }
     
     private var imagePaddingX: CGFloat {
-        // If both the image and TagView are rounded, left indent by Y padding so image snugly fits on left side of TagView
-        // If not, indent by half padding - full padding looks terrible.
-        return hasOvalShape ? imagePaddingY : (paddingX / 2)
+        // If both the image and TagView are rounded, left indent by the border width so image snugly fits on left side of TagView
+        // If not, indent by half paddingX - full paddingX w/ text looks unbalanced.
+        return hasOvalShape ? borderWidth : (paddingX / 2)
+    }
+    private var imagePaddingY: CGFloat {
+        // If both image and TagView are rounded, image should fit snugly into corner.
+        // If not, image should still be larger than text - use half the padding .
+        return hasOvalShape ? borderWidth : (paddingY / 2) + borderWidth
     }
     
     private var imageWidth: CGFloat {
@@ -196,8 +196,6 @@ open class TagView: UIButton {
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
         self.addGestureRecognizer(longPress)
-        
-        imageView?.contentMode = .scaleAspectFit
     }
     
     @objc func longPress() {
