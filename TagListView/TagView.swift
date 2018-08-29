@@ -188,6 +188,13 @@ open class TagView: UIButton {
         var size = titleLabel?.text?.size(withAttributes: [NSAttributedString.Key.font: textFont]) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
         size.width += paddingX * 2
+        if let attrSize = titleLabel?.attributedText?.size()
+        {
+            size = attrSize
+            size.height +=  paddingY * 2
+            size.width += 10.0 + paddingX * 2
+        }
+        
         if size.width < size.height {
             size.width = size.height
         }
