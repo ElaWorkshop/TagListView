@@ -31,6 +31,14 @@ open class TagListView: UIView {
             }
         }
     }
+    
+    @IBInspectable open dynamic var disabledTextColor: UIColor = UIColor.white {
+        didSet {
+            for tagView in tagViews {
+                tagView.disabledTextColor = disabledTextColor
+            }
+        }
+    }
 
     @IBInspectable open dynamic var tagLineBreakMode: NSLineBreakMode = .byTruncatingMiddle {
         didSet {
@@ -64,6 +72,14 @@ open class TagListView: UIView {
         }
     }
     
+    @IBInspectable open dynamic var tagDisabledBackgroundColor: UIColor? {
+        didSet {
+            for tagView in tagViews {
+                tagView.disabledBackgroundColor = tagDisabledBackgroundColor
+            }
+        }
+    }
+    
     @IBInspectable open dynamic var cornerRadius: CGFloat = 0 {
         didSet {
             for tagView in tagViews {
@@ -91,6 +107,14 @@ open class TagListView: UIView {
         didSet {
             for tagView in tagViews {
                 tagView.selectedBorderColor = selectedBorderColor
+            }
+        }
+    }
+    
+    @IBInspectable open dynamic var disabledBorderColor: UIColor? {
+        didSet {
+            for tagView in tagViews {
+                tagView.disabledBorderColor = disabledBorderColor
             }
         }
     }
@@ -298,14 +322,17 @@ open class TagListView: UIView {
         
         tagView.textColor = textColor
         tagView.selectedTextColor = selectedTextColor
+        tagView.disabledTextColor = disabledTextColor
         tagView.tagBackgroundColor = tagBackgroundColor
         tagView.highlightedBackgroundColor = tagHighlightedBackgroundColor
         tagView.selectedBackgroundColor = tagSelectedBackgroundColor
+        tagView.disabledBackgroundColor = tagDisabledBackgroundColor
         tagView.titleLineBreakMode = tagLineBreakMode
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
         tagView.borderColor = borderColor
         tagView.selectedBorderColor = selectedBorderColor
+        tagView.disabledBorderColor = disabledBorderColor
         tagView.paddingX = paddingX
         tagView.paddingY = paddingY
         tagView.textFont = textFont

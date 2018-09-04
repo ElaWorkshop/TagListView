@@ -43,7 +43,8 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggerTagListView.shadowColor = UIColor.black
         biggerTagListView.shadowOffset = CGSize(width: 1, height: 1)
         biggerTagListView.addTag("Inboard")
-        biggerTagListView.addTag("Pomotodo")
+        let pomotodoTagView = biggerTagListView.addTag("Pomotodo")
+        pomotodoTagView.isEnabled = false
         biggerTagListView.addTag("Halo Word")
         biggerTagListView.alignment = .center
         
