@@ -39,6 +39,11 @@ open class TagView: UIButton {
             reloadStyles()
         }
     }
+    @IBInspectable open var disabledTextColor: UIColor = UIColor.white {
+        didSet {
+            reloadStyles()
+        }
+    }
     @IBInspectable open var titleLineBreakMode: NSLineBreakMode = .byTruncatingMiddle {
         didSet {
             titleLabel?.lineBreakMode = titleLineBreakMode
@@ -81,6 +86,18 @@ open class TagView: UIButton {
         }
     }
     
+    @IBInspectable open var disabledBorderColor: UIColor? {
+        didSet {
+            reloadStyles()
+        }
+    }
+    
+    @IBInspectable open var disabledBackgroundColor: UIColor? {
+        didSet {
+            reloadStyles()
+        }
+    }
+    
     @IBInspectable open var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
             titleLabel?.font = textFont
@@ -99,6 +116,11 @@ open class TagView: UIButton {
             backgroundColor = selectedBackgroundColor ?? tagBackgroundColor
             layer.borderColor = selectedBorderColor?.cgColor ?? borderColor?.cgColor
             setTitleColor(selectedTextColor, for: UIControl.State())
+        }
+        else if !isEnabled {
+            backgroundColor = disabledBackgroundColor ?? tagBackgroundColor
+            layer.borderColor = disabledBorderColor?.cgColor ?? borderColor?.cgColor
+            setTitleColor(disabledTextColor, for: UIControl.State())
         }
         else {
             backgroundColor = tagBackgroundColor
