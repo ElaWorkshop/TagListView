@@ -13,7 +13,7 @@ Supports Storyboard, Auto Layout, and @IBDesignable.
 
 ## Usage
 
-The most convinient way is to use Storyboard. Drag a view to Storyboard and set Class to `TagListView` (if you use CocoaPods, also set Module to `TagListView`). Then you can play with the attributes in the right pane, and see the preview in real time thanks to [@IBDesignable](http://nshipster.com/ibinspectable-ibdesignable/).
+The most convenient way is to use Storyboard. Drag a view to Storyboard and set Class to `TagListView` (if you use CocoaPods, also set Module to `TagListView`). Then you can play with the attributes in the right pane, and see the preview in real time thanks to [@IBDesignable](http://nshipster.com/ibinspectable-ibdesignable/).
 
 <img alt="Interface Builder" src="Screenshots/InterfaceBuilder.png" width="566">
 
@@ -79,9 +79,9 @@ Or drag **TagListView** folder into your project.
 
 ### Older Swift Versions?
 
-Currently, the `master` branch is using Swift 3.0.
+Currently, the `master` branch is using Swift 4.
 
-For Swift 2, use version [1.0.1](https://github.com/ElaWorkshop/TagListView/releases/tag/1.0.1) or [swift-2.3](https://github.com/ElaWorkshop/TagListView/tree/swift-2.3) branch. For Swift 1.2, use version [0.2](https://github.com/ElaWorkshop/TagListView/releases/tag/0.2).
+For Swift 3, use version [1.2.0](https://github.com/ElaWorkshop/TagListView/releases/tag/1.2.0) or [swift-3](https://github.com/ElaWorkshop/TagListView/tree/swift-3) branch. For Swift 2, use version [1.0.1](https://github.com/ElaWorkshop/TagListView/releases/tag/1.0.1) or [swift-2.3](https://github.com/ElaWorkshop/TagListView/tree/swift-2.3) branch. For Swift 1.2, use version [0.2](https://github.com/ElaWorkshop/TagListView/releases/tag/0.2).
 
 ## Contribution
 
