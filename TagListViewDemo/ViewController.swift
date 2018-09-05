@@ -13,6 +13,7 @@ class ViewController: UIViewController, TagListViewDelegate {
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var biggerTagListView: TagListView!
     @IBOutlet weak var biggestTagListView: TagListView!
+    @IBOutlet weak var multipleSelectTagListView: TagListView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,10 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggestTagListView.addTags(["all", "your", "tag", "are", "belong", "to", "us"])
         biggestTagListView.alignment = .right
         
+        multipleSelectTagListView.delegate = self
+        multipleSelectTagListView.addTags(["Hello", "multiple", "select", "Tags", "View"])
+        multipleSelectTagListView.alignment = .left
+        multipleSelectTagListView.enableMutipleSelection = true
     }
     
     override func didReceiveMemoryWarning() {
