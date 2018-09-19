@@ -294,36 +294,38 @@ open class TagListView: UIView {
     }
     
     private func createNewTagView(_ title: String) -> TagView {
-        let tagView = TagView(title: title)
-        
-        tagView.textColor = textColor
-        tagView.selectedTextColor = selectedTextColor
-        tagView.tagBackgroundColor = tagBackgroundColor
-        tagView.highlightedBackgroundColor = tagHighlightedBackgroundColor
-        tagView.selectedBackgroundColor = tagSelectedBackgroundColor
-        tagView.titleLineBreakMode = tagLineBreakMode
-        tagView.cornerRadius = cornerRadius
-        tagView.borderWidth = borderWidth
-        tagView.borderColor = borderColor
-        tagView.selectedBorderColor = selectedBorderColor
-        tagView.paddingX = paddingX
-        tagView.paddingY = paddingY
-        tagView.textFont = textFont
-        tagView.removeIconLineWidth = removeIconLineWidth
-        tagView.removeButtonIconSize = removeButtonIconSize
-        tagView.enableRemoveButton = enableRemoveButton
-        tagView.removeIconLineColor = removeIconLineColor
-        tagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
-        tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), for: .touchUpInside)
-        
-        // On long press, deselect all tags except this one
-        tagView.onLongPress = { [unowned self] this in
-            for tag in self.tagViews {
-                tag.isSelected = (tag == this)
-            }
+      let tagView = TagView(title: title)
+      setupTagViewProperties(tagView: tagView)
+      return tagView
+    }
+  
+    private func setupTagViewProperties(tagView: TagView) {
+      tagView.textColor = textColor
+      tagView.selectedTextColor = selectedTextColor
+      tagView.tagBackgroundColor = tagBackgroundColor
+      tagView.highlightedBackgroundColor = tagHighlightedBackgroundColor
+      tagView.selectedBackgroundColor = tagSelectedBackgroundColor
+      tagView.titleLineBreakMode = tagLineBreakMode
+      tagView.cornerRadius = cornerRadius
+      tagView.borderWidth = borderWidth
+      tagView.borderColor = borderColor
+      tagView.selectedBorderColor = selectedBorderColor
+      tagView.paddingX = paddingX
+      tagView.paddingY = paddingY
+      tagView.textFont = textFont
+      tagView.removeIconLineWidth = removeIconLineWidth
+      tagView.removeButtonIconSize = removeButtonIconSize
+      tagView.enableRemoveButton = enableRemoveButton
+      tagView.removeIconLineColor = removeIconLineColor
+      tagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
+      tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), for: .touchUpInside)
+      
+      // On long press, deselect all tags except this one
+      tagView.onLongPress = { [unowned self] this in
+        for tag in self.tagViews {
+          tag.isSelected = (tag == this)
         }
-        
-        return tagView
+      }
     }
 
     @discardableResult
@@ -341,13 +343,22 @@ open class TagListView: UIView {
     }
     
     @discardableResult
+    private func appendTagViews(_ tagViews: [TagView]) -> [TagView] {
+      for tagView in tagViews {
+        self.tagViews.append(tagView)
+        tagBackgroundViews.append(UIView(frame: tagView.bounds))
+      }
+      rearrangeViews()
+      return tagViews
+    }
+  
+    @discardableResult
     open func addTagViews(_ tagViews: [TagView]) -> [TagView] {
-        for tagView in tagViews {
-            self.tagViews.append(tagView)
-            tagBackgroundViews.append(UIView(frame: tagView.bounds))
-        }
-        rearrangeViews()
-        return tagViews
+      for tagView in tagViews {
+        setupTagViewProperties(tagView: tagView)
+      }
+      appendTagViews(tagViews)
+      return tagViews
     }
 
     @discardableResult
@@ -415,7 +426,11 @@ open class TagListView: UIView {
     
     @objc func tagPressed(_ sender: TagView!) {
         sender.onTap?(sender)
-        delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
+        if let delegate = delegate {
+          delegate.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
+        } else {
+          sender.isSelected = !sender.isSelected
+        }
     }
     
     @objc func removeButtonPressed(_ closeButton: CloseButton!) {
