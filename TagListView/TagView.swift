@@ -103,7 +103,7 @@ open class TagView: UIButton {
             setTitleColor(selectedTextColor, for: UIControl.State())
         }
         else if ishotKeyWordEnabled{
-            hotKeyWordIcon.isHidden = !ishotKeyWordEnabled
+            hotKeyWordIcon.isHidden = ishotKeyWordEnabled
             self.textFont = UIFont.boldSystemFont(ofSize: 12)
             backgroundColor = tagBackgroundColor
             borderView.layer.borderColor = borderColor?.cgColor
