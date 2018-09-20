@@ -18,97 +18,97 @@ open class TagListView: UIView {
     
     @IBInspectable open dynamic var textColor: UIColor = .white {
         didSet {
-            for tagView in tagViews {
-                tagView.textColor = textColor
+            tagViews.forEach {
+                $0.textColor = textColor
             }
         }
     }
     
     @IBInspectable open dynamic var selectedTextColor: UIColor = .white {
         didSet {
-            for tagView in tagViews {
-                tagView.selectedTextColor = selectedTextColor
+            tagViews.forEach {
+                $0.selectedTextColor = selectedTextColor
             }
         }
     }
 
     @IBInspectable open dynamic var tagLineBreakMode: NSLineBreakMode = .byTruncatingMiddle {
         didSet {
-            for tagView in tagViews {
-                tagView.titleLineBreakMode = tagLineBreakMode
+            tagViews.forEach {
+                $0.titleLineBreakMode = tagLineBreakMode
             }
         }
     }
     
     @IBInspectable open dynamic var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
-            for tagView in tagViews {
-                tagView.tagBackgroundColor = tagBackgroundColor
+            tagViews.forEach {
+                $0.tagBackgroundColor = tagBackgroundColor
             }
         }
     }
     
     @IBInspectable open dynamic var tagHighlightedBackgroundColor: UIColor? {
         didSet {
-            for tagView in tagViews {
-                tagView.highlightedBackgroundColor = tagHighlightedBackgroundColor
+            tagViews.forEach {
+                $0.highlightedBackgroundColor = tagHighlightedBackgroundColor
             }
         }
     }
     
     @IBInspectable open dynamic var tagSelectedBackgroundColor: UIColor? {
         didSet {
-            for tagView in tagViews {
-                tagView.selectedBackgroundColor = tagSelectedBackgroundColor
+            tagViews.forEach {
+                $0.selectedBackgroundColor = tagSelectedBackgroundColor
             }
         }
     }
     
     @IBInspectable open dynamic var cornerRadius: CGFloat = 0 {
         didSet {
-            for tagView in tagViews {
-                tagView.cornerRadius = cornerRadius
+            tagViews.forEach {
+                $0.cornerRadius = cornerRadius
             }
         }
     }
     @IBInspectable open dynamic var borderWidth: CGFloat = 0 {
         didSet {
-            for tagView in tagViews {
-                tagView.borderWidth = borderWidth
+            tagViews.forEach {
+                $0.borderWidth = borderWidth
             }
         }
     }
     
     @IBInspectable open dynamic var borderColor: UIColor? {
         didSet {
-            for tagView in tagViews {
-                tagView.borderColor = borderColor
+            tagViews.forEach {
+                $0.borderColor = borderColor
             }
         }
     }
     
     @IBInspectable open dynamic var selectedBorderColor: UIColor? {
         didSet {
-            for tagView in tagViews {
-                tagView.selectedBorderColor = selectedBorderColor
+            tagViews.forEach {
+                $0.selectedBorderColor = selectedBorderColor
             }
         }
     }
     
     @IBInspectable open dynamic var paddingY: CGFloat = 2 {
         didSet {
-            for tagView in tagViews {
-                tagView.paddingY = paddingY
+            defer { rearrangeViews() }
+            tagViews.forEach {
+                $0.paddingY = paddingY
             }
-            rearrangeViews()
         }
     }
     @IBInspectable open dynamic var paddingX: CGFloat = 5 {
         didSet {
-            for tagView in tagViews {
-                tagView.paddingX = paddingX
+            defer { rearrangeViews() }
+            tagViews.forEach {
+                $0.paddingX = paddingX
             }
-            rearrangeViews()
         }
     }
     @IBInspectable open dynamic var marginY: CGFloat = 2 {
@@ -155,45 +155,45 @@ open class TagListView: UIView {
     
     @IBInspectable open dynamic var enableRemoveButton: Bool = false {
         didSet {
-            for tagView in tagViews {
-                tagView.enableRemoveButton = enableRemoveButton
+            defer { rearrangeViews() }
+            tagViews.forEach {
+                $0.enableRemoveButton = enableRemoveButton
             }
-            rearrangeViews()
         }
     }
     
     @IBInspectable open dynamic var removeButtonIconSize: CGFloat = 12 {
         didSet {
-            for tagView in tagViews {
-                tagView.removeButtonIconSize = removeButtonIconSize
+            defer { rearrangeViews() }
+            tagViews.forEach {
+                $0.removeButtonIconSize = removeButtonIconSize
             }
-            rearrangeViews()
         }
     }
     @IBInspectable open dynamic var removeIconLineWidth: CGFloat = 1 {
         didSet {
-            for tagView in tagViews {
-                tagView.removeIconLineWidth = removeIconLineWidth
+            defer { rearrangeViews() }
+            tagViews.forEach {
+                $0.removeIconLineWidth = removeIconLineWidth
             }
-            rearrangeViews()
         }
     }
     
     @IBInspectable open dynamic var removeIconLineColor: UIColor = UIColor.white.withAlphaComponent(0.54) {
         didSet {
-            for tagView in tagViews {
-                tagView.removeIconLineColor = removeIconLineColor
+            defer { rearrangeViews() }
+            tagViews.forEach {
+                $0.removeIconLineColor = removeIconLineColor
             }
-            rearrangeViews()
         }
     }
     
     @objc open dynamic var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
-            for tagView in tagViews {
-                tagView.textFont = textFont
+            defer { rearrangeViews() }
+            tagViews.forEach {
+                $0.textFont = textFont
             }
-            rearrangeViews()
         }
     }
     
