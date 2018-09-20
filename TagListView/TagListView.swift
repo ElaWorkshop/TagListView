@@ -16,7 +16,7 @@ import UIKit
 @IBDesignable
 open class TagListView: UIView {
     
-    @IBInspectable open dynamic var textColor: UIColor = UIColor.white {
+    @IBInspectable open dynamic var textColor: UIColor = .white {
         didSet {
             for tagView in tagViews {
                 tagView.textColor = textColor
@@ -24,7 +24,7 @@ open class TagListView: UIView {
         }
     }
     
-    @IBInspectable open dynamic var selectedTextColor: UIColor = UIColor.white {
+    @IBInspectable open dynamic var selectedTextColor: UIColor = .white {
         didSet {
             for tagView in tagViews {
                 tagView.selectedTextColor = selectedTextColor
@@ -132,7 +132,7 @@ open class TagListView: UIView {
             rearrangeViews()
         }
     }
-    @IBInspectable open dynamic var shadowColor: UIColor = UIColor.white {
+    @IBInspectable open dynamic var shadowColor: UIColor = .white {
         didSet {
             rearrangeViews()
         }
@@ -142,7 +142,7 @@ open class TagListView: UIView {
             rearrangeViews()
         }
     }
-    @IBInspectable open dynamic var shadowOffset: CGSize = CGSize.zero {
+    @IBInspectable open dynamic var shadowOffset: CGSize = .zero {
         didSet {
             rearrangeViews()
         }
