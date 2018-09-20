@@ -204,6 +204,8 @@ open class TagView: UIButton {
         super.init(frame: CGRect.zero)
         setTitle(title, for: UIControl.State())
         ishotKeyWordEnabled = isHotKeyword
+        hotKeyWordIcon.isHidden = ishotKeyWordEnabled
+
         setupView()
     }
     
