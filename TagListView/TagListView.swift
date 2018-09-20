@@ -337,6 +337,15 @@ open class TagListView: UIView {
     }
     
     @discardableResult
+    open func addTagView(_ tagView: TagView) -> TagView {
+        defer { rearrangeViews() }
+        tagViews.append(tagView)
+        tagBackgroundViews.append(UIView(frame: tagView.bounds))
+        
+        return tagView
+    }
+    
+    @discardableResult
     open func addTagViews(_ tagViews: [TagView]) -> [TagView] {
         tagViews.forEach {
             addTagView($0)
@@ -349,14 +358,6 @@ open class TagListView: UIView {
         return insertTagView(createNewTagView(title), at: index)
     }
     
-    @discardableResult
-    open func addTagView(_ tagView: TagView) -> TagView {
-        defer { rearrangeViews() }
-        tagViews.append(tagView)
-        tagBackgroundViews.append(UIView(frame: tagView.bounds))
-        
-        return tagView
-    }
 
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
