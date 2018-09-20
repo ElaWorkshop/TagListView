@@ -18,17 +18,17 @@ class ViewController: UIViewController, TagListViewDelegate {
         super.viewDidLoad()
         
         tagListView.delegate = self
-        tagListView.addTag("TagListView")
-        tagListView.addTag("TEAChart")
-        tagListView.addTag("To Be Removed")
-        tagListView.addTag("To Be Removed")
-        tagListView.addTag("Quark Shell")
+        tagListView.addTag("TagListView", false)
+        tagListView.addTag("TEAChart", false)
+        tagListView.addTag("To Be Removed", false)
+        tagListView.addTag("To Be Removed", false)
+        tagListView.addTag("Quark Shell", false)
         tagListView.removeTag("To Be Removed")
-        tagListView.addTag("On tap will be removed").onTap = { [weak self] tagView in
+        tagListView.addTag("On tap will be removed",false).onTap = { [weak self] tagView in
             self?.tagListView.removeTagView(tagView)
         }
         
-        let tagView = tagListView.addTag("gray")
+        let tagView = tagListView.addTag("gray", true)
         tagView.tagBackgroundColor = UIColor.gray
         tagView.onTap = { tagView in
             print("Don’t tap me!")
@@ -42,15 +42,15 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggerTagListView.shadowOpacity = 0.4
         biggerTagListView.shadowColor = UIColor.black
         biggerTagListView.shadowOffset = CGSize(width: 1, height: 1)
-        biggerTagListView.addTag("Inboard")
-        biggerTagListView.addTag("Pomotodo")
-        biggerTagListView.addTag("Halo Word")
+        biggerTagListView.addTag("Inboard",false)
+        biggerTagListView.addTag("Pomotodo",false)
+        biggerTagListView.addTag("Halo Word",false)
         biggerTagListView.alignment = .center
         
         biggestTagListView.delegate = self
         biggestTagListView.textFont = UIFont.systemFont(ofSize: 24)
         // it is also possible to add all tags in one go
-        biggestTagListView.addTags(["all", "your", "tag", "are", "belong", "to", "us"])
+//        biggestTagListView.addTags(["all", "your", "tag", "are", "belong", "to", "us"])
         biggestTagListView.alignment = .right
         
     }

@@ -212,9 +212,9 @@ open class TagListView: UIView {
     // MARK: - Interface Builder
     
     open override func prepareForInterfaceBuilder() {
-        addTag("Welcome")
-        addTag("to")
-        addTag("TagListView").isSelected = true
+        addTag("Welcome", false)
+        addTag("to", false)
+        addTag("TagListView", true).isSelected = true
     }
     
     // MARK: - Layout
@@ -293,9 +293,8 @@ open class TagListView: UIView {
         return CGSize(width: frame.width, height: height)
     }
     
-    private func createNewTagView(_ title: String) -> TagView {
-        let tagView = TagView(title: title)
-        
+    private func createNewTagView(_ title: String ,_ isHotKeyword:Bool) -> TagView {
+        let tagView = TagView(title: title, isHotKeyword: isHotKeyword)
         tagView.textColor = textColor
         tagView.selectedTextColor = selectedTextColor
         tagView.tagBackgroundColor = tagBackgroundColor
@@ -327,15 +326,15 @@ open class TagListView: UIView {
     }
 
     @discardableResult
-    open func addTag(_ title: String) -> TagView {
-        return addTagView(createNewTagView(title))
+    open func addTag(_ title: String , _ isHotKeyword:Bool) -> TagView {
+        return addTagView(createNewTagView(title ,isHotKeyword))
     }
     
     @discardableResult
-    open func addTags(_ titles: [String]) -> [TagView] {
+    open func addTags(_ titles: [String:Bool]) -> [TagView] {
         var tagViews: [TagView] = []
-        for title in titles {
-            tagViews.append(createNewTagView(title))
+        for (title,isHotKeyWord) in titles {
+            tagViews.append(createNewTagView(title,isHotKeyWord))
         }
         return addTagViews(tagViews)
     }
@@ -352,7 +351,7 @@ open class TagListView: UIView {
 
     @discardableResult
     open func insertTag(_ title: String, at index: Int) -> TagView {
-        return insertTagView(createNewTagView(title), at: index)
+        return insertTagView(createNewTagView(title, true), at: index)
     }
     
     @discardableResult
