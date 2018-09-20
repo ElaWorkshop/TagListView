@@ -188,7 +188,7 @@ open class TagListView: UIView {
         }
     }
     
-    @objc open dynamic var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
+    @objc open dynamic var textFont: UIFont = .systemFont(ofSize: 12) {
         didSet {
             defer { rearrangeViews() }
             tagViews.forEach {
