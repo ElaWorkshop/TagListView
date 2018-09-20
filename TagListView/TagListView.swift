@@ -220,15 +220,14 @@ open class TagListView: UIView {
     // MARK: - Layout
     
     open override func layoutSubviews() {
+        defer { rearrangeViews() }
         super.layoutSubviews()
-        
-        rearrangeViews()
     }
     
     private func rearrangeViews() {
         let views = tagViews as [UIView] + tagBackgroundViews + rowViews
-        for view in views {
-            view.removeFromSuperview()
+        views.forEach {
+            $0.removeFromSuperview()
         }
         rowViews.removeAll(keepingCapacity: true)
         
@@ -318,8 +317,8 @@ open class TagListView: UIView {
         
         // On long press, deselect all tags except this one
         tagView.onLongPress = { [unowned self] this in
-            for tag in self.tagViews {
-                tag.isSelected = (tag == this)
+            self.tagViews.forEach {
+                $0.isSelected = $0 == this
             }
         }
         
@@ -333,11 +332,7 @@ open class TagListView: UIView {
     
     @discardableResult
     open func addTags(_ titles: [String]) -> [TagView] {
-        var tagViews: [TagView] = []
-        for title in titles {
-            tagViews.append(createNewTagView(title))
-        }
-        return addTagViews(tagViews)
+        return addTagViews(titles.map(createNewTagView))
     }
     
     @discardableResult
@@ -366,9 +361,9 @@ open class TagListView: UIView {
 
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
+        defer { rearrangeViews() }
         tagViews.insert(tagView, at: index)
         tagBackgroundViews.insert(UIView(frame: tagView.bounds), at: index)
-        rearrangeViews()
         
         return tagView
     }
@@ -378,37 +373,32 @@ open class TagListView: UIView {
     }
     
     open func removeTag(_ title: String) {
-        // loop the array in reversed order to remove items during loop
-        for index in stride(from: (tagViews.count - 1), through: 0, by: -1) {
-            let tagView = tagViews[index]
-            if tagView.currentTitle == title {
-                removeTagView(tagView)
-            }
-        }
+        tagViews.reversed().filter({ $0.currentTitle == title }).forEach(removeTagView)
     }
     
     open func removeTagView(_ tagView: TagView) {
+        defer { rearrangeViews() }
+        
         tagView.removeFromSuperview()
         if let index = tagViews.index(of: tagView) {
             tagViews.remove(at: index)
             tagBackgroundViews.remove(at: index)
         }
-        
-        rearrangeViews()
     }
     
     open func removeAllTags() {
-        let views = tagViews as [UIView] + tagBackgroundViews
-        for view in views {
-            view.removeFromSuperview()
+        defer {
+            tagViews = []
+            tagBackgroundViews = []
+            rearrangeViews()
         }
-        tagViews = []
-        tagBackgroundViews = []
-        rearrangeViews()
+        
+        let views: [UIView] = tagViews + tagBackgroundViews
+        views.forEach { $0.removeFromSuperview() }
     }
 
     open func selectedTags() -> [TagView] {
-        return tagViews.filter() { $0.isSelected == true }
+        return tagViews.filter { $0.isSelected }
     }
     
     // MARK: - Events
