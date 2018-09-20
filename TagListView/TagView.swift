@@ -16,7 +16,7 @@ open class TagView: UIButton {
     @IBInspectable open var cornerRadius: CGFloat = 0 {
         didSet {
             borderView.layer.cornerRadius = cornerRadius
-            borderView.layer.masksToBounds = cornerRadius > 0
+//            borderView.layer.masksToBounds = cornerRadius > 0
         }
     }
     @IBInspectable open var borderWidth: CGFloat = 0 {
@@ -257,7 +257,7 @@ open class TagView: UIButton {
         }
 //        if ishotKeyWordEnabled {
 //            size.height +=  10
-//            
+//
 //        }
         return size
     }
