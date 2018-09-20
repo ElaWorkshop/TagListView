@@ -10,16 +10,18 @@ import UIKit
 
 @IBDesignable
 open class TagView: UIButton {
-
+    
+    private let borderView = UIView()
+    
     @IBInspectable open var cornerRadius: CGFloat = 0 {
         didSet {
-            layer.cornerRadius = cornerRadius
-            layer.masksToBounds = cornerRadius > 0
+            borderView.layer.cornerRadius = cornerRadius
+            borderView.layer.masksToBounds = cornerRadius > 0
         }
     }
     @IBInspectable open var borderWidth: CGFloat = 0 {
         didSet {
-            layer.borderWidth = borderWidth
+            borderView.layer.borderWidth = borderWidth
         }
     }
     
@@ -56,7 +58,7 @@ open class TagView: UIButton {
             updateRightInsets()
         }
     }
-
+    
     @IBInspectable open var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
             reloadStyles()
@@ -97,12 +99,20 @@ open class TagView: UIButton {
         }
         else if isSelected {
             backgroundColor = selectedBackgroundColor ?? tagBackgroundColor
-            layer.borderColor = selectedBorderColor?.cgColor ?? borderColor?.cgColor
+            borderView.layer.borderColor = selectedBorderColor?.cgColor ?? borderColor?.cgColor
             setTitleColor(selectedTextColor, for: UIControl.State())
+        }
+        else if ishotKeyWordEnabled{
+            hotKeyWordIcon.isHidden = !ishotKeyWordEnabled
+            self.textFont = UIFont.boldSystemFont(ofSize: 12)
+            backgroundColor = tagBackgroundColor
+            borderView.layer.borderColor = borderColor?.cgColor
+            setTitleColor(textColor, for: UIControl.State())
+            
         }
         else {
             backgroundColor = tagBackgroundColor
-            layer.borderColor = borderColor?.cgColor
+            borderView.layer.borderColor = borderColor?.cgColor
             setTitleColor(textColor, for: UIControl.State())
         }
     }
@@ -119,6 +129,20 @@ open class TagView: UIButton {
         }
     }
     
+    //MARK : higlited icon
+    
+    @IBInspectable open  var hotKeyWordIcon: UIImageView = UIImageView(image: UIImage(named: "orionFlame")){
+        didSet{
+            reloadStyles()
+        }
+    }
+    @IBInspectable open  var ishotKeyWordEnabled: Bool = true{
+        didSet{
+            reloadStyles()
+        }
+    }
+    
+    
     // MARK: remove button
     
     let removeButton = CloseButton()
@@ -129,6 +153,14 @@ open class TagView: UIButton {
             updateRightInsets()
         }
     }
+    
+    @IBInspectable open var enableHighlightIcon: Bool = false {
+        didSet {
+            removeButton.isHidden = !enableRemoveButton
+            updateRightInsets()
+        }
+    }
+    
     
     @IBInspectable open var removeButtonIconSize: CGFloat = 12 {
         didSet {
@@ -167,11 +199,32 @@ open class TagView: UIButton {
         setupView()
     }
     
+    
+    public init(title: String , isHotKeyword:Bool) {
+        super.init(frame: CGRect.zero)
+        setTitle(title, for: UIControl.State())
+        ishotKeyWordEnabled = isHotKeyword
+        setupView()
+    }
+    
+    
+    
     private func setupView() {
         titleLabel?.lineBreakMode = titleLineBreakMode
-
+        
         frame.size = intrinsicContentSize
         addSubview(removeButton)
+        
+        borderView.layer.borderColor = borderColor?.cgColor
+        borderView.layer.borderWidth = borderWidth
+        borderView.layer.cornerRadius = cornerRadius
+        borderView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        borderView.frame = bounds
+        addSubview(borderView)
+        hotKeyWordIcon.backgroundColor = UIColor.white
+        
+        addSubview(hotKeyWordIcon)
+        
         removeButton.tagView = self
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
@@ -182,8 +235,14 @@ open class TagView: UIButton {
         onLongPress?(self)
     }
     
+    //    override open func draw(_ rect: CGRect) {
+    //        UIColor.gray.set()
+    //        UIBezierPath(rect: rect).stroke()
+    //    }
+    
+    
     // MARK: - layout
-
+    
     override open var intrinsicContentSize: CGSize {
         var size = titleLabel?.text?.size(withAttributes: [NSAttributedString.Key.font: textFont]) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
@@ -193,6 +252,10 @@ open class TagView: UIButton {
         }
         if enableRemoveButton {
             size.width += removeButtonIconSize + paddingX
+        }
+        if ishotKeyWordEnabled {
+            size.height +=  10
+            
         }
         return size
     }
@@ -214,15 +277,22 @@ open class TagView: UIButton {
             removeButton.frame.size.height = self.frame.height
             removeButton.frame.origin.y = 0
         }
+        
+        if ishotKeyWordEnabled {
+            hotKeyWordIcon.frame.size.width = 12
+            hotKeyWordIcon.frame.size.height = 14
+            hotKeyWordIcon.frame.origin.x = self.frame.origin.x + 5
+            hotKeyWordIcon.frame.origin.y = self.frame.origin.y - 5
+        }
     }
 }
 
 /// Swift < 4.2 support
 #if !(swift(>=4.2))
 private extension NSAttributedString {
-    typealias Key = NSAttributedStringKey
+typealias Key = NSAttributedStringKey
 }
 private extension UIControl {
-    typealias State = UIControlState
+typealias State = UIControlState
 }
 #endif
