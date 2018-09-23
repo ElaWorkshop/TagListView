@@ -16,7 +16,9 @@ open class TagView: UIButton {
     @IBInspectable open var cornerRadius: CGFloat = 0 {
         didSet {
             borderView.layer.cornerRadius = cornerRadius
-//            borderView.layer.masksToBounds = cornerRadius > 0
+            borderView.layer.masksToBounds = false
+            layer.masksToBounds = false 
+            
         }
     }
     @IBInspectable open var borderWidth: CGFloat = 0 {
