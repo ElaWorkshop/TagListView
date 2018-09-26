@@ -224,6 +224,7 @@ open class TagView: UIButton {
         borderView.layer.cornerRadius = cornerRadius
         borderView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         borderView.frame = bounds
+        borderView.isUserInteractionEnabled = false
         addSubview(borderView)
         hotKeyWordIcon.backgroundColor = UIColor.white
         
