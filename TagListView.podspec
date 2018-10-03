@@ -7,6 +7,8 @@ Pod::Spec.new do |s|
 
   s.license      = "MIT"
   s.author       = { "LIU Dongyuan" => "liu.dongyuan@gmail.com" }
+  
+  s.swift_version = '4.2'
 
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/ElaWorkshop/TagListView.git", :tag => s.version }
