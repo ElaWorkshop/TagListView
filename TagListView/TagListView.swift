@@ -337,7 +337,7 @@ open class TagListView: UIView {
     
     @discardableResult
     open func addTags(_ titles: [String]) -> [TagView] {
-        return addTagViews(titles.map(createNewTagView))
+        return addTagViews(titles.map { createNewTagView($0) })
     }
     
     @discardableResult
