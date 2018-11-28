@@ -101,7 +101,7 @@ open class TagView: UIButton {
         }
     }
     
-    @IBInspectable open var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
+    @IBInspectable open var textFont: UIFont = .systemFont(ofSize: 12) {
         didSet {
             titleLabel?.font = textFont
         }

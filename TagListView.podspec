@@ -1,12 +1,14 @@
 Pod::Spec.new do |s|
   s.name         = "TagListView"
-  s.version      = "1.3.1"
+  s.version      = "1.3.3"
   s.summary      = "Simple but highly customizable iOS tag list view, in Swift."
   s.homepage     = "https://github.com/ElaWorkshop/TagListView"
   s.social_media_url = "http://twitter.com/elabuild"
 
   s.license      = "MIT"
   s.author       = { "LIU Dongyuan" => "liu.dongyuan@gmail.com" }
+  
+  s.swift_version = '4.2'
 
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/ElaWorkshop/TagListView.git", :tag => s.version }
