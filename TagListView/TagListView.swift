@@ -380,7 +380,7 @@ open class TagListView: UIView {
         defer { rearrangeViews() }
         
         tagView.removeFromSuperview()
-        if let index = tagViews.index(of: tagView) {
+        if let index = tagViews.firstIndex(of: tagView) {
             tagViews.remove(at: index)
             tagBackgroundViews.remove(at: index)
         }
