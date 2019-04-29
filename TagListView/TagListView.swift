@@ -292,7 +292,7 @@ open class TagListView: UIView {
         return CGSize(width: frame.width, height: height)
     }
     
-    private func createNewTagView(_ title: String) -> TagView {
+    private func createNewTagView(_ title: String, _ image: UIImage? = nil) -> TagView {
         let tagView = TagView(title: title)
         
         tagView.textColor = textColor
@@ -314,7 +314,13 @@ open class TagListView: UIView {
         tagView.removeIconLineColor = removeIconLineColor
         tagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), for: .touchUpInside)
-        
+        if let tagImage = image {
+            tagView.imageView?.contentMode = .scaleAspectFit
+            tagView.setImage(tagImage, for: .normal)
+        }
+//        if let image = image {
+//            
+//        }
         // On long press, deselect all tags except this one
         tagView.onLongPress = { [unowned self] this in
             self.tagViews.forEach {
@@ -324,16 +330,22 @@ open class TagListView: UIView {
         
         return tagView
     }
-
+    
+    
     @discardableResult
-    open func addTag(_ title: String) -> TagView {
+    open func addTag(_ title: String, image: UIImage! = nil) -> TagView {
         defer { rearrangeViews() }
+        if let tagImage = image {
+            return addTagView(createNewTagView(title, tagImage))
+        }
         return addTagView(createNewTagView(title))
     }
     
     @discardableResult
     open func addTags(_ titles: [String]) -> [TagView] {
-        return addTagViews(titles.map(createNewTagView))
+        let mappedTitles = titles.map { createNewTagView($0) }
+        return mappedTitles
+//        return addTagViews(titles.map(createNewTagView))
     }
     
     @discardableResult
