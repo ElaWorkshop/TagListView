@@ -20,9 +20,6 @@ The most convenient way is to use Storyboard. Drag a view to Storyboard and set 
 You can add tag to the tag list view, or set custom font and alignment through code:
 
 ```swift
-tagListView.textFont = UIFont.systemFontOfSize(24)
-tagListView.alignment = .Center // possible values are .Left, .Center, and .Right
-
 tagListView.addTag("TagListView")
 tagListView.addTags(["Add", "two", "tags"])
 
@@ -47,6 +44,31 @@ You can implement `TagListViewDelegate` to receive tag pressed event:
 func tagPressed(title: String, tagView: TagView, sender: TagListView) {
     print("Tag pressed: \(title), \(sender)")
 }
+```
+### Layouting tags
+It is also possible to layout the tagViews in code with:
+```swift
+tagListView.textColor: UIColor = UIColor.white
+tagListView.selectedTextColor: UIColor = UIColor.white
+tagListView.tagBackgroundColor: UIColor = UIColor.gray
+tagListView.tagHighlightedBackgroundColor: UIColor?
+tagListView.tagSelectedBackgroundColor: UIColor?
+tagListView.cornerRadius: CGFloat = 0
+tagListView.borderWidth: CGFloat = 0
+tagListView.borderColor: UIColor?
+tagListView.selectedBorderColor: UIColor?
+tagListView.paddingY: CGFloat = 2
+tagListView.paddingX: CGFloat = 5
+tagListView.marginY: CGFloat = 2
+tagListView.marginX: CGFloat = 5
+tagListView.textFont = UIFont.systemFontOfSize(24)
+tagListView.alignment = .Center // possible values are .Left, .Center, and .Right
+tagListView.alignment = UIFont.systemFont(ofSize: 15)
+tagListView.alignment.shadowRadius = 2
+tagListView.alignment.shadowOpacity = 0.4
+tagListView.alignment.shadowColor = UIColor.black
+tagListView.alignment.shadowOffset = CGSize(width: 1, height: 1)
+
 ```
 
 You can also customize a particular tag, or set tap handler for it by manipulating the `TagView` object returned by `addTag(_:)`:
