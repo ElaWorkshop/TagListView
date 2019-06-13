@@ -121,7 +121,7 @@ open class TagView: UIButton {
     
     // MARK: remove button
     
-    let removeButton = CloseButton()
+    public let removeButton = CloseButton()
     
     @IBInspectable open var enableRemoveButton: Bool = false {
         didSet {
