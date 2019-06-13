@@ -14,7 +14,7 @@ public class CloseButton: UIButton {
     var lineWidth: CGFloat = 1
     var lineColor: UIColor = UIColor.white.withAlphaComponent(0.54)
 
-    weak var tagView: TagView?
+    public weak var tagView: TagView?
 
     override public func draw(_ rect: CGRect) {
         let path = UIBezierPath()
