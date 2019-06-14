@@ -345,11 +345,27 @@ open class TagListView: UIView {
         return tagView
     }
     
+    // open func addTagViews(_ tagViews: [TagView]) -> [TagView]
+    // old func updated with unique check closure param.
+    // Old func was changed because of the performance issue while adding large number of tags taglist view was rearraing itself after every tag added to array.
+    
     @discardableResult
-    open func addTagViews(_ tagViews: [TagView]) -> [TagView] {
+    open func addTagViews(_ tagViews: [TagView], uniqueCheck: ((TagView) -> Bool)? = nil) -> [TagView] {
         tagViews.forEach {
-            addTagView($0)
+            //addTagView($0)
+            if let checkHandler = uniqueCheck {
+                if checkHandler($0) {
+                    self.tagViews.append($0)
+                    tagBackgroundViews.append(UIView(frame: $0.bounds))
+                }
+            }else {
+                self.tagViews.append($0)
+                tagBackgroundViews.append(UIView(frame: $0.bounds))
+            }
+
         }
+        rearrangeViews()
+
         return tagViews
     }
 
