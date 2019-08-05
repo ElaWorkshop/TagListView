@@ -20,15 +20,15 @@ The most convenient way is to use Storyboard. Drag a view to Storyboard and set 
 You can add tag to the tag list view, or set custom font and alignment through code:
 
 ```swift
-tagListView.textFont = UIFont.systemFontOfSize(24)
-tagListView.alignment = .Center // possible values are .Left, .Center, and .Right
+tagListView.textFont = UIFont.systemFont(ofSize: 24)
+tagListView.alignment = .center // possible values are .left, .center, and .right
 
 tagListView.addTag("TagListView")
 tagListView.addTags(["Add", "two", "tags"])
 
 tagListView.insertTag("This should be the second tag", at: 1)
 
-tagListView.setTitle("New Title", at:6) // to replace the title a tag
+tagListView.setTitle("New Title", at: 6) // to replace the title a tag
 
 tagListView.removeTag("meow") // all tags with title “meow” will be removed
 tagListView.removeAllTags()
@@ -79,9 +79,9 @@ Or drag **TagListView** folder into your project.
 
 ### Older Swift Versions?
 
-Currently, the `master` branch is using Swift 4.
+Currently, the `master` branch is using Swift 5.
 
-For Swift 3, use version [1.2.0](https://github.com/ElaWorkshop/TagListView/releases/tag/1.2.0) or [swift-3](https://github.com/ElaWorkshop/TagListView/tree/swift-3) branch. For Swift 2, use version [1.0.1](https://github.com/ElaWorkshop/TagListView/releases/tag/1.0.1) or [swift-2.3](https://github.com/ElaWorkshop/TagListView/tree/swift-2.3) branch. For Swift 1.2, use version [0.2](https://github.com/ElaWorkshop/TagListView/releases/tag/0.2).
+For Swift 4, use version [1.3.2](https://github.com/ElaWorkshop/TagListView/releases/tag/1.3.2) or [swift-4](https://github.com/ElaWorkshop/TagListView/tree/swift-4) branch. For Swift 3, use version [1.2.0](https://github.com/ElaWorkshop/TagListView/releases/tag/1.2.0) or [swift-3](https://github.com/ElaWorkshop/TagListView/tree/swift-3) branch. For Swift 2, use version [1.0.1](https://github.com/ElaWorkshop/TagListView/releases/tag/1.0.1) or [swift-2.3](https://github.com/ElaWorkshop/TagListView/tree/swift-2.3) branch. For Swift 1.2, use version [0.2](https://github.com/ElaWorkshop/TagListView/releases/tag/0.2).
 
 ## Contribution
 
