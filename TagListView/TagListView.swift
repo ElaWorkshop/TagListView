@@ -331,6 +331,12 @@ open class TagListView: UIView {
     }
 
     @discardableResult
+    open func addTag(_ title: String, _ backgroundColor: UIColor? = nil) -> TagView {
+        defer { rearrangeViews() }
+        return addTagView(createNewTagView(title, backgroundColor))
+    }
+    
+    @discardableResult
     open func addTag(_ title: String) -> TagView {
         defer { rearrangeViews() }
         return addTagView(createNewTagView(title))
