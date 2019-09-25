@@ -197,6 +197,12 @@ open class TagListView: UIView {
         }
     }
     
+    @IBInspectable open dynamic var maximumRowsCount: Int = 0 {
+        didSet {
+            rearrangeViews()
+        }
+    }
+    
     @IBOutlet open weak var delegate: TagListViewDelegate?
     
     open private(set) var tagViews: [TagView] = []
