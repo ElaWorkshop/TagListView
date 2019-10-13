@@ -61,6 +61,15 @@ tagView.onTap = { tagView in
 
 Be aware that if you update a property (e.g. `tagBackgroundColor`) for a `TagListView`, all the inner `TagView`s will be updated.
 
+```swift
+let titleColorDict = ["red": UIColor.red, "yellow": UIColor.yellow, "blue": UIColor.blue]
+let tabViewsWithDifferentColors = tagListView.addTags(titleWithColors: titleWithColorsDict)
+
+let redTagView = tagListView.addTag("red", withBgColor: UIColor.red)
+```
+
+You can have different colored tags within a `TagViewList` by passing a dictionary for multiple, or simply color with title for one. But all of the colors is overwriten when you update `tagBackgroundColor` property of a `TagListView` as explained above.
+
 ## Installation
 
 Use [CocoaPods](https://github.com/CocoaPods/CocoaPods):
