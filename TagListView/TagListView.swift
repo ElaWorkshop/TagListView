@@ -40,10 +40,10 @@ open class TagListView: UIView {
         }
     }
     
-    @IBInspectable open dynamic var tagBackgroundColor: UIColor = UIColor.gray {
+    @IBInspectable open dynamic var defaultTagBackgroundColor: UIColor = UIColor.gray {
         didSet {
             tagViews.forEach {
-                $0.tagBackgroundColor = tagBackgroundColor
+                $0.tagBackgroundColor = defaultTagBackgroundColor
             }
         }
     }
@@ -292,12 +292,12 @@ open class TagListView: UIView {
         return CGSize(width: frame.width, height: height)
     }
     
-    private func createNewTagView(_ title: String) -> TagView {
+    private func createNewTagView(_ title: String, withBackgroundColor tagBackgroundColor: UIColor? = nil) -> TagView {
         let tagView = TagView(title: title)
         
         tagView.textColor = textColor
         tagView.selectedTextColor = selectedTextColor
-        tagView.tagBackgroundColor = tagBackgroundColor
+        tagView.tagBackgroundColor = tagBackgroundColor ?? defaultTagBackgroundColor
         tagView.highlightedBackgroundColor = tagHighlightedBackgroundColor
         tagView.selectedBackgroundColor = tagSelectedBackgroundColor
         tagView.titleLineBreakMode = tagLineBreakMode
@@ -326,6 +326,12 @@ open class TagListView: UIView {
     }
 
     @discardableResult
+    open func addTag(_ title: String, withBackgroundColor tagBackgroundColor: UIColor? = nil) -> TagView {
+        defer { rearrangeViews() }
+        return addTagView(createNewTagView(title, withBackgroundColor: tagBackgroundColor))
+    }
+    
+    @discardableResult
     open func addTag(_ title: String) -> TagView {
         defer { rearrangeViews() }
         return addTagView(createNewTagView(title))
@@ -333,7 +339,12 @@ open class TagListView: UIView {
     
     @discardableResult
     open func addTags(_ titles: [String]) -> [TagView] {
-        return addTagViews(titles.map(createNewTagView))
+        return addTagViews(titles.map{createNewTagView($0)})
+    }
+    
+    @discardableResult
+    open func addTags(titleWithColors: [String : UIColor]) -> [TagView] {
+        return addTagViews(titleWithColors.map{createNewTagView($0, withBackgroundColor: $1)})
     }
     
     @discardableResult
