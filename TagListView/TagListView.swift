@@ -126,10 +126,10 @@ open class TagListView: UIView {
         case left
         case center
         case right
-        case start
-        case end
+        case leading
+        case trailing
     }
-    @IBInspectable open var alignment: Alignment = .start {
+    @IBInspectable open var alignment: Alignment = .leading {
         didSet {
             rearrangeViews()
         }
@@ -237,17 +237,20 @@ open class TagListView: UIView {
         
         if #available(iOS 10.0, tvOS 10.0, *) {
             isRtl = effectiveUserInterfaceLayoutDirection == .rightToLeft
-        } else if #available(iOS 9.0, *) {
+        }
+        else if #available(iOS 9.0, *) {
             isRtl = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
-        } else if let shared = UIApplication.value(forKey: "sharedApplication") as? UIApplication {
+        }
+        else if let shared = UIApplication.value(forKey: "sharedApplication") as? UIApplication {
             isRtl = shared.userInterfaceLayoutDirection == .leftToRight
         }
         
         var alignment = self.alignment
         
-        if alignment == .start {
+        if alignment == .leading {
             alignment = isRtl ? .right : .left
-        } else if alignment == .end {
+        }
+        else if alignment == .trailing {
             alignment = isRtl ? .left : .right
         }
         
@@ -297,12 +300,12 @@ open class TagListView: UIView {
             currentRowWidth += tagView.frame.width + marginX
             
             switch alignment {
-            case .start: fallthrough // switch must be exahutive
+            case .leading: fallthrough // switch must be exahutive
             case .left:
                 currentRowView.frame.origin.x = 0
             case .center:
                 currentRowView.frame.origin.x = (frameWidth - (currentRowWidth - marginX)) / 2
-            case .end: fallthrough // switch must be exahutive
+            case .trailing: fallthrough // switch must be exahutive
             case .right:
                 currentRowView.frame.origin.x = frameWidth - (currentRowWidth - marginX)
             }
