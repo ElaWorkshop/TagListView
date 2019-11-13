@@ -21,7 +21,7 @@ You can add tag to the tag list view, or set custom font and alignment through c
 
 ```swift
 tagListView.textFont = UIFont.systemFont(ofSize: 24)
-tagListView.alignment = .center // possible values are .left, .center, and .right
+tagListView.alignment = .center // possible values are [.leading, .trailing, .left, .center, .right]
 
 tagListView.addTag("TagListView")
 tagListView.addTags(["Add", "two", "tags"])
