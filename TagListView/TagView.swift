@@ -162,7 +162,7 @@ open class TagView: UIButton {
     
     public init(title: String) {
         super.init(frame: CGRect.zero)
-        setTitle(title, for: UIControl.State())
+        setTitle(title, for: .normal)
         
         setupView()
     }

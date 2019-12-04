@@ -318,18 +318,9 @@ open class TagListView: UIView {
     }
     
     // MARK: - Manage tags
-    
-    override open var intrinsicContentSize: CGSize {
-        var height = CGFloat(rows) * (tagViewHeight + marginY)
-        if rows > 0 {
-            height -= marginY
-        }
-        return CGSize(width: frame.width, height: height)
-    }
-    
-    private func createNewTagView(_ title: String) -> TagView {
-        let tagView = TagView(title: title)
-        
+
+    @discardableResult
+    open func stylize(_ tagView: TagView) -> TagView {
         tagView.textColor = textColor
         tagView.selectedTextColor = selectedTextColor
         tagView.tagBackgroundColor = tagBackgroundColor
@@ -349,55 +340,86 @@ open class TagListView: UIView {
         tagView.removeIconLineColor = removeIconLineColor
         tagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), for: .touchUpInside)
-        
+
         // On long press, deselect all tags except this one
         tagView.onLongPress = { [unowned self] this in
             self.tagViews.forEach {
                 $0.isSelected = $0 == this
             }
         }
-        
+
         return tagView
+    }
+    
+    override open var intrinsicContentSize: CGSize {
+        var height = CGFloat(rows) * (tagViewHeight + marginY)
+        if rows > 0 {
+            height -= marginY
+        }
+        return CGSize(width: frame.width, height: height)
     }
 
     @discardableResult
     open func addTag(_ title: String) -> TagView {
         defer { rearrangeViews() }
-        return addTagView(createNewTagView(title))
+        return addTagView(TagView(title: title))
     }
     
     @discardableResult
     open func addTags(_ titles: [String]) -> [TagView] {
-        return addTagViews(titles.map(createNewTagView))
+        return addTagViews(titles.map({ (title: String) -> TagView in
+            return TagView(title: title)
+        }))
     }
-    
-    @discardableResult
-    open func addTagView(_ tagView: TagView) -> TagView {
-        defer { rearrangeViews() }
-        tagViews.append(tagView)
-        tagBackgroundViews.append(UIView(frame: tagView.bounds))
-        
-        return tagView
-    }
-    
+
+    /**
+     Adds the specified `TagView`s to the `TagListView`
+     - Parameter tagViews: The `TagView`s to be added
+     - Returns: The `TagView`s that were added
+     - Important: This method applies all default styling of the `TagListView`, so if you're gonna do any special styling it individual tags, do it after calling this method
+     */
     @discardableResult
     open func addTagViews(_ tagViews: [TagView]) -> [TagView] {
-        tagViews.forEach {
-            addTagView($0)
+        for tagView in tagViews {
+            addTagView(tagView, layout: false)
         }
         return tagViews
     }
 
     @discardableResult
     open func insertTag(_ title: String, at index: Int) -> TagView {
-        return insertTagView(createNewTagView(title), at: index)
+        return insertTagView(TagView(title: title), at: index)
     }
-    
 
+    /**
+     Adds the specified `TagView` to the `TagListView`
+     - Parameter tagView: The `TagView` to be added
+     - Parameter layout: Secifies if the `TagListView` should call `rearrangeViews()` to re-layout its `TagView`s. `true` by default
+     - Returns: The `TagView` that was added
+     - Important: This method applies all default styling of the `TagListView`, so if you're gonna do any special styling, do it after calling this method
+     */
+    @discardableResult
+    open func addTagView(_ tagView: TagView, layout: Bool = true) -> TagView {
+        tagViews.append(stylize(tagView))
+        tagBackgroundViews.append(UIView(frame: tagView.bounds))
+        if layout {
+            rearrangeViews()
+        }
+        
+        return tagView
+    }
+
+    /**
+     Adds the specified `TagView` to the `TagListView` at the specified index
+     - Parameter tagView: The `TagView` to be added
+     - Parameter index: The index at which to insert the `tagView`
+     - Returns: The `TagView` that was added
+     - Important: This method applies all default styling of the `TagListView`, so if you're gonna do any special styling, do it after calling this method
+     */
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
         defer { rearrangeViews() }
-        tagViews.insert(tagView, at: index)
+        tagViews.insert(stylize(tagView), at: index)
         tagBackgroundViews.insert(UIView(frame: tagView.bounds), at: index)
         
         return tagView
