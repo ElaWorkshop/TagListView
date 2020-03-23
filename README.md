@@ -59,6 +59,8 @@ tagView.onTap = { tagView in
 }
 ```
 
+In this new version you can subclass TagView directly and override any property you would like to be unique for all instances of a tag class. You can also set tagAttributedTitle to use an NSAttributedString for even more customization. See the view controller file in the example project for more info.
+
 Be aware that if you update a property (e.g. `tagBackgroundColor`) for a `TagListView`, all the inner `TagView`s will be updated.
 
 ## Installation
