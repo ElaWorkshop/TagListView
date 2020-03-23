@@ -13,6 +13,7 @@ class ViewController: UIViewController, TagListViewDelegate {
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var biggerTagListView: TagListView!
     @IBOutlet weak var biggestTagListView: TagListView!
+    @IBOutlet var hetroTagView: TagListView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,20 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggestTagListView.addTags(["all", "your", "tag", "are", "belong", "to", "us"])
         biggestTagListView.alignment = .right
         
+        //hetro tag view example. See the custom classes at the end of this file for how to override properties of tag views
+        let htag1 = TestTagViewOne.init(title: "Custom 1")
+        let htag2 = TestTagViewTwo.init(title: "Custom 2")
+        let htag3 = TestTagViewTwo.init(title: "Two again")
+        let htag4 = TestTagViewOne.init(title: "1 agn")
+        let htag5 = TestTagViewThree.init(title: "custom class 3")
+        
+        //tag with attributed string example
+        let attrTag = TestTagViewThree.init(title: "") //title does not matter because we set the attributed title later
+        attrTag.tagAttributedTitle = NSAttributedString.init(string: "attributed title", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30), NSAttributedString.Key.strikethroughStyle : 2, NSAttributedString.Key.strokeColor : UIColor.magenta])
+        
+        hetroTagView.addTagViews([htag1, htag2, htag3, htag4, htag5])
+        hetroTagView.insertTagView(attrTag, at: 3)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,6 +84,47 @@ class ViewController: UIViewController, TagListViewDelegate {
     func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
         print("Tag Remove pressed: \(title), \(sender)")
         sender.removeTagView(tagView)
+    }
+    
+    class TestTagViewOne: TagView {
+        override var tagBackgroundColor: UIColor{
+            get{
+                return .orange
+            }
+            set{}
+        }
+        
+        override var textFont: UIFont{
+            get{
+                return .systemFont(ofSize: 20)
+            }
+            set{}
+        }
+    }
+    
+    class TestTagViewTwo: TagView {
+        override var tagBackgroundColor: UIColor{
+            get{
+                return .purple
+            }
+            set{}
+        }
+        
+        override var textFont: UIFont{
+            get{
+                return .boldSystemFont(ofSize: 18)
+            }
+            set{}
+        }
+    }
+    
+    class TestTagViewThree: TagView {
+        override var tagBackgroundColor: UIColor{
+            get{
+                return .green
+            }
+            set{}
+        }
     }
 }
 
