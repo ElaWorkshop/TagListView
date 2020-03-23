@@ -222,8 +222,11 @@ open class TagView: UIButton {
         var size = titleLabel?.text?.size(withAttributes: [NSAttributedString.Key.font: textFont]) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
         if let at = self.tagAttributedTitle{
+            self.titleLabel?.lineBreakMode = .byClipping
             size = at.size()
             size.height += paddingY * 2
+            size.height = ceil(size.height)
+            size.width = ceil(size.width)
         }
         
         

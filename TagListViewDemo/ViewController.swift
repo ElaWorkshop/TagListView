@@ -68,6 +68,23 @@ class ViewController: UIViewController, TagListViewDelegate {
         hetroTagView.addTagViews([htag1, htag2, htag3, htag4, htag5])
         hetroTagView.insertTagView(attrTag, at: 3)
         
+        
+        //image tag example
+        if #available(iOS 13.0, *) {
+            var img = UIImage.init(systemName: "trash.fill", withConfiguration: UIImage.SymbolConfiguration.init(pointSize: 20))!
+            img = UIImage.init(named: "singer")! //comment out this line to see the sf symbol version work
+            let attrStr = NSMutableAttributedString.init(string: "tag with img", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22)])
+            let atachment = NSTextAttachment()
+            atachment.image = img
+            attrStr.append(NSAttributedString.init(attachment: atachment))
+            
+            let imgtag = TestTagViewThree.init(title: "")
+            imgtag.tagAttributedTitle = attrStr
+            hetroTagView.addTagView(imgtag)
+        } else {
+            // this will work but we cant use sf symbols. Just use any other UIImage for your text attachment
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -124,6 +141,16 @@ class ViewController: UIViewController, TagListViewDelegate {
                 return .green
             }
             set{}
+        }
+        
+        override var textColor: UIColor{
+            get{
+                return .black
+            }
+            
+            set{
+                
+            }
         }
     }
 }
