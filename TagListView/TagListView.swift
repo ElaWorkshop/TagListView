@@ -126,8 +126,10 @@ open class TagListView: UIView {
         case left
         case center
         case right
+        case leading
+        case trailing
     }
-    @IBInspectable open var alignment: Alignment = .left {
+    @IBInspectable open var alignment: Alignment = .leading {
         didSet {
             rearrangeViews()
         }
@@ -230,30 +232,61 @@ open class TagListView: UIView {
             $0.removeFromSuperview()
         }
         rowViews.removeAll(keepingCapacity: true)
+
+        var isRtl: Bool = false
+        
+        if #available(iOS 10.0, tvOS 10.0, *) {
+            isRtl = effectiveUserInterfaceLayoutDirection == .rightToLeft
+        }
+        else if #available(iOS 9.0, *) {
+            isRtl = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
+        }
+        else if let shared = UIApplication.value(forKey: "sharedApplication") as? UIApplication {
+            isRtl = shared.userInterfaceLayoutDirection == .leftToRight
+        }
+        
+        var alignment = self.alignment
+        
+        if alignment == .leading {
+            alignment = isRtl ? .right : .left
+        }
+        else if alignment == .trailing {
+            alignment = isRtl ? .left : .right
+        }
         
         var currentRow = 0
         var currentRowView: UIView!
         var currentRowTagCount = 0
         var currentRowWidth: CGFloat = 0
+        let frameWidth = frame.width
+        
+        let directionTransform = isRtl
+            ? CGAffineTransform(scaleX: -1.0, y: 1.0)
+            : CGAffineTransform.identity
+        
         for (index, tagView) in tagViews.enumerated() {
             tagView.frame.size = tagView.intrinsicContentSize
             tagViewHeight = tagView.frame.height
             
-            if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frame.width {
+            if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frameWidth {
                 currentRow += 1
                 currentRowWidth = 0
                 currentRowTagCount = 0
                 currentRowView = UIView()
+                currentRowView.transform = directionTransform
                 currentRowView.frame.origin.y = CGFloat(currentRow - 1) * (tagViewHeight + marginY)
                 
                 rowViews.append(currentRowView)
                 addSubview(currentRowView)
 
-                tagView.frame.size.width = min(tagView.frame.size.width, frame.width)
+                tagView.frame.size.width = min(tagView.frame.size.width, frameWidth)
             }
             
             let tagBackgroundView = tagBackgroundViews[index]
-            tagBackgroundView.frame.origin = CGPoint(x: currentRowWidth, y: 0)
+            tagBackgroundView.transform = directionTransform
+            tagBackgroundView.frame.origin = CGPoint(
+                x: currentRowWidth,
+                y: 0)
             tagBackgroundView.frame.size = tagView.bounds.size
             tagBackgroundView.layer.shadowColor = shadowColor.cgColor
             tagBackgroundView.layer.shadowPath = UIBezierPath(roundedRect: tagBackgroundView.bounds, cornerRadius: cornerRadius).cgPath
@@ -267,12 +300,14 @@ open class TagListView: UIView {
             currentRowWidth += tagView.frame.width + marginX
             
             switch alignment {
+            case .leading: fallthrough // switch must be exahutive
             case .left:
                 currentRowView.frame.origin.x = 0
             case .center:
-                currentRowView.frame.origin.x = (frame.width - (currentRowWidth - marginX)) / 2
+                currentRowView.frame.origin.x = (frameWidth - (currentRowWidth - marginX)) / 2
+            case .trailing: fallthrough // switch must be exahutive
             case .right:
-                currentRowView.frame.origin.x = frame.width - (currentRowWidth - marginX)
+                currentRowView.frame.origin.x = frameWidth - (currentRowWidth - marginX)
             }
             currentRowView.frame.size.width = currentRowWidth
             currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.height)
@@ -384,7 +419,7 @@ open class TagListView: UIView {
         defer { rearrangeViews() }
         
         tagView.removeFromSuperview()
-        if let index = tagViews.index(of: tagView) {
+        if let index = tagViews.firstIndex(of: tagView) {
             tagViews.remove(at: index)
             tagBackgroundViews.remove(at: index)
         }
