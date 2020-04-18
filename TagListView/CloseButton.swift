@@ -17,6 +17,10 @@ internal class CloseButton: UIButton {
     weak var tagView: TagView?
 
     override func draw(_ rect: CGRect) {
+        guard (imageView?.image) == nil else {
+            return
+        }
+
         let path = UIBezierPath()
 
         path.lineWidth = lineWidth
