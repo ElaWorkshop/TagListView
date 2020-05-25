@@ -381,9 +381,11 @@ open class TagListView: UIView {
     }
     
     @discardableResult
-    open func addTagViews(_ tagViews: [TagView]) -> [TagView] {
-        tagViews.forEach {
-            addTagView($0)
+    open func addTagViews(_ tagViewList: [TagView]) -> [TagView] {
+        defer { rearrangeViews() }
+        tagViewList.forEach {
+            tagViews.append($0)
+            tagBackgroundViews.append(UIView(frame: $0.bounds))
         }
         return tagViews
     }
