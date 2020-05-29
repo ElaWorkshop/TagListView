@@ -8,15 +8,15 @@
 
 import UIKit
 
-internal class CloseButton: UIButton {
+public class CloseButton: UIButton {
 
     var iconSize: CGFloat = 10
     var lineWidth: CGFloat = 1
     var lineColor: UIColor = UIColor.white.withAlphaComponent(0.54)
 
-    weak var tagView: TagView?
+    public weak var tagView: TagView?
 
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         let path = UIBezierPath()
 
         path.lineWidth = lineWidth
