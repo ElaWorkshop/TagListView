@@ -20,8 +20,8 @@ The most convenient way is to use Storyboard. Drag a view to Storyboard and set 
 You can add tag to the tag list view, or set custom font and alignment through code:
 
 ```swift
-tagListView.textFont = UIFont.systemFontOfSize(24)
-tagListView.alignment = .Center // possible values are .Left, .Center, and .Right
+tagListView.textFont = UIFont.systemFont(ofSize: 24)
+tagListView.alignment = .center // possible values are [.leading, .trailing, .left, .center, .right]
 
 tagListView.addTag("TagListView")
 tagListView.addTags(["Add", "two", "tags"])
