@@ -50,7 +50,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggestTagListView.delegate = self
         biggestTagListView.textFont = .systemFont(ofSize: 24)
         // it is also possible to add all tags in one go
-        biggestTagListView.addTags(["all", "your", "tag", "are", "belong", "to", "us"])
+        biggestTagListView.addTags([("all",nil), ("your",nil), ("tag",nil), ("are",nil),("belong",nil), ("to",nil), ("us",nil)])
         biggestTagListView.alignment = .right
         
     }

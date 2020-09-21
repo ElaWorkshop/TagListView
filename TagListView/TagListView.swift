@@ -126,10 +126,8 @@ open class TagListView: UIView {
         case left
         case center
         case right
-        case leading
-        case trailing
     }
-    @IBInspectable open var alignment: Alignment = .leading {
+    @IBInspectable open var alignment: Alignment = .left {
         didSet {
             rearrangeViews()
         }
@@ -214,9 +212,9 @@ open class TagListView: UIView {
     // MARK: - Interface Builder
     
     open override func prepareForInterfaceBuilder() {
-        addTag("Welcome")
-        addTag("to")
-        addTag("TagListView").isSelected = true
+        addTag("Welcome","113")
+        addTag("to","31313")
+        addTag("TagListView","3131xq").isSelected = true
     }
     
     // MARK: - Layout
@@ -232,61 +230,30 @@ open class TagListView: UIView {
             $0.removeFromSuperview()
         }
         rowViews.removeAll(keepingCapacity: true)
-
-        var isRtl: Bool = false
-        
-        if #available(iOS 10.0, tvOS 10.0, *) {
-            isRtl = effectiveUserInterfaceLayoutDirection == .rightToLeft
-        }
-        else if #available(iOS 9.0, *) {
-            isRtl = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
-        }
-        else if let shared = UIApplication.value(forKey: "sharedApplication") as? UIApplication {
-            isRtl = shared.userInterfaceLayoutDirection == .leftToRight
-        }
-        
-        var alignment = self.alignment
-        
-        if alignment == .leading {
-            alignment = isRtl ? .right : .left
-        }
-        else if alignment == .trailing {
-            alignment = isRtl ? .left : .right
-        }
         
         var currentRow = 0
         var currentRowView: UIView!
         var currentRowTagCount = 0
         var currentRowWidth: CGFloat = 0
-        let frameWidth = frame.width
-        
-        let directionTransform = isRtl
-            ? CGAffineTransform(scaleX: -1.0, y: 1.0)
-            : CGAffineTransform.identity
-        
         for (index, tagView) in tagViews.enumerated() {
             tagView.frame.size = tagView.intrinsicContentSize
             tagViewHeight = tagView.frame.height
             
-            if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frameWidth {
+            if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frame.width {
                 currentRow += 1
                 currentRowWidth = 0
                 currentRowTagCount = 0
                 currentRowView = UIView()
-                currentRowView.transform = directionTransform
                 currentRowView.frame.origin.y = CGFloat(currentRow - 1) * (tagViewHeight + marginY)
                 
                 rowViews.append(currentRowView)
                 addSubview(currentRowView)
 
-                tagView.frame.size.width = min(tagView.frame.size.width, frameWidth)
+                tagView.frame.size.width = min(tagView.frame.size.width, frame.width)
             }
             
             let tagBackgroundView = tagBackgroundViews[index]
-            tagBackgroundView.transform = directionTransform
-            tagBackgroundView.frame.origin = CGPoint(
-                x: currentRowWidth,
-                y: 0)
+            tagBackgroundView.frame.origin = CGPoint(x: currentRowWidth, y: 0)
             tagBackgroundView.frame.size = tagView.bounds.size
             tagBackgroundView.layer.shadowColor = shadowColor.cgColor
             tagBackgroundView.layer.shadowPath = UIBezierPath(roundedRect: tagBackgroundView.bounds, cornerRadius: cornerRadius).cgPath
@@ -300,14 +267,12 @@ open class TagListView: UIView {
             currentRowWidth += tagView.frame.width + marginX
             
             switch alignment {
-            case .leading: fallthrough // switch must be exahutive
             case .left:
                 currentRowView.frame.origin.x = 0
             case .center:
-                currentRowView.frame.origin.x = (frameWidth - (currentRowWidth - marginX)) / 2
-            case .trailing: fallthrough // switch must be exahutive
+                currentRowView.frame.origin.x = (frame.width - (currentRowWidth - marginX)) / 2
             case .right:
-                currentRowView.frame.origin.x = frameWidth - (currentRowWidth - marginX)
+                currentRowView.frame.origin.x = frame.width - (currentRowWidth - marginX)
             }
             currentRowView.frame.size.width = currentRowWidth
             currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.height)
@@ -327,9 +292,9 @@ open class TagListView: UIView {
         return CGSize(width: frame.width, height: height)
     }
     
-    private func createNewTagView(_ title: String) -> TagView {
+    private func createNewTagView(_ title: String,_ tag: String? = nil) -> TagView {
         let tagView = TagView(title: title)
-        
+        tagView.id  = tag
         tagView.textColor = textColor
         tagView.selectedTextColor = selectedTextColor
         tagView.tagBackgroundColor = tagBackgroundColor
@@ -343,7 +308,7 @@ open class TagListView: UIView {
         tagView.paddingX = paddingX
         tagView.paddingY = paddingY
         tagView.textFont = textFont
-        tagView.removeIconLineWidth = removeIconLineWidth
+        tagView.removeIconLineWidth  = removeIconLineWidth
         tagView.removeButtonIconSize = removeButtonIconSize
         tagView.enableRemoveButton = enableRemoveButton
         tagView.removeIconLineColor = removeIconLineColor
@@ -361,14 +326,15 @@ open class TagListView: UIView {
     }
 
     @discardableResult
-    open func addTag(_ title: String) -> TagView {
+    open func addTag(_ title: String,_ strTag: String? = nil) -> TagView {
         defer { rearrangeViews() }
-        return addTagView(createNewTagView(title))
+        return addTagView(createNewTagView(title,strTag))
     }
     
+    // first string will be your title and second will be your id
     @discardableResult
-    open func addTags(_ titles: [String]) -> [TagView] {
-        return addTagViews(titles.map(createNewTagView))
+    open func addTags(_ titlesWithId: [(String,String?)]) -> [TagView] {
+        return addTagViews(titlesWithId.map(createNewTagView))
     }
     
     @discardableResult
@@ -381,18 +347,16 @@ open class TagListView: UIView {
     }
     
     @discardableResult
-    open func addTagViews(_ tagViewList: [TagView]) -> [TagView] {
-        defer { rearrangeViews() }
-        tagViewList.forEach {
-            tagViews.append($0)
-            tagBackgroundViews.append(UIView(frame: $0.bounds))
+    open func addTagViews(_ tagViews: [TagView]) -> [TagView] {
+        tagViews.forEach {
+            addTagView($0)
         }
         return tagViews
     }
 
     @discardableResult
-    open func insertTag(_ title: String, at index: Int) -> TagView {
-        return insertTagView(createNewTagView(title), at: index)
+    open func insertTag(_ title: String,_ tag: String? = nil, at index: Int) -> TagView {
+        return insertTagView(createNewTagView(title,tag), at: index)
     }
     
 
@@ -411,6 +375,10 @@ open class TagListView: UIView {
     
     open func removeTag(_ title: String) {
         tagViews.reversed().filter({ $0.currentTitle == title }).forEach(removeTagView)
+    }
+    
+    open func removeByTagId(_ strTag: String) {
+        tagViews.reversed().filter({ $0.id == strTag }).forEach(removeTagView)
     }
     
     open func removeTagView(_ tagView: TagView) {
