@@ -187,6 +187,15 @@ open class TagListView: UIView {
             }
         }
     }
+
+    /// The desired (maximum) width of the whole view. This needs to be set in cases where
+     /// the `intrinsicContentSize` should to be calculated before or without the view being
+     /// previously layouted. For example when using `systemLayoutSizeFitting:`.
+     @IBInspectable open dynamic var preferredLayoutWidth: CGFloat = -1 {
+         didSet {
+             rearrangeViews()
+         }
+     }
     
     @objc open dynamic var textFont: UIFont = .systemFont(ofSize: 12) {
         didSet {
@@ -236,7 +245,9 @@ open class TagListView: UIView {
             $0.removeFromSuperview()
         }
         rowViews.removeAll(keepingCapacity: true)
-        
+
+        let layoutWidth = preferredLayoutWidth >= 0 ? preferredLayoutWidth : frame.width
+
         var currentRow = 0
         var currentRowView: UIView!
         var currentRowTagCount = 0
@@ -245,7 +256,7 @@ open class TagListView: UIView {
             tagView.frame.size = tagView.intrinsicContentSize
             tagViewHeight = tagView.frame.height
             
-            if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frame.width {
+            if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > layoutWidth {
                 currentRow += 1
                 if currentRow > maximumRowsCount && maximumRowsCount != 0 {
                     return
@@ -258,7 +269,7 @@ open class TagListView: UIView {
                 rowViews.append(currentRowView)
                 addSubview(currentRowView)
 
-                tagView.frame.size.width = min(tagView.frame.size.width, frame.width)
+                tagView.frame.size.width = min(tagView.frame.size.width, layoutWidth)
             }
             
             let tagBackgroundView = tagBackgroundViews[index]
@@ -279,9 +290,9 @@ open class TagListView: UIView {
             case .left:
                 currentRowView.frame.origin.x = 0
             case .center:
-                currentRowView.frame.origin.x = (frame.width - (currentRowWidth - marginX)) / 2
+                currentRowView.frame.origin.x = (layoutWidth - (currentRowWidth - marginX)) / 2
             case .right:
-                currentRowView.frame.origin.x = frame.width - (currentRowWidth - marginX)
+                currentRowView.frame.origin.x = layoutWidth - (currentRowWidth - marginX)
             }
             currentRowView.frame.size.width = currentRowWidth
             currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.height)
@@ -298,7 +309,10 @@ open class TagListView: UIView {
         if rows > 0 {
             height -= marginY
         }
-        return CGSize(width: frame.width, height: height)
+        // Take the width of the widest rowView to determine the intrinsic content width
+         let width = rowViews.map({ $0.frame.width }).sorted().last ?? 0.0
+
+         return CGSize(width: width, height: height)
     }
     
     private func createNewTagView(_ title: String) -> TagView {
