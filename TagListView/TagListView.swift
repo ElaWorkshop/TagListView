@@ -121,6 +121,12 @@ open class TagListView: UIView {
             rearrangeViews()
         }
     }
+
+    @IBInspectable open dynamic var minWidth: CGFloat = 0 {
+        didSet {
+            rearrangeViews()
+        }
+    }
     
     @objc public enum Alignment: Int {
         case left
@@ -288,6 +294,7 @@ open class TagListView: UIView {
                 x: currentRowWidth,
                 y: 0)
             tagBackgroundView.frame.size = tagView.bounds.size
+            tagView.frame.size.width = max(minWidth, tagView.frame.size.width)
             tagBackgroundView.layer.shadowColor = shadowColor.cgColor
             tagBackgroundView.layer.shadowPath = UIBezierPath(roundedRect: tagBackgroundView.bounds, cornerRadius: cornerRadius).cgPath
             tagBackgroundView.layer.shadowOffset = shadowOffset
