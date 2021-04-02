@@ -64,19 +64,45 @@ Be aware that if you update a property (e.g. `tagBackgroundColor`) for a `TagLis
 
 ## Installation
 
-Use [CocoaPods](https://github.com/CocoaPods/CocoaPods):
+### CocoaPods
+
+`TagListView` is available for installation trough [CocoaPods](https://cocoapods.org). For usage and installation instruction, visit their website.
+To install this library simply add this line in your `Podfile`:
 
 ```ruby
 pod 'TagListView', '~> 1.0'
 ```
 
-Or [Carthage](https://github.com/Carthage/Carthage):
+### Carthage
+
+`TagListView` is available for installation trough [Carthage](https://github.com/Carthage/Carthage). For usage and installation instruction, visit their website.
+To integrate this library add this line in your `Cartfile`:
 
 ```ruby
 github "ElaWorkshop/TagListView" ~> 1.0
 ```
 
-Or drag **TagListView** folder into your project.
+### Manual
+
+1. Open up Terminal application and `cd` into your iOS project directory
+
+2. **ONLY IF** your project is not already initialized as a git repository, run
+```
+$ git init
+```
+
+3. Add `TagListView` as a submodule by running
+```
+$ git submodule add https://github.com/ElaWorkshop/TagListView.git
+```
+
+4. Open the project folder and drag the `TagListView.xcodeproj` file into the Project Navigator of your application.
+You should drag it at the same level of your blue project icon.
+Then click Save on the Xcode dialog that shows up.
+
+5. In the Project Navigator, select your application project and go to "Targets" -> "General"
+
+6. Click the `+` button under the "Frameworks, Libraries, and Embedded Content" section and `Add` the `TagListView.framework`
 
 ### Older Swift Versions?
 
@@ -90,4 +116,4 @@ Pull requests are welcome! If you want to do something big, please open an issue
 
 ## License
 
-MIT
+`TagListView` is available under the MIT license. See the LICENSE file for more info.
