@@ -18,7 +18,7 @@ class ViewController: UIViewController, TagListViewDelegate {
         super.viewDidLoad()
         
         tagListView.delegate = self
-        tagListView.addTag("TagListView")
+        tagListView.addTag("TagListView\nSecondLine")
         tagListView.addTag("TEAChart")
         tagListView.addTag("To Be Removed")
         tagListView.addTag("To Be Removed")
