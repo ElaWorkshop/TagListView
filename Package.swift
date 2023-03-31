@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(name: "TagListView",
-                      platforms: [.iOS(.v8)],
+                      platforms: [.iOS(.v9)],
                       products: [.library(name: "TagListView",
                                           targets: ["TagListView"])],
                       targets: [.target(name: "TagListView",
