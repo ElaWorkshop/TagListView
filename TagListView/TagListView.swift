@@ -273,7 +273,8 @@ open class TagListView: UIView {
         for (index, tagView) in tagViews.enumerated() {
             tagView.frame.size = tagView.intrinsicContentSize
             tagViewHeight = tagView.frame.height
-            
+            tagView.frame.size.width = max(minWidth, tagView.frame.size.width)
+
             if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frameWidth {
                 currentRow += 1
                 currentRowWidth = 0
@@ -294,7 +295,6 @@ open class TagListView: UIView {
                 x: currentRowWidth,
                 y: 0)
             tagBackgroundView.frame.size = tagView.bounds.size
-            tagView.frame.size.width = max(minWidth, tagView.frame.size.width)
             tagBackgroundView.layer.shadowColor = shadowColor.cgColor
             tagBackgroundView.layer.shadowPath = UIBezierPath(roundedRect: tagBackgroundView.bounds, cornerRadius: cornerRadius).cgPath
             tagBackgroundView.layer.shadowOffset = shadowOffset
