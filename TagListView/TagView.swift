@@ -83,11 +83,45 @@ open class TagView: UIButton {
     
     @IBInspectable open var textFont: UIFont = .systemFont(ofSize: 12) {
         didSet {
+            updateTitleLabel()
+        }
+    }
+    
+    @IBInspectable open var tagAttributedTitle: NSAttributedString?{
+        didSet{
+            updateTitleLabel()
+        }
+    }
+    
+    @IBInspectable open var tagAttributedTitleHighlighted: NSAttributedString?{
+        didSet{
+            updateTitleLabel()
+        }
+    }
+    
+    @IBInspectable open var tagAttributedTitleSelected: NSAttributedString?{
+        didSet{
+            updateTitleLabel()
+        }
+    }
+    
+    //updates the title label
+    private func updateTitleLabel(){
+        if let at = tagAttributedTitle{
+            self.setAttributedTitle(at, for: .normal)
+            if let ath = tagAttributedTitleHighlighted{
+                self.setAttributedTitle(ath, for: .highlighted)
+            }
+            if let ats = self.tagAttributedTitleSelected{
+                self.setAttributedTitle(ats, for: .selected)
+            }
+        }else{
             titleLabel?.font = textFont
         }
     }
     
     private func reloadStyles() {
+        updateTitleLabel()
         if isHighlighted {
             if let highlightedBackgroundColor = highlightedBackgroundColor {
                 // For highlighted, if it's nil, we should not fallback to backgroundColor.
@@ -187,6 +221,15 @@ open class TagView: UIButton {
     override open var intrinsicContentSize: CGSize {
         var size = titleLabel?.text?.size(withAttributes: [NSAttributedString.Key.font: textFont]) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
+        if let at = self.tagAttributedTitle{
+            self.titleLabel?.lineBreakMode = .byClipping
+            size = at.size()
+            size.height += paddingY * 2
+            size.height = ceil(size.height)
+            size.width = ceil(size.width)
+        }
+        
+        
         size.width += paddingX * 2
         if size.width < size.height {
             size.width = size.height

@@ -13,6 +13,7 @@ class ViewController: UIViewController, TagListViewDelegate {
     @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var biggerTagListView: TagListView!
     @IBOutlet weak var biggestTagListView: TagListView!
+    @IBOutlet var hetroTagView: TagListView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,37 @@ class ViewController: UIViewController, TagListViewDelegate {
         biggestTagListView.minWidth = 57
         biggestTagListView.alignment = .right
         
+        //hetro tag view example. See the custom classes at the end of this file for how to override properties of tag views
+        let htag1 = TestTagViewOne.init(title: "Custom 1")
+        let htag2 = TestTagViewTwo.init(title: "Custom 2")
+        let htag3 = TestTagViewTwo.init(title: "Two again")
+        let htag4 = TestTagViewOne.init(title: "1 agn")
+        let htag5 = TestTagViewThree.init(title: "custom class 3")
+        
+        //tag with attributed string example
+        let attrTag = TestTagViewThree.init(title: "") //title does not matter because we set the attributed title later
+        attrTag.tagAttributedTitle = NSAttributedString.init(string: "attributed title", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30), NSAttributedString.Key.strikethroughStyle : 2, NSAttributedString.Key.strokeColor : UIColor.magenta])
+        
+        hetroTagView.addTagViews([htag1, htag2, htag3, htag4, htag5])
+        hetroTagView.insertTagView(attrTag, at: 3)
+        
+        
+        //image tag example
+        if #available(iOS 13.0, *) {
+            var img = UIImage.init(systemName: "trash.fill", withConfiguration: UIImage.SymbolConfiguration.init(pointSize: 20))!
+            img = UIImage.init(named: "singer")! //comment out this line to see the sf symbol version work
+            let attrStr = NSMutableAttributedString.init(string: "tag with img", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22)])
+            let atachment = NSTextAttachment()
+            atachment.image = img
+            attrStr.append(NSAttributedString.init(attachment: atachment))
+            
+            let imgtag = TestTagViewThree.init(title: "")
+            imgtag.tagAttributedTitle = attrStr
+            hetroTagView.addTagView(imgtag)
+        } else {
+            // this will work but we cant use sf symbols. Just use any other UIImage for your text attachment
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,6 +102,57 @@ class ViewController: UIViewController, TagListViewDelegate {
     func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
         print("Tag Remove pressed: \(title), \(sender)")
         sender.removeTagView(tagView)
+    }
+    
+    class TestTagViewOne: TagView {
+        override var tagBackgroundColor: UIColor{
+            get{
+                return .orange
+            }
+            set{}
+        }
+        
+        override var textFont: UIFont{
+            get{
+                return .systemFont(ofSize: 20)
+            }
+            set{}
+        }
+    }
+    
+    class TestTagViewTwo: TagView {
+        override var tagBackgroundColor: UIColor{
+            get{
+                return .purple
+            }
+            set{}
+        }
+        
+        override var textFont: UIFont{
+            get{
+                return .boldSystemFont(ofSize: 18)
+            }
+            set{}
+        }
+    }
+    
+    class TestTagViewThree: TagView {
+        override var tagBackgroundColor: UIColor{
+            get{
+                return .green
+            }
+            set{}
+        }
+        
+        override var textColor: UIColor{
+            get{
+                return .black
+            }
+            
+            set{
+                
+            }
+        }
     }
 }
 

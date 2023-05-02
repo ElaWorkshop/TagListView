@@ -273,14 +273,17 @@ open class TagListView: UIView {
         for (index, tagView) in tagViews.enumerated() {
             tagView.frame.size = tagView.intrinsicContentSize
             tagViewHeight = tagView.frame.height
-            
+            var rowViewYConstant:CGFloat = 0
+            if rowViews.count > 0{
+                rowViewYConstant = rowViews[rowViews.count - 1].frame.maxY + marginY
+            }
             if currentRowTagCount == 0 || currentRowWidth + tagView.frame.width > frameWidth {
                 currentRow += 1
                 currentRowWidth = 0
                 currentRowTagCount = 0
                 currentRowView = UIView()
                 currentRowView.transform = directionTransform
-                currentRowView.frame.origin.y = CGFloat(currentRow - 1) * (tagViewHeight + marginY)
+                currentRowView.frame.origin.y = rowViewYConstant
                 
                 rowViews.append(currentRowView)
                 addSubview(currentRowView)
@@ -318,6 +321,11 @@ open class TagListView: UIView {
             }
             currentRowView.frame.size.width = currentRowWidth
             currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.height)
+            
+            
+            //used to toggle a call to reload styles
+            let tmp = tagView.isSelected
+            tagView.isSelected = tmp
         }
         rows = currentRow
         
@@ -327,10 +335,7 @@ open class TagListView: UIView {
     // MARK: - Manage tags
     
     override open var intrinsicContentSize: CGSize {
-        var height = CGFloat(rows) * (tagViewHeight + marginY)
-        if rows > 0 {
-            height -= marginY
-        }
+        let height = rowViews.last?.frame.maxY ?? 0
         return CGSize(width: frame.width, height: height)
     }
     
