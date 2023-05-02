@@ -185,8 +185,8 @@ open class TagView: UIButton {
     // MARK: - layout
 
     override open var intrinsicContentSize: CGSize {
-        var size = titleLabel?.text?.size(withAttributes: [NSAttributedString.Key.font: textFont]) ?? CGSize.zero
-        size.height = textFont.pointSize + paddingY * 2
+        var size = titleLabel!.sizeThatFits(CGSize(width: titleLabel!.preferredMaxLayoutWidth - contentEdgeInsets.left - contentEdgeInsets.right, height: .greatestFiniteMagnitude))
+        size.height = size.height + paddingY * 2
         size.width += paddingX * 2
         if size.width < size.height {
             size.width = size.height
@@ -207,6 +207,7 @@ open class TagView: UIButton {
     }
     
     open override func layoutSubviews() {
+        titleLabel?.preferredMaxLayoutWidth = frame.size.width
         super.layoutSubviews()
         if enableRemoveButton {
             removeButton.frame.size.width = paddingX + removeButtonIconSize + paddingX
