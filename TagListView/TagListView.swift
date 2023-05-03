@@ -209,7 +209,7 @@ open class TagListView: UIView {
     
     open private(set) var tagViews: [TagView] = []
     private(set) var tagBackgroundViews: [UIView] = []
-    private(set) var rowViews: [UIView] = []
+    open private(set) var rowViews: [UIView] = []
     private(set) var tagViewHeight: CGFloat = 0
     private(set) var rows = 0 {
         didSet {
