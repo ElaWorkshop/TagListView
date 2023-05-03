@@ -196,6 +196,8 @@ open class TagListView: UIView {
         }
     }
     
+    @IBInspectable open dynamic var isLongPressEnabled: Bool = true
+    
     @objc open dynamic var textFont: UIFont = .systemFont(ofSize: 12) {
         didSet {
             defer { rearrangeViews() }
@@ -359,8 +361,10 @@ open class TagListView: UIView {
         
         // On long press, deselect all tags except this one
         tagView.onLongPress = { [unowned self] this in
-            self.tagViews.forEach {
-                $0.isSelected = $0 == this
+            if isLongPressEnabled {
+                self.tagViews.forEach {
+                    $0.isSelected = $0 == this
+                }
             }
         }
         
