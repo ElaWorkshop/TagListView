@@ -314,7 +314,7 @@ open class TagListView: UIView {
                 currentRowView.frame.origin.x = (frameWidth - (currentRowWidth - marginX)) / 2
             case .trailing: fallthrough // switch must be exahutive
             case .right:
-                currentRowView.frame.origin.x = frameWidth - (currentRowWidth - marginX)
+                currentRowView.frame.origin.x = frameWidth - currentRowWidth
             }
             currentRowView.frame.size.width = currentRowWidth
             currentRowView.frame.size.height = max(tagViewHeight, currentRowView.frame.height)
