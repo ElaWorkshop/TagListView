@@ -90,4 +90,4 @@ Pull requests are welcome! If you want to do something big, please open an issue
 
 ## License
 
-MIT
+[MIT](https://github.com/ElaWorkshop/TagListView/blob/master/LICENSE)
