@@ -71,6 +71,7 @@ open class TagListView: UIView {
             }
         }
     }
+    
     @IBInspectable open dynamic var borderWidth: CGFloat = 0 {
         didSet {
             tagViews.forEach {
@@ -103,6 +104,7 @@ open class TagListView: UIView {
             }
         }
     }
+    
     @IBInspectable open dynamic var paddingX: CGFloat = 5 {
         didSet {
             defer { rearrangeViews() }
@@ -111,11 +113,13 @@ open class TagListView: UIView {
             }
         }
     }
+    
     @IBInspectable open dynamic var marginY: CGFloat = 2 {
         didSet {
             rearrangeViews()
         }
     }
+    
     @IBInspectable open dynamic var marginX: CGFloat = 5 {
         didSet {
             rearrangeViews()
@@ -135,26 +139,31 @@ open class TagListView: UIView {
         case leading
         case trailing
     }
+
     @IBInspectable open var alignment: Alignment = .leading {
         didSet {
             rearrangeViews()
         }
     }
+
     @IBInspectable open dynamic var shadowColor: UIColor = .white {
         didSet {
             rearrangeViews()
         }
     }
+    
     @IBInspectable open dynamic var shadowRadius: CGFloat = 0 {
         didSet {
             rearrangeViews()
         }
     }
+
     @IBInspectable open dynamic var shadowOffset: CGSize = .zero {
         didSet {
             rearrangeViews()
         }
     }
+    
     @IBInspectable open dynamic var shadowOpacity: Float = 0 {
         didSet {
             rearrangeViews()
@@ -178,6 +187,7 @@ open class TagListView: UIView {
             }
         }
     }
+    
     @IBInspectable open dynamic var removeIconLineWidth: CGFloat = 1 {
         didSet {
             defer { rearrangeViews() }
@@ -195,7 +205,9 @@ open class TagListView: UIView {
             }
         }
     }
-    
+
+    @IBInspectable open dynamic var enableMutipleSelection: Bool = false
+      
     @objc open dynamic var textFont: UIFont = .systemFont(ofSize: 12) {
         didSet {
             defer { rearrangeViews() }
@@ -359,8 +371,17 @@ open class TagListView: UIView {
         
         // On long press, deselect all tags except this one
         tagView.onLongPress = { [unowned self] this in
-            self.tagViews.forEach {
-                $0.isSelected = $0 == this
+            for tag in self.tagViews {
+                tag.isSelected = tag == this
+            }
+        }
+        
+        // On tap, deselect all tags if multiple select disabled
+        tagView.onTap = { [unowned self] this in
+            if !self.enableMutipleSelection {
+                self.tagViews.forEach {
+                    $0.isSelected = $0 == this
+                }
             }
         }
         
@@ -414,6 +435,16 @@ open class TagListView: UIView {
     
     open func setTitle(_ title: String, at index: Int) {
         tagViews[index].titleLabel?.text = title
+    }
+    
+    open func selectTags(_ tags: [String]) {
+        for tag in tags {
+            for tagView in self.tagViews {
+                if tagView.titleLabel?.text == tag {
+                    tagView.isSelected = true
+                }
+            }
+        }
     }
     
     open func removeTag(_ title: String) {
