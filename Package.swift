@@ -3,21 +3,10 @@
 
 import PackageDescription
 
-let package = Package(
-    name: "TagListView",
-    products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "TagListView_niceone",
-            targets: ["TagListView"]),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "TagListView"),
-        .testTarget(
-            name: "TagListViewTests",
-            dependencies: ["TagListView"]),
-    ]
-)
+let package = Package(name: "TagListView",
+                      platforms: [.iOS(.v9)],
+                      products: [.library(name: "TagListView",
+                                          targets: ["TagListView"])],
+                      targets: [.target(name: "TagListView",
+                                        path: "TagListView")],
+                      swiftLanguageVersions: [.v5])
